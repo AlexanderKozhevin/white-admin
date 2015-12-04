@@ -14,18 +14,20 @@ var jslibs = [
   "bower_components/angular/angular.min.js",
   "bower_components/angular-route/angular-route.min.js",
   "bower_components/angular-sanitize/angular-sanitize.min.js",
+  "bower_components/angular-translate/angular-translate.min.js",
+  "bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
+  "bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js",
+  "bower_components/angular-cookies/angular-cookies.min.js",
+  "bower_components/angular-dynamic-locale/dist/tmhDynamicLocale.js",
   "bower_components/angular-ui-router/release/angular-ui-router.min.js",
   "bower_components/angular-material/angular-material.min.js",
   "bower_components/angular-animate/angular-animate.min.js",
   "bower_components/angular-aria/angular-aria.min.js",
   "bower_components/angular-simple-logger/dist/angular-simple-logger.min.js",
-  "bower_components/angular-cookies/angular-cookies.min.js",
-  "bower_components/angular-dynamic-locale/dist/tmhDynamicLocale.min.js",
   "bower_components/angular-messages/angular-messages.min.js",
-  "bower_components/angular-translate/angular-translate.min.js",
-  "bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js",
   "bower_components/angular-websocket/angular-websocket.min.js",
   "bower_components/restangular/dist/restangular.min.js"
+
 ];
 
 var csslibs = [
@@ -33,6 +35,10 @@ var csslibs = [
   "bower_components/flag-icon-css/css/flag-icon.min.css"
 ];
 
+var i18n_files = [
+  "bower_components/angular-i18n/angular-locale_ru-ru.js",
+  "bower_components/angular-i18n/angular-locale_en-us.js"
+]
 
 gulp.task('templates', function() {
 	return gulp.src(['source/view/**/*.jade'])
@@ -51,11 +57,21 @@ gulp.task('connect', function() {
   });
 });
 
+gulp.task('locales', function() {
+  return gulp.src(['source/locales/*.yml'])
+  .pipe($.yaml())
+  .pipe(gulp.dest('production/locales'))
+});
+gulp.task('copyi18n', function() {
+  gulp.src(i18n_files).pipe($.copy('production/locales', {prefix: 2}));
+});
+
 gulp.task('watch', function(){
   gulp.watch('source/style/**/*.scss', ['sass']);
   gulp.watch(['source/view/**/*.jade'], ['templates']);
   gulp.watch(['source/*.jade'], ['jade']);
   gulp.watch('source/app/**/*.coffee', ['coffee']);
+  gulp.watch('source/locales/*.yml', ['locales']);
 });
 
 //////////////////////////////////////////////////////
@@ -118,7 +134,7 @@ gulp.task('csslibs', function() {
 //////////////////////////////////////////////////////
 // All project compilation
 gulp.task('libs', ['jslibs', 'csslibs'])
-gulp.task('compile', ['libs', 'sass', 'jade', 'templates', 'coffee'])
+gulp.task('compile', ['libs', 'sass', 'jade', 'templates', 'coffee', 'copyi18n', 'locales'])
 gulp.task('production', ['compile', 'uglify', 'gzip'])
 
 //////////////////////////////////////////////////////

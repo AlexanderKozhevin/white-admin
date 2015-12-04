@@ -1,2 +1,68 @@
-h1 hello hacking main page
-div(ui-view="main")
+header
+  md-toolbar()
+    div.md-toolbar-tools()
+      md-button.md-icon-button(aria-label='Settings' ng-click="toggle(left)")
+        md-icon.material-icons menu
+      div(md-header-title flex) Hacking tutorial
+      md-button.md-icon-button(aria-label='view type')
+        md-icon.material-icons view_module
+      md-menu
+        md-button.md-icon-button(aria-label="open flags" ng-click="openMenu_flags($mdOpenMenu, $event)") En
+        md-menu-content(width="1" )
+          md-menu-item(aria-label="gb flag")
+            md-button(ng-click="radial_flag($event)" aria-label="gb flag")
+              span.flag-icon.flag-icon-gb
+          md-menu-item(ng-click="radial_flag($event)")
+            md-button(aria-label="gb flag")
+              span.flag-icon.flag-icon-ru
+          md-menu-item(ng-click="radial_flag($event)")
+            md-button(aria-label="gb flag")
+              span.flag-icon.flag-icon-de
+          md-menu-item(ng-click="radial_flag($event)")
+            md-button(aria-label="gb flag")
+              span.flag-icon.flag-icon-fr
+      md-menu
+        md-button.md-icon-button(aria-label="open submenu" ng-click="openMenu($mdOpenMenu, $event)")
+          md-icon.material-icons more_vert
+        md-menu-content(width="4")
+          md-menu-item
+            md-button(ng-click="radial($event)")
+              md-icon.material-icons account_circle
+              span My Account
+          md-menu-item(ng-click="radial($event)")
+            md-button
+              md-icon.material-icons exit_to_app
+              span Log out
+          
+        
+      
+    
+section.root_section      
+  md-sidenav.md-sidenav-left.md-whiteframe-z2.main_sidenav(layout="column" md-component-id="left" )
+    md-content
+      div.logo(layout="row" layout-align="center center") Polymath
+      
+      md-list()
+        div()
+          md-list-item.item( ng-click="video_menu.expand = !video_menu.expand")
+            p.md-subheader.md-primary {{'videos' | translate}}
+            span(flex)
+            md-button.md-icon-button(ng-show="video_menu.children.length>0")
+              md-icon.material-icons(aria-label='expand menu') {{ video_menu.expand ? 'arrow_drop_up': 'arrow_drop_down'}}
+            
+          div(ng-repeat="item in video_menu.children" ui-sref="main.videos({id: item.id})" ng-show="video_menu.expand")
+            md-list-item.item_child(md-ink-ripple)
+              p.md-body-2 {{item.name}}
+              span(flex)
+      md-list(ui-sref="main.statistics")
+        md-list-item.item(md-ink-ripple)
+          p.md-subheader.md-primary {{'stat' | translate}}
+          span(flex)
+      md-list(ui-sref="main.settings")
+        md-list-item.item(md-ink-ripple)
+          p.md-subheader.md-primary {{'setting' | translate}}
+          span(flex)
+
+
+  div.main_content_box(flex layout="column" ui-view="main")
+  

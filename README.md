@@ -1,1 +1,1 @@
-# mytemplate
+# Angular material template for themeforest

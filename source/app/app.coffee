@@ -1,4 +1,24 @@
-app = angular.module('app', ['ui.router', 'ngSanitize',  'ngRoute', 'ngAnimate', 'ngMaterial',  'restangular', 'templates'])
+app = angular.module('app', ['ui.router', 'ngSanitize',  'ngRoute', 'ngAnimate',
+  'ngMaterial',  'restangular', 'templates', 'pascalprecht.translate', 'ngLocale',
+  'ngCookies', 'ngMessages', 'tmh.dynamicLocale', 'ngWebSocket'
+  ])
+
+
+
+app.config ($translateProvider, tmhDynamicLocaleProvider) ->
+  $translateProvider.useCookieStorage();
+
+  $translateProvider.useStaticFilesLoader({
+    prefix: '/locales/',
+    suffix: '.json'
+  });
+  locale = document.querySelector('body').getAttribute('locale')
+  locale = "en-us" if !locale
+
+  $translateProvider.preferredLanguage('en');
+
+  tmhDynamicLocaleProvider.localeLocationPattern('/locales/angular-locale_{{locale}}.js');
+  tmhDynamicLocaleProvider.defaultLocale('en-us')
 
 
 angular.element(document).ready () ->

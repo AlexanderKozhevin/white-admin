@@ -1,0 +1,13 @@
+md-sidenav{
+  .logo{
+    height: 64px;
+    font-size: $font-medium;
+  }
+  .item{
+    cursor: pointer;
+  }
+  .item_child{
+    cursor: pointer;
+    padding-left: 25px!important;
+  }
+}

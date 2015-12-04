@@ -16,7 +16,7 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $locationProvi
       main: {templateUrl: 'videos.html', controller: 'videos_Ctrl'}
 
   $stateProvider.state 'main.record',
-    url: '/record/:id'
+    url: '/record?id'
     abstract: true,
     views:
       main: {templateUrl: 'record/record.html', controller: 'record_Ctrl'}
