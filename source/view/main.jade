@@ -3,9 +3,7 @@ header
     div.md-toolbar-tools()
       md-button.md-icon-button(aria-label='Settings' ng-click="toggle(left)")
         md-icon.material-icons menu
-      div(md-header-title flex) Hacking tutorial
-      md-button.md-icon-button(aria-label='view type')
-        md-icon.material-icons view_module
+      div(md-header-title flex) {{page.title}}
       md-menu
         md-button.md-icon-button(aria-label="open flags" ng-click="openMenu_flags($mdOpenMenu, $event)") En
         md-menu-content(width="1" )

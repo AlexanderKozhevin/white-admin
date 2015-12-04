@@ -1,6 +1,7 @@
 angular.module("app").controller "main_Ctrl",  ($scope, $mdSidenav, $state) ->
 
-
+  $scope.page =
+    title: "Polymath"
   $scope.toggle = () ->
     $mdSidenav('left').toggle();
 
