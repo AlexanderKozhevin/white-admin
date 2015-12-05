@@ -1,0 +1,80 @@
+.video_card{
+  margin: 0px 0px 20px 0px;
+  width: 230px;
+
+  .title{
+    margin-top: 10px;
+    width: 100%;
+    overflow:hidden;
+    display:inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .info{
+    opacity: 0.8;
+    margin-top: 5px;
+    font:{
+      size: $font-small;
+      color: $grey-text-base;
+    }
+  }
+	.screenshot{
+		width: 230px;
+		height: 128.8px;
+    background-repeat: no-repeat!important;
+		.darken_cover{
+			height: 100%;
+			background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 100%);
+      opacity: 0;
+      transition: all 0.1s ease-out;
+		}
+    .select_button{
+      margin: 10px 0px 0px 10px;
+
+      md-icon{
+        cursor: pointer;
+        color: white;
+        opacity: 0.7;
+        transition: all 0.1s ease-in;
+
+        &:hover{opacity: 1;}
+
+      }
+    }
+    md-menu{
+      // background-color: pink;
+      padding: 0!important;
+      .md-icon-button{
+        padding: 0!important;
+        margin: 0!important;
+      }
+      md-icon{color: white;}
+    }
+	}
+
+  &.active{
+    .darken_cover{
+      opacity: 1;
+    }
+    .select_button md-icon{
+      opacity: 1;
+      color: $primary-teal;
+      background-color: white;
+      border-radius: 20px;
+    }
+
+  }
+  &.pre_active{
+    .darken_cover{
+      opacity: 1;
+    }
+    .select_button md-icon{
+      opacity: 1;
+      border-radius: 20px;
+    }
+
+  }
+  &:hover .darken_cover{
+    opacity: 1;
+  }
+}

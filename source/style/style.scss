@@ -7,11 +7,19 @@
 @import "modules/_fonts";
 
 @import "components/_sidenav";
+@import "components/_card";
+
+@import "_videos";
 
 body{
+
 }
+
 .main_ui_view{
-  background-color: pink;
   height: calc(100vh - 64px);
   overflow: auto;
+}
+
+textarea:focus, input:focus, button:focus, li:focus, a:focus, select:focus, md-icon:focus{
+	outline: 0!important;
 }
