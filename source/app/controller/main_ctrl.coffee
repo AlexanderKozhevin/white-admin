@@ -1,9 +1,40 @@
-angular.module("app").controller "main_Ctrl",  ($scope, $mdSidenav, $state) ->
+angular.module("app").controller "main_Ctrl",  ($scope, $mdSidenav, $state, $translate, tmhDynamicLocale) ->
 
   $scope.page =
     title: "Polymath"
   $scope.toggle = () ->
     $mdSidenav('left').toggle();
+
+
+  $scope.language =
+    current: 'En'
+    set_language: (language) ->
+      switch language
+        when 'de'
+          tmhDynamicLocale.set('de-de')
+          $translate.use('de');
+          $scope.language.current = "De"
+        when 'en'
+          tmhDynamicLocale.set('en-us')
+          $translate.use('en');
+          $scope.language.current = "En"
+
+
+  $scope.menu =
+    user_menu: {
+      element: null
+      open: ($mdOpenMenu, ev) ->
+        this.element = ev
+        $mdOpenMenu(ev);
+    },
+    flag_menu: {
+      element: null
+      open: ($mdOpenMenu, ev) ->
+        this.element = ev
+        $mdOpenMenu(ev);
+    }
+
+
 
   $scope.video_menu =
     expand: false

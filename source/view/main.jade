@@ -5,32 +5,27 @@ header
         md-icon.material-icons menu
       div(md-header-title flex) {{page.title}}
       md-menu
-        md-button.md-icon-button(aria-label="open flags" ng-click="openMenu_flags($mdOpenMenu, $event)") En
+        md-button.md-icon-button(aria-label="open flags" ng-click="menu.flag_menu.open($mdOpenMenu, $event)") {{language.current}}
         md-menu-content(width="1" )
-          md-menu-item(aria-label="gb flag")
-            md-button(ng-click="radial_flag($event)" aria-label="gb flag")
+          md-menu-item(aria-label="flag" ng-click="language.set_language('en')")
+            md-button(aria-label="gb flag")
               span.flag-icon.flag-icon-gb
-          md-menu-item(ng-click="radial_flag($event)")
-            md-button(aria-label="gb flag")
-              span.flag-icon.flag-icon-ru
-          md-menu-item(ng-click="radial_flag($event)")
-            md-button(aria-label="gb flag")
+          md-menu-item(aria-label="flag" ng-click="language.set_language('de')")
+            md-button(aria-label="de flag")
               span.flag-icon.flag-icon-de
-          md-menu-item(ng-click="radial_flag($event)")
-            md-button(aria-label="gb flag")
-              span.flag-icon.flag-icon-fr
+          
       md-menu
-        md-button.md-icon-button(aria-label="open submenu" ng-click="openMenu($mdOpenMenu, $event)")
+        md-button.md-icon-button(aria-label="user menu" ng-click="menu.user_menu.open($mdOpenMenu, $event)")
           md-icon.material-icons more_vert
         md-menu-content(width="4")
           md-menu-item
-            md-button(ng-click="radial($event)")
+            md-button()
               md-icon.material-icons account_circle
-              span My Account
-          md-menu-item(ng-click="radial($event)")
+              span {{'user.myaccount' | translate}}
+          md-menu-item()
             md-button
               md-icon.material-icons exit_to_app
-              span Log out
+              span {{'user.exit' | translate}}
           
         
       

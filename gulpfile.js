@@ -37,7 +37,8 @@ var csslibs = [
 
 var i18n_files = [
   "bower_components/angular-i18n/angular-locale_ru-ru.js",
-  "bower_components/angular-i18n/angular-locale_en-us.js"
+  "bower_components/angular-i18n/angular-locale_en-us.js",
+  "bower_components/angular-i18n/angular-locale_de-de.js"
 ]
 
 gulp.task('templates', function() {
@@ -62,8 +63,13 @@ gulp.task('locales', function() {
   .pipe($.yaml())
   .pipe(gulp.dest('production/locales'))
 });
+
 gulp.task('copyi18n', function() {
   gulp.src(i18n_files).pipe($.copy('production/locales', {prefix: 2}));
+});
+
+gulp.task('copy_flags', function() {
+  gulp.src(['bower_components/flag-icon-css/flags/**/*']).pipe(gulp.dest('production/assets/flags'));
 });
 
 gulp.task('watch', function(){
@@ -134,7 +140,7 @@ gulp.task('csslibs', function() {
 //////////////////////////////////////////////////////
 // All project compilation
 gulp.task('libs', ['jslibs', 'csslibs'])
-gulp.task('compile', ['libs', 'sass', 'jade', 'templates', 'coffee', 'copyi18n', 'locales'])
+gulp.task('compile', ['libs', 'sass', 'jade', 'templates', 'coffee', 'copyi18n', 'locales', 'copy_flags'])
 gulp.task('production', ['compile', 'uglify', 'gzip'])
 
 //////////////////////////////////////////////////////
