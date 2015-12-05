@@ -34,7 +34,7 @@ section.root_section
   md-sidenav.md-sidenav-left.md-whiteframe-z2.main_sidenav(layout="column" md-component-id="left" )
     md-content
       div.logo(layout="row" layout-align="center center") Polymath
-      
+      md-divider
       md-list()
         div()
           md-list-item.item( ng-click="video_menu.expand = !video_menu.expand")
@@ -57,5 +57,5 @@ section.root_section
           span(flex)
 
 
-  div.main_content_box(flex layout="column" ui-view="main")
+  div.main_ui_view(flex layout="column" ui-view="main")
   

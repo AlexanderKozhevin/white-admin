@@ -9,5 +9,9 @@
 @import "components/_sidenav";
 
 body{
+}
+.main_ui_view{
   background-color: pink;
+  height: calc(100vh - 64px);
+  overflow: auto;
 }
