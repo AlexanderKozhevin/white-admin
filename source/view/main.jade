@@ -3,7 +3,7 @@ header
     div.md-toolbar-tools()
       md-button.md-icon-button(aria-label='Settings' ng-click="toggle(left)")
         md-icon.material-icons menu
-      div(md-header-title flex) {{page.title}}
+      div(md-header-title flex) {{title.name}}
       md-menu
         md-button.md-icon-button(aria-label="open flags" ng-click="menu.flag_menu.open($mdOpenMenu, $event)") {{language.current}}
         md-menu-content(width="1" )

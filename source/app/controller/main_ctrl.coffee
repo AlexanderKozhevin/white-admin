@@ -1,10 +1,14 @@
 angular.module("app").controller "main_Ctrl",  ($scope, $mdSidenav, $state, $translate, tmhDynamicLocale) ->
 
-  $scope.page =
-    title: "Polymath"
+
   $scope.toggle = () ->
     $mdSidenav('left').toggle();
 
+
+  $scope.title =
+    name: "Polymath"
+    set: (name) ->
+      this.name = name
 
   $scope.language =
     current: 'En'

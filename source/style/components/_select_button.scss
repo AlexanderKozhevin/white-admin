@@ -1,0 +1,19 @@
+.select_button{
+
+  @include noselect();
+
+  md-icon{
+    cursor: pointer;
+    opacity: 0.7;
+    transition: all 0.1s ease-in;
+    &:hover{opacity: 1;}
+  }
+  &.active{
+    md-icon{
+      opacity: 1;
+      background-color: $teal_50;
+      color: $choose-theme;
+      border-radius: 20px;
+    }
+  }
+}

@@ -5,10 +5,14 @@
 
 @import "modules/_colors";
 @import "modules/_fonts";
+@import "modules/_animation";
 
 @import "components/_sidenav";
 @import "components/_card";
+@import "components/_record_list_item";
 @import "components/_videos_toolbox";
+@import "components/_select_button";
+@import "components/_loading_box";
 
 @import "_videos";
 
@@ -21,6 +25,6 @@ body{
   overflow: auto;
 }
 
-textarea:focus, input:focus, button:focus, li:focus, a:focus, select:focus, md-icon:focus{
+textarea:focus, input:focus, button:focus, li:focus, a:focus, select:focus, md-icon:focus, div:focus{
 	outline: 0!important;
 }
