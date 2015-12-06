@@ -6,15 +6,6 @@ angular.module("app").controller "main_Ctrl",  ($scope, $mdSidenav, $state, $tra
     $mdSidenav('left').toggle();
 
 
-  $scope.select_test = false
-
-  $scope.itemmenu = ($mdOpenMenu, ev) ->
-    this.element = ev
-    $mdOpenMenu(ev);
-
-
-
-
   $scope.language =
     current: 'En'
     set_language: (language) ->

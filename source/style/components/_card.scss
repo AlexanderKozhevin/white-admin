@@ -1,5 +1,5 @@
 .video_card{
-  margin: 0px 0px 20px 0px;
+  margin: 0px 0px 0px 0px;
   width: 230px;
 
   .title{
@@ -30,7 +30,7 @@
 		}
     .select_button{
       margin: 10px 0px 0px 10px;
-
+      @include noselect();
       md-icon{
         cursor: pointer;
         color: white;

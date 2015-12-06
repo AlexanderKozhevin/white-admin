@@ -8,6 +8,20 @@ angular.module("app").controller "videos_Ctrl",  ($scope, $mdSidenav, $state, $w
       $scope.page.title = 'Videos - ' + current_videos.name
 
 
+  $scope.sorter =
+    list: [
+      {name: "By Name", id: 0},
+      {name: "By Size", id: 1},
+      {name: "By Time", id: 2}
+    ]
+  $scope.sorter.model = JSON.stringify($scope.sorter.list[0])
+
+
+  $scope.item_menu =
+    open: ($mdOpenMenu, ev) ->
+      this.element = ev
+      $mdOpenMenu(ev);
+
   $scope.many = [
     {name: 'money making 1'},
     {name: 'money making 2'},

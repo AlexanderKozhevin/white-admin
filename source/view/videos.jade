@@ -1,48 +1,51 @@
-md-grid-list.card_box(md-cols="1" md-cols-gt-lg="5" md-cols-lg="4" md-cols-md="3" md-cols-sm="{{small_cols_calc()}}" md-gutter="5px" md-row-height="1:1")
-  md-grid-tile.video_card(ng-class="{'active': item.select, 'pre_active': pre_select}" ng-repeat="item in many")
-    div.container(layout="column")
-      div.screenshot(style="background: url(http://i.ytimg.com/vi/SRcnnId15BA/mqdefault.jpg)")
-        div.darken_cover(layout="row" layout-align="space-between start")
-          div.select_button()
-            md-icon.material-icons(ng-click="select_item(item)") check_circle
-          md-menu
-            md-button.md-icon-button(aria-label="user menu" ng-click="itemmenu($mdOpenMenu, $event)")
-              md-icon.material-icons more_vert
-            md-menu-content(width="4")
-              md-menu-item
-                md-button
-                  md-icon.material-icons account_circle
-                  span {{'user.myaccount' | translate}}
-              md-menu-item
-                md-button
-                  md-icon.material-icons exit_to_app
-                  span {{'user.exit' | translate}}
-          
+md-toolbar.md-whiteframe-z1.videos_toolbox(md-theme="white_theme")
+  div.md-toolbar-tools(layout="row" layout-align="start center")
+    div.action_buttons(ng-show="pre_select" layout="row")
+      md-button.md-icon-button(aria-label='move to folder' )
+        md-icon.material-icons folder_open
+      md-button.md-icon-button(aria-label='remove' )
+        md-icon.material-icons delete
+    span(flex)
+    md-input-container.sort_selector(hide-sm)
+      md-select(ng-model="sorter.model" aria-label="sort select")
+        md-option(ng-repeat="item in sorter.list" value="{{item}}") {{item.name}}
+    md-button.md-icon-button(aria-label='block view' )
+      md-icon.material-icons view_module
+    div.paginator(layout="row" layout-align="start center")
+      md-button.md-icon-button(aria-label='page 0' hide-sm)
+        md-icon.material-icons fast_rewind
+      md-button.md-icon-button(aria-label='page previous' )
+        md-icon.material-icons skip_previous
+      div.info(hide-sm) 1 - 17
+      md-button.md-icon-button(aria-label='page next' )
+        md-icon.material-icons skip_next
+      md-button.md-icon-button(aria-label='page max' hide-sm)
+        md-icon.material-icons fast_forward
+
+div.card_box
+  md-grid-list(md-cols="1" md-cols-gt-lg="5" md-cols-lg="4" md-cols-md="3" md-cols-sm="{{small_cols_calc()}}" md-gutter="5px" md-row-height="1:1")
+    md-grid-tile.video_card(ng-class="{'active': item.select, 'pre_active': pre_select}" ng-repeat="item in many")
+      div.container(layout="column")
+        div.screenshot(style="background: url(http://i.ytimg.com/vi/SRcnnId15BA/mqdefault.jpg)")
+          div.darken_cover(layout="row" layout-align="space-between start")
+            div.select_button()
+              md-icon.material-icons(ng-click="select_item(item)") check_circle
+            md-menu
+              md-button.md-icon-button(aria-label="user menu" ng-click="item_menu.open($mdOpenMenu, $event)")
+                md-icon.material-icons more_vert
+              md-menu-content(width="4")
+                md-menu-item
+                  md-button()
+                    md-icon.material-icons create
+                    span {{'actions.delete' | translate}}
+                md-menu-item
+                  md-button
+                    md-icon.material-icons delete
+                    span {{'actions.edit' | translate}}
             
-      div.title(layout="row" layout-align="space-between center")
-        span 50 Cent
-      div.info(layout="row" layout-align="space-between center")
-        span.views 100500
-        span.duration 4:31
-
-
-      //- div.main_box()
-     //-         div.imager(style="background: url(http://i.ytimg.com/vi_webp/A_7AOKXPQYQ/mqdefault.webp)")
-     //-           div.hoverer
-     //-           div.stuff(layout="column" )
-     //-             div.name 50 Cent
-     //-             div.data(layout="row" layout-align="space-between center")
-     //-               span 100500
-     //-               span 4:31
-
-
-      //- md-grid-list.my_grid_list(md-cols="1" md-cols-gt-lg="5" md-cols-lg="4" md-cols-md="3" md-cols-sm="{{hackme()}}" md-gutter="5px" md-row-height="1:1")
-      //-     md-grid-tile.my_stuff( ng-repeat="item in many")
-      //-       div.main_box()
-      //-         div.imager(style="background: url(http://i.ytimg.com/vi_webp/A_7AOKXPQYQ/mqdefault.webp)")
-      //-           div.hoverer
-      //-           div.stuff(layout="column" )
-      //-             div.name 50 Cent
-      //-             div.data(layout="row" layout-align="space-between center")
-      //-               span 100500
-      //-               span 4:31
+              
+        div.title(layout="row" layout-align="space-between center")
+          span 50 Cent
+        div.info(layout="row" layout-align="space-between center")
+          span.views 100500
+          span.duration 4:31
