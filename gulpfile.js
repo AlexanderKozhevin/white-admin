@@ -26,8 +26,8 @@ var jslibs = [
   "bower_components/angular-simple-logger/dist/angular-simple-logger.min.js",
   "bower_components/angular-messages/angular-messages.min.js",
   "bower_components/angular-websocket/angular-websocket.min.js",
-  "bower_components/restangular/dist/restangular.min.js"
-
+  "bower_components/restangular/dist/restangular.min.js",
+  "bower_components/angular-google-chart/ng-google-chart.min.js"
 ];
 
 var csslibs = [

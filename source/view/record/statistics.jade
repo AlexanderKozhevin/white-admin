@@ -1,1 +1,53 @@
-h1 statistics
+div.stat_section(layout="column" layout-align="start start" )
+  
+  div.action_box(layout="row" layout-align="space-between center")
+    div.data_box(layout="row")
+      div.item(layout="column")
+        div.md-subheader {{'record.views' | translate}}
+        div.value 1748
+      div.item(layout="column")
+        div.md-subheader {{'record.shares' | translate}}
+        div.value 1748
+      div.item(layout="column")
+        div.md-subheader {{'record.comments' | translate}}
+        div.value 1748
+      div.item(layout="column")
+        div.md-subheader {{'record.likes' | translate}}
+        div.value 1748
+    div.date_range()
+      md-input-container
+        md-select(ng-model="category" aria-label="category record" placeholder="{{'simple.range' | translate}}")
+          md-option(ng-repeat="item in cats" value="{{item}}") {{item.name | translate}}
+        
+        
+  
+  md-grid-list.charts(md-cols="2"   md-row-height="250px")
+    md-grid-tile.tile()
+      div.boxer
+        div.heatmap(google-chart chart="heatmap" )
+    md-grid-tile.tile()
+      div.boxer
+        div.heatmap(google-chart chart="viewsmap" )
+        
+  md-grid-list.charts(md-cols="2"   md-row-height="400px")
+    md-grid-tile.tile()
+      div.boxer
+        div.heatmap(google-chart chart="geomap" )
+    md-grid-tile.tile.traffic()
+      div.boxer(layout="column")
+        div.md-subheader {{'simple.traffic' | translate}}
+        div.item(layout="row")
+          div.source External
+          div.value 4 (5%)
+        div.item(layout="row")
+          div.source Youtube Search
+          div.value 10 (12%)
+        div.item(layout="row")
+          div.source YouTube channels
+          div.value 10 (12%)
+        div.item(layout="row")
+          div.source Suggested videos
+          div.value 10 (12%)
+  
+  //- div.heatmap(google-chart chart="heatmap"  flex="50")
+  //- md-divider

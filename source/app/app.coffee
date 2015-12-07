@@ -1,6 +1,6 @@
 app = angular.module('app', ['ui.router', 'ngSanitize',  'ngRoute', 'ngAnimate',
   'ngMaterial',  'restangular', 'templates', 'pascalprecht.translate', 'ngLocale',
-  'ngCookies', 'ngMessages', 'tmh.dynamicLocale', 'ngWebSocket'
+  'ngCookies', 'ngMessages', 'tmh.dynamicLocale', 'ngWebSocket', 'googlechart'
   ])
 
 

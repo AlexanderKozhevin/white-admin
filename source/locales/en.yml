@@ -15,8 +15,14 @@ actions:
   delete: "Delete"
   edit: "Edit"
 
+simple:
+  range: "Range"
+  traffic: "Traffic sources"
+
 record:
+  likes: "Likes"
   name: "Name"
+  duration: "Duration"
   views: "Views"
   category: "Category"
   size: "Size"
@@ -26,3 +32,11 @@ record:
   stat: "Statistics"
   ads: "Ads"
   desc: "Description"
+  shares: "Shares"
+  comments: "Comments"
+
+
+timerange:
+  week: "For last week"
+  month: "For last month"
+  year: "For last year"
