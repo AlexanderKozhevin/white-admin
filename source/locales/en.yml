@@ -14,3 +14,15 @@ user:
 actions:
   delete: "Delete"
   edit: "Edit"
+
+record:
+  name: "Name"
+  views: "Views"
+  category: "Category"
+  size: "Size"
+  agerest: "Age restriction"
+  about: "Record data"
+  attr: "Attributes"
+  stat: "Statistics"
+  ads: "Ads"
+  desc: "Description"

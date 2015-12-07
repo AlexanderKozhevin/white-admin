@@ -38,7 +38,9 @@ angular.module("app").controller "main_Ctrl",  ($scope, $mdSidenav, $state, $tra
         $mdOpenMenu(ev);
     }
 
-
+  $scope.prevent = (event) ->
+    event.stopPropagation()
+    event.preventDefault()
 
   $scope.video_menu =
     expand: false

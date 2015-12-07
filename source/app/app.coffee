@@ -5,8 +5,10 @@ app = angular.module('app', ['ui.router', 'ngSanitize',  'ngRoute', 'ngAnimate',
 
 
 app.config ($mdThemingProvider) ->
-  $mdThemingProvider.theme('default').primaryPalette('teal')
+  $mdThemingProvider.theme('default').primaryPalette('teal').accentPalette('blue')
   $mdThemingProvider.theme('white_theme').primaryPalette('grey', {'default': '50', 'hue-1': '200', 'hue-2': '400', 'hue-3': '600' })
+
+
 
 app.config ($translateProvider, tmhDynamicLocaleProvider) ->
   $translateProvider.useCookieStorage();

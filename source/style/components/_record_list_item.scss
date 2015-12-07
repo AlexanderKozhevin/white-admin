@@ -2,8 +2,13 @@
   .select_button{
     padding: 0px 20px 0px 0px;
   }
-
+  .name,
+  .created,
+  .views{
+    cursor: pointer;
+  }
   .screenshot{
+    cursor: pointer;
     padding: 10px 0px 10px 0px;
     img{
       max-width: 230px;

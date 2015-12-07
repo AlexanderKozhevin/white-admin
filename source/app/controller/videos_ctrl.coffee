@@ -40,17 +40,17 @@ angular.module("app").controller "videos_Ctrl",  ($scope, $mdSidenav, $state, $w
 
   $timeout () ->
     $scope.many = [
-      {name: 'money making 1'},
-      {name: 'money making 2'},
-      {name: 'money making 3'},
-      {name: 'money making 4'},
-      {name: 'money making 5'},
-      {name: 'money making 6'},
-      {name: 'money making 7'},
-      {name: 'money making 8'},
-      {name: 'money making 9'},
-      {name: 'money making 10'},
-      {name: 'money making 11'}
+      {name: 'money making 1', id: 101},
+      {name: 'money making 2', id: 102},
+      {name: 'money making 3', id: 103},
+      {name: 'money making 4', id: 104},
+      {name: 'money making 5', id: 105},
+      {name: 'money making 6', id: 106},
+      {name: 'money making 7', id: 107},
+      {name: 'money making 8', id: 108},
+      {name: 'money making 9', id: 109},
+      {name: 'money making 10', id: 110},
+      {name: 'money making 11', id: 111}
     ]
   ,500
 
@@ -65,7 +65,8 @@ angular.module("app").controller "videos_Ctrl",  ($scope, $mdSidenav, $state, $w
   $mdSidenav("left").close()
   console.log 'videos_Ctrl'
 
-  $scope.select_item = (item) ->
+  $scope.select_item = (item, $event) ->
+    $scope.prevent($event)
     item.select = !item.select
     elements = _.where($scope.many, {select: true})
     if elements.length > 0
