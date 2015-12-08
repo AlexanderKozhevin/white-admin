@@ -10,6 +10,9 @@ user:
   myaccount: "My account"
   exit: "Log out"
 
+account:
+  user: "User settings"
+  birth: "Birthday"
 
 actions:
   delete: "Delete"
@@ -19,6 +22,8 @@ simple:
   range: "Range"
   traffic: "Traffic sources"
   gender: "Gender"
+  users: "Users"
+  email: "Email"
 
 record:
   likes: "Likes"

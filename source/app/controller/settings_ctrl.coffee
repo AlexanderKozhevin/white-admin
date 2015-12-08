@@ -2,7 +2,7 @@ angular.module("app").controller "settings_Ctrl",  ($scope, $mdSidenav, $transla
 
 
   $translate('setting').then (data) ->
-    $scope.page.title = data
-    
+    $scope.title.set(data)
+
   $mdSidenav("left").close()
   console.log 'settings_Ctrl'
