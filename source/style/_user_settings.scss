@@ -50,4 +50,19 @@
     }
 
   }
+
+
+  .users{
+    width: 100%;
+    padding: 0px 20px 0px 20px;
+    .users_table{
+      margin-top: 20px;
+      width: 100%;
+      md-list-item{
+        cursor: pointer;
+      }
+      .position{
+      }
+    }
+  }
 }

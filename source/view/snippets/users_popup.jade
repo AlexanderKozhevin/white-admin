@@ -1,0 +1,22 @@
+md-dialog.user_viewer
+  form
+    md-toolbar
+      div.md-toolbar-tools
+        h2 Alexander Kozhevin
+        span(flex='')
+        md-button.md-icon-button(ng-click='actions.hide()')
+          md-icon.material-icons(aria-label='Close dialog') clear
+    md-dialog-content(layout="column")
+      div.basic(layout="row")
+        div.avatar
+          img(src="/images/me.jpg")
+        div.info
+          div.item 
+            div.md-subheader Name
+            div.value Alexander Kozhevin
+          div.item 
+            div.md-subheader Position
+            div.value Polymath
+          div.item 
+            div.md-subheader Department
+            div.value Digital Marketing
