@@ -47,10 +47,21 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $locationProvi
 
   $stateProvider.state 'main.settings',
     url: '/settings'
+    abstract: true,
+    views:
+      main: {templateUrl: 'setting/settings.html', controller: 'settings_Ctrl'}
+
+  $stateProvider.state 'main.settings.user',
+    url: '/user'
     abstract: false,
     views:
-      main: {templateUrl: 'settings.html', controller: 'settings_Ctrl'}
+      settings: {templateUrl: 'setting/user.html', controller: 'user_setting_Ctrl'}
 
+  $stateProvider.state 'main.settings.users',
+    url: '/users'
+    abstract: false,
+    views:
+      settings: {templateUrl: 'setting/users.html', controller: 'users_setting_Ctrl'}
 
 
   console.log 'Routes initiated'

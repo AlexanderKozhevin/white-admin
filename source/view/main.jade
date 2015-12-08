@@ -51,11 +51,22 @@ section.root_section
         md-list-item.item(md-ink-ripple)
           p.md-subheader.md-primary {{'stat' | translate}}
           span(flex)
-      md-list(ui-sref="main.settings")
-        md-list-item.item(md-ink-ripple)
-          p.md-subheader.md-primary {{'setting' | translate}}
-          span(flex)
-
+      md-list
+        div
+          md-list-item.item( ng-click="settings.expand = !settings.expand")
+            p.md-subheader.md-primary {{'setting' | translate}}
+            span(flex)
+            md-button.md-icon-button()
+              md-icon.material-icons(aria-label='expand menu') {{ settings.expand ? 'arrow_drop_up': 'arrow_drop_down'}}
+            
+          div(ng-show="settings.expand" ui-sref="main.settings.user" )
+            md-list-item.item_child(md-ink-ripple )
+              p.md-body-2 {{'user.myaccount' | translate}}
+              span(flex)
+          div(ng-show="settings.expand" ui-sref="main.settings.users" )
+            md-list-item.item_child(md-ink-ripple )
+              p.md-body-2 {{'simple.users' | translate}}
+              span(flex)
 
   div.main_ui_view(flex layout="column" ui-view="main")
   

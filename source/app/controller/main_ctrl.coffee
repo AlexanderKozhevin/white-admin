@@ -57,3 +57,6 @@ angular.module("app").controller "main_Ctrl",  ($scope, $mdSidenav, $state, $tra
       {name: "Farming", id: 9},
       {name: "Workout", id: 10}
     ]
+
+  $scope.settings =
+    expand: true
