@@ -1,1 +1,54 @@
-h1 main statistics
+div.account_statistics
+  div.block1.md-whiteframe-z1(layout="column" layout-align="start start")
+    div.primary_info(layout="row" layout-align="space-between center")
+      div.data(layout="row")
+        div.item(layout="column")
+          div.md-subheader {{'record.views' | translate}}
+          div.value 1748
+        div.item(layout="column")
+          div.md-subheader {{'record.shares' | translate}}
+          div.value 1748
+        div.item(layout="column")
+          div.md-subheader {{'record.comments' | translate}}
+          div.value 1748
+        div.item(layout="column")
+          div.md-subheader {{'record.likes' | translate}}
+          div.value 1748
+      div.date_range()
+        md-input-container
+          md-select(ng-model="category" aria-label="category record" placeholder="{{'simple.range' | translate}}")
+            md-option(ng-repeat="item in cats" value="{{item}}") {{item.name | translate}}
+  div.block2.md-whiteframe-z1(layout="column")
+    div(google-chart chart="viewsmap" )
+  div.block3.md-whiteframe-z1()
+  
+    md-grid-list(md-cols="2"   md-row-height="400px")
+      md-grid-tile.tile.yoga(md-colspan="1" md-colspan-sm="2")
+        div.boxer
+          div.heatmap(google-chart chart="geomap" )
+    
+      md-grid-tile.tile.traffic(md-colspan="1" md-colspan-sm="2")
+        div.boxer(layout="column" layout-align="start start")
+          div.md-subheader {{'simple.traffic' | translate}}
+          div.item(layout="row")
+            div.source External
+            div.value 4 (5%)
+          div.item(layout="row")
+            div.source Youtube Search
+            div.value 10 (12%)
+          div.item(layout="row")
+            div.source YouTube channels
+            div.value 10 (12%)
+          div.item(layout="row")
+            div.source Suggested videos
+            div.value 10 (12%)
+
+    md-grid-list.yoga2(md-cols="2"   md-row-height="300px")
+      md-grid-tile.tile.gender.yoga(md-colspan="1" md-colspan-sm="2")
+        div.boxer(layout="column" layout-align="center center")
+          div.pie(google-chart chart="pie" )
+          
+      md-grid-tile.tile.gender(md-colspan="1" md-colspan-sm="2")
+        div.boxer(layout="column" layout-align="center center")
+          div.pie(google-chart chart="pie" )
+          

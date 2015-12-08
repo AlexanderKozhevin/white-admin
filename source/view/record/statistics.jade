@@ -22,18 +22,18 @@ div.stat_section(layout="column" layout-align="start start" )
         
   
   md-grid-list.charts(md-cols="2"   md-row-height="250px")
-    md-grid-tile.tile()
+    md-grid-tile.tile(md-colspan="1" md-colspan-sm="2")
       div.boxer
         div.heatmap(google-chart chart="heatmap" )
-    md-grid-tile.tile()
+    md-grid-tile.tile(md-colspan="1" md-colspan-sm="2")
       div.boxer
         div.heatmap(google-chart chart="viewsmap" )
         
   md-grid-list.charts(md-cols="2"   md-row-height="400px")
-    md-grid-tile.tile()
+    md-grid-tile.tile(md-colspan="1" md-colspan-sm="2")
       div.boxer
         div.heatmap(google-chart chart="geomap" )
-    md-grid-tile.tile.traffic()
+    md-grid-tile.tile.traffic(md-colspan="1" md-colspan-sm="2")
       div.boxer(layout="column")
         div.md-subheader {{'simple.traffic' | translate}}
         div.item(layout="row")

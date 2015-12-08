@@ -7,6 +7,7 @@ angular.module("app").controller "record_statistics_Ctrl",  ($scope, chart_helpe
   $scope.heatmap = chart_helper.heatline()
   $scope.viewsmap = chart_helper.viewline()
   $scope.geomap = chart_helper.geomap()
+  
 
 
   $scope.cats = [

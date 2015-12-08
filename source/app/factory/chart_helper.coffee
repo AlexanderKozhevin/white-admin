@@ -1,6 +1,42 @@
 angular.module('app').factory 'chart_helper',  () ->
 
   result = {
+
+    pie: () ->
+      console.log 'helo'
+      obj = {};
+      obj.data = {"cols": [
+          {id: "t", label: "Topping", type: "string"},
+          {id: "s", label: "Slices", type: "number"}
+      ], "rows": [
+        {c: [
+            {v: "Mushrooms"},
+            {v: 3},
+        ]},
+        {c: [
+            {v: "Olives"},
+            {v: 31}
+        ]},
+        {c: [
+            {v: "Zucchini"},
+            {v: 1},
+        ]},
+        {c: [
+            {v: "Pepperoni"},
+            {v: 2},
+        ]}
+      ]};
+      obj.type = "PieChart";
+      obj.options = {
+          title: 'Gender',
+          chartArea: {left:0,top: 30, width: '100%', height: '100%'},
+          width: '100%',
+          height: '250px',
+          titleTextStyle: {color: '#414141', fontName: 'Roboto', fontSize: '14', bold: false}
+      };
+      console.log obj
+      return obj
+
     geomap: () ->
       obj = {}
       obj.type = "GeoChart"

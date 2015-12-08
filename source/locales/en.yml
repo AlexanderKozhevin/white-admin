@@ -18,6 +18,7 @@ actions:
 simple:
   range: "Range"
   traffic: "Traffic sources"
+  gender: "Gender"
 
 record:
   likes: "Likes"
