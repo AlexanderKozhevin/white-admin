@@ -1,0 +1,18 @@
+.page-login{
+  
+    background-color: $grey-background;
+    height: 100vh;
+
+    md-card{
+      margin-top: -50px;
+      @media #{$phone} {
+        margin-top: 0px;
+      }
+    }
+
+    .block-controls{
+      height: 60px;
+      div{text-align: center; color: rgba(grey,0.7);cursor: pointer;}
+      .md-button{position: absolute;margin-left: -$primary-margin/2;}
+    }
+}

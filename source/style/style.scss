@@ -1,19 +1,26 @@
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,100,500&subset=cyrillic,latin);
 
+//Bourbon simplify animation, transition and other cool stuff css features
+@import "../../bower_components/bourbon/app/assets/stylesheets/bourbon.scss";
+
+//Import all files from selected paths
+@import "modules/**/*.scss";
+@import "components/**/*.scss";
 
 
-@import "modules/_colors";
-@import "modules/_fonts";
-@import "modules/_animation";
+@import "sections/landing";
+@import "sections/login";
 
-@import "components/_blank";
+body{
+  height: 100vh!important;
+}
 
-
-.main_ui_view{
-  height: calc(100vh - 64px);
+.root_layout{
+  height: calc(100vh - $toolbar-height)!important;
   overflow: auto;
 }
+
 
 textarea:focus, input:focus, button:focus, li:focus, a:focus, select:focus, md-icon:focus, div:focus{
 	outline: 0!important;

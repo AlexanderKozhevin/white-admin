@@ -149,7 +149,7 @@ gulp.task('connect', function() {
     root: 'production',
     livereload: true,
     fallback: 'production/assets/index.html',
-    port: 8081
+    port: 8082
   });
 });
 

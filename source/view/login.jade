@@ -1,0 +1,14 @@
+section.page-login(layout="column" layout-align="center center")
+  md-card
+    img.md-card-image(src="images/login.png")
+    md-card-content(layout="column")
+      md-input-container.md-icon-float.md-block()
+        md-icon.md-primary(aria-label="Menu" class="material-icons") email
+        input(ng-model="credentials.login"  placeholder="e-mail" type="email")
+      md-input-container.md-icon-float.md-block()
+        md-icon.md-primary(aria-label="Menu" class="material-icons") lock_open
+        input(ng-model="credentials.pass"  placeholder="password" type="password")
+      div.block-controls(layout="row" layout-align="start center")
+        div.md-body-1(flex) Forgot password
+        md-button.md-fab.md-primary(aria-label='add' )
+          md-icon(aria-label="Menu" class="material-icons") forward

@@ -1,12 +1,11 @@
-$grey-text-base: rgba(125,144,151,1);
+////
+/// This is a poster comment.
+/// It will apply annotations to all items from file.
+/// @group Colors
+////
 
-$black-text-base: rgba(66,66,66,1);
-$black-text-thin: rgba(0,0,0,0.54);
+/// grey background
+$grey-background: rgba(253,251,251,1);
 
-$primary-teal: rgba(0,150,136,1);
-$primary-indigo: rgba(63,81,181,1);
-
-
-$teal_50: rgba(224,242,241,1);
-
-$choose-theme: $primary-teal;
+///primary-teal
+$primary-teal: rgba(0,150,136, 1);

@@ -1,23 +1,76 @@
+////
+/// This is a poster comment.
+/// It will apply annotations to all items from file.
+/// @group Animation
+////
 
 
-.repeat-animation.ng-enter-stagger,
-.repeat-animation.ng-leave-stagger,
-.repeat-animation.ng-move-stagger {
-  -webkit-transition-delay:0.05s;
-  transition-delay:0.05s;
+.animate-listing.ng-enter-stagger, .animate-listing.ng-leave-stagger {
+  @include transition-delay(0.1s);
+  @include transition-duration(0s);
+}
+.animate-listing.ng-enter{
+  @include transform(translate(0px,10px) rotateX(30deg));
+  opacity: 0;
+  transition: all 0.2s linear;
 }
 
-
-.repeat-animation.ng-leave.ng-leave-active,
-.repeat-animation.ng-enter,
-.repeat-animation.ng-move {
-  -webkit-transition:0.05s linear all;
-  transition:0.05s linear all;
-  opacity:0;
+.animate-listing.ng-enter-active{
+  @include transform(translate(0px,0px) rotateX(0deg));
+  opacity: 1;
+  transition: all 0.2s linear;
+}
+.animate-listing.ng-leave{
+  @include transform(translate(0px,0px) rotateX(0deg));
+  opacity: 1;
+  transition: all 0.2s linear;
+}
+.animate-listing.ng-leave-active{
+  @include transform(translate(0px,10px) rotateX(-30deg));
+  opacity: 0;
+  transition: all 0.2s linear;
 }
 
-.repeat-animation.ng-leave,
-.repeat-animation.ng-move.ng-move-active,
-.repeat-animation.ng-enter.ng-enter-active {
-  opacity:1;
+//
+// Page-landing
+//
+@include keyframes(landing-fade) {
+  from {
+    @include transform(translateX(-100px));
+    opacity: 0;
+  }
+  to {
+    @include transform(translateX(0px));
+    opacity: 1;
+  }
+}
+
+//
+// Animate top-layer view - "login", "landing", "admin panel"
+//
+[ui-view="root_layout"].ng-enter, [ui-view="root_layout"].ng-leave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  @include transition(all 0.3s ease-in-out);
+}
+
+[ui-view="root_layout"].ng-enter {
+  opacity: 0;
+  @include transform(scale3d(0.8, 0.8, 0.8));
+}
+
+[ui-view="root_layout"].ng-enter-active {
+  opacity: 1;
+  @include transform(scale3d(1, 1, 1));
+}
+
+[ui-view="root_layout"].ng-leave {
+  opacity: 1;
+  @include transform(translate3d(0, 0, 0));
+}
+
+[ui-view="root_layout"].ng-leave-active {
+  opacity: 0;
+  @include transform(translate3d(100px, 0, 0));
 }
