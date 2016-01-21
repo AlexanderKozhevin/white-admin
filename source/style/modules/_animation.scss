@@ -4,7 +4,7 @@
 /// @group Animation
 ////
 
-
+/// Simple listing anination
 .animate-listing.ng-enter-stagger, .animate-listing.ng-leave-stagger {
   @include transition-delay(0.1s);
   @include transition-duration(0s);
@@ -32,7 +32,7 @@
 }
 
 //
-// Page-landing
+// Page-landing: left block appearance
 //
 @include keyframes(landing-fade) {
   from {

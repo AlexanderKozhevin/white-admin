@@ -4,6 +4,7 @@
 //Bourbon simplify animation, transition and other cool stuff css features
 @import "../../bower_components/bourbon/app/assets/stylesheets/bourbon.scss";
 
+
 //Import all files from selected paths
 @import "modules/**/*.scss";
 @import "components/**/*.scss";
@@ -11,6 +12,12 @@
 
 @import "sections/landing";
 @import "sections/login";
+
+//
+// Admin particles
+//
+@import "sections/admin/admin_header";
+@import "sections/admin/jobs/main";
 
 body{
   height: 100vh!important;

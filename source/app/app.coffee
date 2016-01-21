@@ -1,12 +1,20 @@
 app = angular.module('app', ['ui.router', 'ngSanitize',  'ngRoute', 'ngAnimate',
   'ngMaterial',  'restangular', 'templates', 'pascalprecht.translate', 'ngLocale',
-  'ngCookies', 'ngMessages', 'tmh.dynamicLocale', 'ngWebSocket', 'googlechart'
+  'ngCookies', 'ngMessages', 'tmh.dynamicLocale', 'ngWebSocket', 'googlechart', 'md.data.table'
   ])
 
 
 app.config ($mdThemingProvider) ->
   $mdThemingProvider.theme('default').primaryPalette('teal')
 
+
+app.config (RestangularProvider) ->
+  RestangularProvider.setBaseUrl('http://arduino2.club/api')
+  RestangularProvider.setDefaultHeaders({'Content-Type': 'application/json'});
+
+
+app.config ($animateProvider) ->
+  $animateProvider.classNameFilter(/^(?:(?!ng-animate-disabled).)*$/);
 
 
 app.config ($translateProvider, tmhDynamicLocaleProvider) ->

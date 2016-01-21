@@ -1,1 +1,27 @@
 author: "Alexander Kozhevin"
+
+menu:
+  workers: "Workers"
+  jobs: "Jobs"
+  stat: "Statistics"
+
+simple:
+  name: "Name"
+  params: "Parameters"
+  type: "Type"
+  values: "Values"
+  save: "Save"
+  inputval: "Enter values"
+  job: "Job"
+  remove: "Remove"
+  timelink: "Time link"
+  extsearch: "Extended search"
+  create: "Create"
+  public: "Public"
+
+jobs:
+  perpage: "Rows per page:"
+  title: "Job name"
+
+workers:
+  extended: "Extended search"

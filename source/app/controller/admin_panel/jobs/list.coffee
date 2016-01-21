@@ -1,0 +1,73 @@
+angular.module("app").controller "jobs_list_ctrl",  ($scope, $timeout , $q, Restangular) ->
+
+  $scope.selected = []
+
+  $scope.request_params =
+    limit: 1
+    index_page: 1
+    max: 1
+
+
+  $scope.request_page = () ->
+    params = {}
+    params.query = $scope.search.value if $scope.search.value
+
+
+    # Get number of maximum possible results
+    Restangular.one('templates', 'count').get(params).then (max_data) ->
+      $scope.request_params.max = max_data
+
+      params = {}
+      params.limit = $scope.request_params.limit
+      params.skip = ($scope.request_params.index_page-1) * params.limit
+      if $scope.search.value
+        params.where = {
+          'name': {'contains' : $scope.search.value}
+        }
+      console.log params
+      $scope.progress = $q.defer()
+
+      Restangular.all('templates','find').getList(params).then (data) ->
+        $scope.jobs = data
+        $scope.progress.resolve()
+
+
+  #
+  # Object containing all values and methods to manage search toolbar
+  #
+  $scope.search =
+    show: false
+    value: ""
+    open: () ->
+      this.show = true
+      $timeout () ->
+        document.querySelector('[ng-model="search.value"]').focus()
+      , 10
+    close: () ->
+      this.show = false
+      this.value = ""
+      $scope.request_page()
+    keypress: (event) ->
+      switch event.keyCode
+        when 13
+          $scope.request_page()
+        when 27
+          event.target.blur()
+          $scope.search.show = false
+          $scope.search.value = ""
+          $scope.request_page()
+
+
+  #
+  # Object containing all methods to manage list elements
+  #
+  $scope.actions =
+    remove: () ->
+      for i in $scope.selected
+        _.remove($scope.jobs, i)
+        # Uncomment this line to send 'DELETE' request to server to remove record
+        # i.remove()
+      $scope.selected = []
+
+
+  $scope.request_page()

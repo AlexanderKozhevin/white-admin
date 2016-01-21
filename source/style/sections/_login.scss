@@ -1,13 +1,11 @@
 .page-login{
-  
+
     background-color: $grey-background;
     height: 100vh;
 
     md-card{
       margin-top: -50px;
-      @media #{$phone} {
-        margin-top: 0px;
-      }
+      @media #{$phone} {margin-top: 0px;}
     }
 
     .block-controls{
