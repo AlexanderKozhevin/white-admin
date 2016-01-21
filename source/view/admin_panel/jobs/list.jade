@@ -26,12 +26,12 @@ div.block-listing
       
   md-table-container
     table(md-table md-progress="progress.promise" md-row-select="true" ng-model="selected")
-      thead(md-head)
+      thead(md-head md-order="request_params.sort" md-on-reorder="request_page")
         tr(md-row )
           th(md-column)
-          th(md-column ) {{'simple.name' | translate}}
+          th(md-column md:order:by="name") {{'simple.name' | translate}}
           th(md-column  md-numeric="true") {{'simple.params' | translate}}
-          th(md-column md-numeric="true") Created At
+          th(md-column md-numeric="true" md:order:by="createdAt") Created At
       tbody(md-body)
         tr(ng-repeat="item in jobs" md-row  md-select="item")
           td(md-cell) 

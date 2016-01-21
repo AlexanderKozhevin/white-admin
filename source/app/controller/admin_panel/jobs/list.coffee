@@ -1,11 +1,14 @@
-angular.module("app").controller "jobs_list_ctrl",  ($scope, $timeout , $q, Restangular) ->
+angular.module("app").controller "jobs_list_ctrl",  ($scope, $timeout , $q, Restangular, main_helper) ->
 
   $scope.selected = []
 
   $scope.request_params =
-    limit: 1
+    limit: 3
     index_page: 1
     max: 1
+    sort: 'name'
+
+
 
 
   $scope.request_page = () ->
@@ -15,18 +18,11 @@ angular.module("app").controller "jobs_list_ctrl",  ($scope, $timeout , $q, Rest
 
     # Get number of maximum possible results
     Restangular.one('templates', 'count').get(params).then (max_data) ->
+
       $scope.request_params.max = max_data
 
-      params = {}
-      params.limit = $scope.request_params.limit
-      params.skip = ($scope.request_params.index_page-1) * params.limit
-      if $scope.search.value
-        params.where = {
-          'name': {'contains' : $scope.search.value}
-        }
-      console.log params
       $scope.progress = $q.defer()
-
+      params = main_helper.configure_params($scope.request_params, $scope.search.value)
       Restangular.all('templates','find').getList(params).then (data) ->
         $scope.jobs = data
         $scope.progress.resolve()
@@ -61,7 +57,7 @@ angular.module("app").controller "jobs_list_ctrl",  ($scope, $timeout , $q, Rest
   #
   # Object containing all methods to manage list elements
   #
-  $scope.actions =
+
     remove: () ->
       for i in $scope.selected
         _.remove($scope.jobs, i)

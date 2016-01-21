@@ -16,4 +16,19 @@ angular.module('app').factory 'main_helper',  () ->
       return true
     else
       return false
+
+  result.configure_params = (params, search) ->
+
+    ans = {}
+    ans.limit = params.limit
+    ans.skip = (params.index_page-1) * ans.limit
+
+    ans.where = {'name': {'contains' : search}} if search.value
+    if params.sort[0] == '-'
+      ans.sort = params.sort.substr(1) + ' desc'
+    else
+      ans.sort = params.sort + ' asc'
+
+    return ans
+
   return result
