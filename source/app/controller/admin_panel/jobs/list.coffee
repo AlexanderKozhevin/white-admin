@@ -1,4 +1,4 @@
-angular.module("app").controller "jobs_list_ctrl",  ($scope, $timeout , $q, Restangular, main_helper) ->
+angular.module("app").controller "jobs_list_ctrl",  ($scope, $timeout , $q, Restangular, main_helper, $mdToast) ->
 
   $scope.selected = []
 
@@ -57,12 +57,18 @@ angular.module("app").controller "jobs_list_ctrl",  ($scope, $timeout , $q, Rest
   #
   # Object containing all methods to manage list elements
   #
-
+  $scope.actions =
     remove: () ->
       for i in $scope.selected
         _.remove($scope.jobs, i)
         # Uncomment this line to send 'DELETE' request to server to remove record
         # i.remove()
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent("Records removed")
+            .position("bottom right")
+            .hideDelay(3000)
+        );
       $scope.selected = []
 
 
