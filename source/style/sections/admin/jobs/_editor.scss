@@ -1,0 +1,19 @@
+.block-editor{
+
+
+  .element-logo{
+    margin-left: $primary-padding;
+
+    &:hover{border: 1px solid grey;}
+  }
+
+
+
+  //
+  // Shame!
+  //
+  table.md-table.md-row-select tbody.md-body > tr.md-row{
+    @include transition(all 0.2s linear !important);
+  }
+
+}

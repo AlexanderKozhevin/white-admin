@@ -45,6 +45,7 @@ gulp.task('csslibs', function() {
 
 gulp.task('templates', function() {
 	return gulp.src(['source/view/**/*.jade'])
+  .pipe($.jadeGlobbing())
 	.pipe($.jade())
   .pipe($.angularTemplatecache({standalone: true}))
 	.pipe(gulp.dest('production/assets/js'))
@@ -99,6 +100,7 @@ gulp.task('gzip', function() {
 //
 gulp.task('jade', function() {
   return gulp.src(['source/*.jade'])
+  .pipe($.jadeGlobbing())
   .pipe($.jade())
   .pipe(gulp.dest('production/assets'))
   .pipe($.connect.reload());
@@ -107,7 +109,7 @@ gulp.task('jade', function() {
 gulp.task('sass',  function() {
 	return gulp.src('source/style/**/*.scss')
   .pipe($.sassGlob())
-	.pipe($.sass().on('error', $.sass.logError))
+	.pipe($.sass())
 	.pipe(gulp.dest('production/assets/css'))
 	.pipe($.connect.reload());
 });

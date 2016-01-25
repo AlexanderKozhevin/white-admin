@@ -9,19 +9,16 @@ angular.module("app").controller "jobs_list_ctrl",  ($scope, $timeout , $q, Rest
     sort: 'name'
 
 
-
-
   $scope.request_page = () ->
     params = {}
     params.query = $scope.search.value if $scope.search.value
-
+    $scope.progress = $q.defer()
 
     # Get number of maximum possible results
     Restangular.one('templates', 'count').get(params).then (max_data) ->
 
       $scope.request_params.max = max_data
 
-      $scope.progress = $q.defer()
       params = main_helper.configure_params($scope.request_params, $scope.search.value)
       Restangular.all('templates','find').getList(params).then (data) ->
         $scope.jobs = data
@@ -63,12 +60,12 @@ angular.module("app").controller "jobs_list_ctrl",  ($scope, $timeout , $q, Rest
         _.remove($scope.jobs, i)
         # Uncomment this line to send 'DELETE' request to server to remove record
         # i.remove()
-        $mdToast.show(
-          $mdToast.simple()
-            .textContent("Records removed")
-            .position("bottom right")
-            .hideDelay(3000)
-        );
+      $mdToast.show(
+        $mdToast.simple()
+          .textContent("Records removed")
+          .position("bottom right")
+          .hideDelay(3000)
+      );
       $scope.selected = []
 
 

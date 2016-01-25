@@ -34,7 +34,7 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $locationProvi
       jobs: {templateUrl: 'admin_panel/jobs/list.html', controller: 'jobs_list_ctrl'}
 
   $stateProvider.state 'admin.jobs.editor',
-    url: '/editor'
+    url: '/editor?method&id'
     abstract: false,
     views:
       jobs: {templateUrl: 'admin_panel/jobs/editor.html', controller: 'jobs_editor_ctrl'}

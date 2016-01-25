@@ -28,7 +28,7 @@ body{
   overflow: auto;
 }
 
-
-textarea:focus, input:focus, button:focus, li:focus, a:focus, select:focus, md-icon:focus, div:focus{
-	outline: 0!important;
+[ui-view="admin"] {
+  background-color: $grey-background;
+  min-height: calc(100vh - #{$toolbar-height});
 }

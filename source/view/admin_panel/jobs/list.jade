@@ -34,9 +34,9 @@ div.block-listing
           th(md-column md-numeric="true" md:order:by="createdAt") Created At
       tbody(md-body)
         tr(ng-repeat="item in jobs" md-row  md-select="item")
-          td(md-cell) 
+          td.cursor(ui-sref="admin.jobs.editor({method: 'new', id: item.id})" md-cell) 
             img(ng-src="{{item.avatar_url}}" alt="&")
-          td( md-cell) {{item.name}}
+          td.cursor(ui-sref="admin.jobs.editor({method: 'new', id: item.id})" md-cell) {{item.name}}
           td( md-cell) {{item.params.length}}
           td( md-cell) {{item.createdAt | date}}
 

@@ -1,10 +1,9 @@
-$font-small: 12px;
-$font-base: 14px;
-$font-middle: 16px;
-$font-medium: 18px;
-$font-large: 18px;
-
-
+.cursor{
+  cursor: pointer;
+}
+textarea:focus, input:focus, button:focus, li:focus, a:focus, select:focus, md-icon:focus, div:focus{
+	outline: 0!important;
+}
 @mixin noselect(){
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -12,10 +11,4 @@ $font-large: 18px;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-@mixin small_header() {
-  color: $black-text-thin;
-  font-weight: 500;
-  font-size: $font-base;
 }
