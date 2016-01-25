@@ -4,9 +4,9 @@ div.block-editor
     div.md-toolbar-tools
       md-input-container.input_container-simplified(md-no-float)
         input(ng-model="job.name" aria-label="job title" placeholder="{{'jobs.title' | translate}}" type="text" )
-      md-button.md-icon-button(aria-label="add a photo" ngf-select="actions.upload($files)" ng-if="!job.avatar.url")
+      md-button.md-icon-button(aria-label="add a photo" ngf-select="actions.upload($files)" ng-if="!job.avatar.url && !job.avatar.data_url")
         md-icon.material-icons add_a_photo
-      img.avatar.cursor.element-logo(ng-src="{{actions.get_image()}}" alt="job item" ngf-select="actions.upload($files)" ng-if="job.avatar.url")
+      img.avatar.cursor.element-logo(ng-src="{{actions.get_image()}}" alt="job item" ngf-select="actions.upload($files)" ng-if="job.avatar.data_url || job.avatar.url")
       span(flex)
       md-button.md-icon-button(aria-label="add parameter" ng-click="actions.add()")
         md-icon.material-icons add
@@ -35,12 +35,20 @@ div.block-editor
         tr.animate-listing(ng-repeat="item in job.params" md-row md-select="item")
           td(md-cell)
             md-input-container.input_container-simplified(md-no-float)
-              input(ng-model="item.value" aria-label="job title")
+              input(ng-model="item.name" aria-label="job title")
           td(md-cell) 
             md-select.by_pages(ng-model="item.type" aria-label="item type" )
               md-option(ng-repeat="one in types" value="{{one}}") {{one}}
           td(md-cell)
             md-checkbox(ng-model="item.public" aria-label="public")
           td(md-cell)
-            md-button.md-icon-button(aria-label="values" ng-show="item.type==types[5] || item.type==types[6]" ng-click="actions.values_dialog(item)")
+            md-button.md-icon-button(aria-label="values" ng-show="item.type==types[5] || item.type==types[6]" ng-click="actions.show_dialog(item)")
               md-icon.material-icons mode_edit
+
+
+  md-divider
+  div.element-saving(layout="row")
+    span(flex)
+    md-button.md-raised.md-accent(ng-click="actions.save()" ng-disabled="job.name.length<3 || upload_promise || saving_process") 
+      span(ng-show="method=='new'") {{'simple.create' | translate}}
+      span(ng-show="method=='edit'") {{'simple.save' | translate}}

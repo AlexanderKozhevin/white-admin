@@ -2,7 +2,7 @@ md-dialog.dialog
   md-dialog-content()
     div.md-dialog-content
       md-chips(ng-model="dialog.values" readonly="false" secondary-placeholder="{{'simple.inputval' | translate}}")
-    div.actions(layout='row')
+    div.element-actions(layout='row')
       span(flex)
       md-button.md-fab.md-warn.md-mini(aria-label='add' ng-click="dialog.close()")
         md-icon(aria-label="Menu" class="material-icons") clear
