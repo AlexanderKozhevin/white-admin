@@ -23,7 +23,7 @@ angular.module('app').factory 'main_helper',  () ->
     ans.limit = params.limit
     ans.skip = (params.index_page-1) * ans.limit
 
-    ans.where = {'name': {'contains' : search}} if search.value
+    ans.where = {'name': {'contains' : search}} if search
     if params.sort[0] == '-'
       ans.sort = params.sort.substr(1) + ' desc'
     else

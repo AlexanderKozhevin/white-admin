@@ -11,7 +11,7 @@ div.block-listing
     div.md-toolbar-tools(layout="row" layout-align="start center" )
       md-button.md-icon-button()
         md-icon.material-icons search
-      input.transparent_input(ng-model="search.value" aria-label="search value" placeholder="Search" type="text"  ng-keyup="search.keypress($event)" flex)
+      input.input-transparent(ng-model="search.value" aria-label="search value" placeholder="Search" type="text"  ng-keyup="search.keypress($event)" flex)
       md-button.md-icon-button.close_button(aria-label="user menu" ng-click="search.close()")
         md-icon.material-icons close    
 
@@ -33,7 +33,7 @@ div.block-listing
           th(md-column  md-numeric="true") {{'simple.params' | translate}}
           th(md-column md-numeric="true" md:order:by="createdAt") Created At
       tbody(md-body)
-        tr(ng-repeat="item in jobs" md-row  md-select="item")
+        tr.animate-listing(ng-repeat="item in jobs" md-row  md-select="item")
           td.cursor(ui-sref="admin.jobs.editor({method: 'edit', id: item.id})" md-cell) 
             img(ng-src="{{item.avatar_url}}" alt="&")
           td.cursor(ui-sref="admin.jobs.editor({method: 'edit', id: item.id})" md-cell) {{item.name}}

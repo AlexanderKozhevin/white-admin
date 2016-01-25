@@ -1,4 +1,5 @@
-angular.module("app").controller "admin_panel_ctrl",  ($scope, $rootScope, $state, main_helper) ->
+angular.module("app").controller "admin_panel_ctrl",  ($scope, $rootScope, $state, main_helper, $timeout) ->
+
 
   #
   # Object for managing floating add button

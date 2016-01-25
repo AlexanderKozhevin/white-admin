@@ -10,6 +10,8 @@ angular.module("app").controller "jobs_editor_ctrl",  ($scope, $timeout, FileRea
     init: () ->
       # Promise for table progress bar
       $scope.progress = $q.defer()
+
+      # Request template data from server
       Restangular.one('templates', $state.params.id).get().then (data) ->
         $scope.job.name = data.name
 

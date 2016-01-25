@@ -4,32 +4,72 @@
 /// @group Animation
 ////
 
-/// Simple listing anination
+
+
+//
+// Simple listing anination
+//
 .animate-listing.ng-enter-stagger, .animate-listing.ng-leave-stagger {
-  @include transition-delay(0.1s);
+  @include transition-delay(0.2s);
   @include transition-duration(0s);
 }
 .animate-listing.ng-enter{
   @include transform(translate(0px,10px) rotateX(30deg));
   opacity: 0;
-  transition: all 0.2s linear;
+  @include transition(all 0.2s linear);
 }
 
 .animate-listing.ng-enter-active{
   @include transform(translate(0px,0px) rotateX(0deg));
   opacity: 1;
-  transition: all 0.2s linear;
+  @include transition(all 0.2s linear);
+
 }
 .animate-listing.ng-leave{
   @include transform(translate(0px,0px) rotateX(0deg));
   opacity: 1;
-  transition: all 0.2s linear;
+  @include transition(all 0.2s linear);
+
 }
 .animate-listing.ng-leave-active{
   @include transform(translate(0px,10px) rotateX(-30deg));
   opacity: 0;
-  transition: all 0.2s linear;
+  @include transition(all 0.2s linear);
 }
+
+
+/// Listing animation for element which require overload - "md-table" for example
+@mixin animate-listing(){
+  &.ng-enter-stagger, &.ng-leave-stagger {
+    @include transition-delay(0.2s);
+    @include transition-duration(0s);
+  }
+  &.ng-enter{
+    @include transform(translate(0px,10px) rotateX(30deg));
+    opacity: 0;
+    @include transition(all 0.2s linear);
+  }
+
+  &.ng-enter-active{
+    @include transform(translate(0px,0px) rotateX(0deg));
+    opacity: 1;
+    @include transition(all 0.2s linear);
+
+  }
+  &.ng-leave{
+    @include transform(translate(0px,0px) rotateX(0deg));
+    opacity: 1;
+    @include transition(all 0.2s linear);
+
+  }
+  &.ng-leave-active{
+    @include transform(translate(0px,10px) rotateX(-30deg));
+    opacity: 0;
+    @include transition(all 0.2s linear);
+  }
+
+}
+
 
 //
 // Page-landing: left block appearance
