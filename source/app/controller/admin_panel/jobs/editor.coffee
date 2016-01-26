@@ -20,11 +20,8 @@ angular.module("app").controller "jobs_editor_ctrl",  ($scope, $timeout, FileRea
           $scope.job.avatar = {url: data.avatar_url, data_url: data.avatar_url}
 
         # Hash - key will be the same alway, because the names are not changable
-        $scope.standart.name = data.params[0]
-        $scope.standart.avatar = data.params[1]
-
-        # To separate default params
-        data.params.splice(0,2)
+        $scope.standart.name.public = data.worker_name.public
+        $scope.standart.avatar.public = data.worker_avatar.public
 
         $scope.job.params = data.params
         $scope.progress.resolve()
@@ -38,9 +35,10 @@ angular.module("app").controller "jobs_editor_ctrl",  ($scope, $timeout, FileRea
         params: angular.copy($scope.job.params)
         name: $scope.job.name
 
-      # Add standard params
-      json.params.unshift($scope.standart.avatar)
-      json.params.unshift($scope.standart.name)
+
+      # Add standard params publicity
+      json.worker_name = {public: $scope.standart.name.public}
+      json.worker_avatar = {public: $scope.standart.avatar.public}
 
       # Add avatar_url if we uploaded it
       json.avatar_url = $scope.job.avatar.url if $scope.job.avatar.url

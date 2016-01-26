@@ -40,5 +40,25 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $locationProvi
       jobs: {templateUrl: 'admin_panel/jobs/editor.html', controller: 'jobs_editor_ctrl'}
 
 
+  $stateProvider.state 'admin.workers',
+    url: '/workers'
+    abstract: true,
+    views:
+      admin: {templateUrl: 'admin_panel/workers/main.html', controller: 'workers_ctrl'}
+
+  $stateProvider.state 'admin.workers.list',
+    url: '/list'
+    abstract: false,
+    views:
+      workers: {templateUrl: 'admin_panel/workers/list.html', controller: 'workers_list_ctrl'}
+
+  $stateProvider.state 'admin.workers.editor',
+    url: '/editor?method&id'
+    abstract: false,
+    views:
+      workers: {templateUrl: 'admin_panel/workers/editor.html', controller: 'workers_editor_ctrl'}
+
+
+
 
   console.log 'Routes initiated'

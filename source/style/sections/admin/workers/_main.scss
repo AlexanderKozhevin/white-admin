@@ -1,0 +1,19 @@
+.page-workers{
+
+  @import 'list';
+  @import 'editor';
+
+  padding-bottom: 100px;
+
+  & > .md-whiteframe-z1{
+      width: 100%;
+      margin-top: $primary-margin;
+      @include transition(width 0.2s linear);
+
+      &.state1{width: $primary-width;}
+      &.state2{width: $medium-width;}
+
+  }
+
+
+}
