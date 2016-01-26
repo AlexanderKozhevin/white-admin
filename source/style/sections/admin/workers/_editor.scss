@@ -1,24 +1,25 @@
 .block-editor{
 
 
-  .element-logo{
-    margin-left: $primary-padding;
+  .element-avatar_upload{
+    width: 150px;
+    height: 150px;
+    background-color: $grey-background;
+    border: 1px solid rgba(grey, 0.5);
+    margin: $primary-padding 0px 0px $primary-padding;
+    border-radius: 2px;
+    padding: $primary-padding;
 
-    &:hover{border: 1px solid grey;}
+    span{text-align: center; background-color: transparent; @extend .cursor;}
+  }
+  .element-worker_name{
+    padding: $primary-padding;
+    & .input_container-simplified{
+      width: 300px;
+      max-width: 100%;
+    }
   }
 
-  .element-saving{
-    .md-button{margin: $primary-padding/2;}
-  }
-
-
-  //
-  // Shame!
-  //
-  table.md-table.md-row-select tbody.md-body > tr.md-row{
-    transition: none;
-    @include animate-listing();
-  }
 
 
 }

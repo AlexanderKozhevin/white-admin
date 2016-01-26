@@ -1,1 +1,14 @@
-h1 editor
+div.block-editor
+  md-toolbar.md-table-toolbar.md-primary(layout="row" layout-align="start center")
+    div.md-toolbar-tools
+      div(ng-click="show_seleced()") {{'simple.editor' | translate}}
+      span(flex)
+      md-button() Save
+  div.element-basic_data(layout="row" layout-align="start center")
+    div.element-avatar_upload(layout="column" layout-align="center center")
+      span.md-subheader() {{'workers.select' | translate}}
+    div.element-worker_name(layout="column" layout-align="space-around start" flex)
+      md-input-container.input_container-simplified(md-no-float)
+        input(ng-model="job.name" aria-label="job title" placeholder="{{'workers.name' | translate}}" type="text" )
+      md-select.simple_select(ng-model="job.selected" aria-label="selected job" )
+            md-option(value="{{item.name}}" ng-repeat="item in job.list") {{item.name}}

@@ -18,6 +18,7 @@ simple:
   extsearch: "Extended search"
   create: "Create"
   public: "Public"
+  editor: "Worker editor"
 
 jobs:
   perpage: "Rows per page:"
@@ -25,3 +26,5 @@ jobs:
 
 workers:
   extended: "Extended search"
+  select: "Select image to upload"
+  name: "Worker name"
