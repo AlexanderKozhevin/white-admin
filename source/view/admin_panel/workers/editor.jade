@@ -27,6 +27,6 @@ div.block-editor
       div.element-item-value(flex) 
         div.md-subheader(role="label") {{item.name}}
         div(role="value" layout="column" ng-switch="item.type")
-          editor-string(ng-model="item.values" ng-switch-when="string")
           editor-gallery(ng-model="item.values" ng-switch-when="gallery")
+          editor-text(ng-model="item.values" ng-switch-when="text")
       

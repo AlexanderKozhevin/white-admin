@@ -37,9 +37,9 @@ angular.module("app").directive "editorGallery", ($timeout, FileReader, Upload, 
         upload: (files) ->
           if files && files.length
 
-            scope.file =  files[0];
 
-            FileReader.readAsDataURL(scope.file, scope).then (data_url) ->
+            file = files[0]
+            FileReader.readAsDataURL(file, scope).then (data_url) ->
               scope.photos.push({
                   url: ""
                   data_url: data_url
@@ -50,7 +50,7 @@ angular.module("app").directive "editorGallery", ($timeout, FileReader, Upload, 
               path = 'http://arduino2.club/api/templates/uploadAvatar'
               appload = Upload.upload({
                 url: path,
-                file: scope.file,
+                file: file,
                 fileFormDataName: "file",
                 withCredentials: true,
                 method: 'POST'
@@ -59,7 +59,6 @@ angular.module("app").directive "editorGallery", ($timeout, FileReader, Upload, 
                 file_object.url = resp.data
                 file_object.progress = undefined
                 scope.prepare()
-
               ,(resp) ->
                 console.log 'upload error'
               ,(evt) ->

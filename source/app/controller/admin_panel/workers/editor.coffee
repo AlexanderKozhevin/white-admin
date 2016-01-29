@@ -3,7 +3,7 @@ angular.module("app").controller "workers_editor_ctrl",  ($scope, Restangular, $
   $scope.method = $state.params.method
 
   $scope.output = () ->
-    a = false
+    console.log $scope.worker.params
 
   $scope.jobs =
     list: []
@@ -23,7 +23,6 @@ angular.module("app").controller "workers_editor_ctrl",  ($scope, Restangular, $
         when 'multiple select' then i.value = {selected: [], list: i.values}
         when 'gallery'
           i.values = []
-          console.log i.values
 
   Restangular.one('templates').get().then (data) ->
     $scope.jobs.list = data
