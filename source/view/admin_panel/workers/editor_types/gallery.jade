@@ -1,13 +1,15 @@
 div.element-gallery
-  md-button.md-fab.md-accent.md-mini(aria-label="add photo" ngf-select="actions.upload($files, item.id)" ngf-multiple="true")
+  md-button.md-fab.md-accent.md-mini(aria-label="add photo" ngf-select="actions.pre_upload($files, item.id)" ngf-multiple="true")
     md-icon.material-icons add
   div.block-images(layout="row" layout-wrap layout-align="space-between start" )
     div.element-photo(ng-repeat="item in photos" row-wrap-fill ng-style="item.data_url && {'background-image': 'url({{item.data_url}})'} || !item.url && {'background-image': 'url({{item.url}})'}")
       div(role="cover" layout="row" layout-align="center center" ng-style="item.progress && {'opacity': 1}")
+      
         span.md-title(ng-show="item.progress") {{item.progress + '%'}} 
+        
         div(ng-hide="item.progress")
-          md-button.md-icon-button()
+          md-button.md-icon-button(ng-click="actions.open(item.url)")
             md-icon visibility
-          md-button.md-icon-button()
+          md-button.md-icon-button(ng-click="actions.delete(item)")
             md-icon delete
           

@@ -2,6 +2,9 @@ angular.module("app").controller "workers_editor_ctrl",  ($scope, Restangular, $
 
   $scope.method = $state.params.method
 
+  $scope.output = () ->
+    a = false
+
   $scope.jobs =
     list: []
     selected: ""
@@ -27,3 +30,15 @@ angular.module("app").controller "workers_editor_ctrl",  ($scope, Restangular, $
     $scope.jobs.selected = data[0]
     $scope.worker.parameters = _.map(data[0].params, (obj) -> obj.value = null; return obj)
     $scope.prepare_params()
+
+
+  $scope.actions =
+    is_save_disabled: () ->
+      a = false
+      if $scope.worker.parameters
+        for i in $scope.worker.parameters
+          if i.values
+            if i.values.loading
+              a = true;
+              break;
+      return a

@@ -3,7 +3,7 @@ div.block-editor
     div.md-toolbar-tools
       div(ng-click="show_seleced()") {{'simple.editor' | translate}}
       span(flex)
-      md-button(ng-click="output()") Save
+      md-button(ng-click="output()" ng-disabled="actions.is_save_disabled()") Save
   div.element-basic_data(layout="row" layout-align="start center")
     
     div.element-avatar(layout="column" layout-align="center center")
