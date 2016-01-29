@@ -1,7 +1,7 @@
 .block-editor{
 
-
-  .element-avatar_upload{
+  // Worker Avatar
+  .element-avatar{
     width: 150px;
     height: 150px;
     background-color: $grey-background;
@@ -9,16 +9,31 @@
     margin: $primary-padding 0px 0px $primary-padding;
     border-radius: 2px;
     padding: $primary-padding;
-
+    @include transition(all 0.2s linear);
+    &:hover{background-color: $grey-background/1.03;}
     span{text-align: center; background-color: transparent; @extend .cursor;}
   }
-  .element-worker_name{
+
+  //Worker Full name
+  .element-name{
     padding: $primary-padding;
     & .input_container-simplified{
       width: 300px;
       max-width: 100%;
     }
   }
+
+  md-divider{
+    margin: $primary-padding;
+  }
+
+  // Block containing all other parameters specified in job
+  .block-parameters{
+    padding: 0px $primary-padding $primary-padding $primary-padding;
+  }
+
+  @import "snippets/element-item";
+  @import "snippets/types";
 
 
 

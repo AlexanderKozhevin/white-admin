@@ -3,12 +3,30 @@ div.block-editor
     div.md-toolbar-tools
       div(ng-click="show_seleced()") {{'simple.editor' | translate}}
       span(flex)
-      md-button() Save
+      md-button(ng-click="output()") Save
   div.element-basic_data(layout="row" layout-align="start center")
-    div.element-avatar_upload(layout="column" layout-align="center center")
+    
+    div.element-avatar(layout="column" layout-align="center center")
       span.md-subheader() {{'workers.select' | translate}}
-    div.element-worker_name(layout="column" layout-align="space-around start" flex)
+    div.element-name(layout="column" layout-align="space-around start" flex)
       md-input-container.input_container-simplified(md-no-float)
-        input(ng-model="job.name" aria-label="job title" placeholder="{{'workers.name' | translate}}" type="text" )
-      md-select.simple_select(ng-model="job.selected" aria-label="selected job" )
-            md-option(value="{{item.name}}" ng-repeat="item in job.list") {{item.name}}
+        input(ng-model="jobs.name" aria-label="job title" placeholder="{{'workers.name' | translate}}" type="text" )
+      md-select.simple_select(ng-model="jobs.selected" aria-label="selected job" )
+            md-option(ng-value="item" ng-repeat="item in jobs.list") {{item.name}}
+  md-divider
+  div.block-parameters(layout="column" layout-align="start start" )
+    div.element-item(layout="row" ng-repeat="item in worker.parameters" layout-fill)
+    
+      div.element-item-label(layout="column" layout-align="start center")
+        div(role="info" layout="column" layout-align="center center")
+          span {{$index + 1}}
+          md-icon.material-icons() done
+        div(role="line" flex ng-hide="$index == worker.parameters.length-1")
+        
+        
+      div.element-item-value(flex) 
+        div.md-subheader(role="label") {{item.name}}
+        div(role="value" layout="column" ng-switch="item.type")
+          editor-string(ng-model="item.values" ng-switch-when="string")
+          editor-gallery(ng-model="item.values" ng-switch-when="gallery")
+      
