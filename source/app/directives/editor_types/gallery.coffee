@@ -14,11 +14,17 @@ angular.module("app").directive "editorGallery", ($timeout, FileReader, Upload, 
         json = {
           photos: scope.photos
           loading: false
+          filled: false
         }
+
         for i in json.photos
+          if i.url
+            json.filled = true
           if i.progress
             json.loading = true;
             break;
+
+
         ngModel.$setViewValue(json)
 
       scope.actions =
@@ -29,6 +35,7 @@ angular.module("app").directive "editorGallery", ($timeout, FileReader, Upload, 
 
         delete: (item) ->
           _.remove(scope.photos, item)
+          scope.prepare()
 
         pre_upload: (files) ->
           if files

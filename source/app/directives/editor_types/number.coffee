@@ -10,6 +10,9 @@ angular.module("app").directive "editorNumber", ($timeout) ->
         scope.value = ngModel.$viewValue;
 
       scope.$watch 'value', () ->
-        ngModel.$setViewValue(scope.value)
+        if scope.value
+          ngModel.$setViewValue({value: scope.value, filled: true})
+        else
+          ngModel.$setViewValue({value: scope.value, filled: false})
 
   }

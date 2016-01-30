@@ -9,6 +9,7 @@ angular.module("app").directive "editorBoolean", () ->
       ngModel.$render = () ->
         scope.value = ngModel.$viewValue;
       scope.$watch 'value', () ->
-        ngModel.$setViewValue(scope.value)
+        ngModel.$setViewValue({value: scope.value, filled: true})
+
 
   }

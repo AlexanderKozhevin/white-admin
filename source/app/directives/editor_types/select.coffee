@@ -12,4 +12,10 @@ angular.module("app").directive "editorSelect", ($timeout) ->
       scope.$watch 'selected', () ->
         ngModel.$setViewValue(scope.selected)
 
+        if scope.selected.length>0
+          ngModel.$setViewValue({value: scope.selected, filled: true})
+        else
+          ngModel.$setViewValue({value: scope.selected, filled: false})
+
+
   }

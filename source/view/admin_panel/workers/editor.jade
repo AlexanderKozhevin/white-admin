@@ -17,7 +17,7 @@ div.block-editor
   div.block-parameters(layout="column" layout-align="start start" )
     div.element-item(layout="row" ng-repeat="item in worker.parameters" layout-fill)
     
-      div.element-item-label(layout="column" layout-align="start center")
+      div.element-item-label(layout="column" layout-align="start center" ng-class="{'done' : item.value.filled}")
         div(role="info" layout="column" layout-align="center center")
           span {{$index + 1}}
           md-icon.material-icons() done

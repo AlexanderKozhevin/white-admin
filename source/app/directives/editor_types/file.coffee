@@ -11,7 +11,12 @@ angular.module("app").directive "editorFile", (Upload, $window) ->
         scope.loading = false
 
       scope.prepare = () ->
-        ngModel.$setViewValue({file: scope.file, loading: scope.loading})
+        if scope.file.url
+          ngModel.$setViewValue({file: scope.file, loading: scope.loading, filled: true})
+        else
+          ngModel.$setViewValue({file: scope.file, loading: scope.loading, filled: false})
+
+
 
       scope.actions =
         open: (link) ->

@@ -10,6 +10,11 @@ angular.module("app").directive "editorMultiSelect", ($timeout) ->
         scope.selected = ngModel.$viewValue.selected;
         scope.list = ngModel.$viewValue.list;
       scope.$watch 'selected', () ->
-        ngModel.$setViewValue(scope.selected)
+
+        if scope.selected.length>0
+          ngModel.$setViewValue({value: scope.selected, filled: true})
+        else
+          ngModel.$setViewValue({value: scope.selected, filled: false})
+
 
   }
