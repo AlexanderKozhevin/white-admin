@@ -44,8 +44,6 @@ angular.module("app").directive "editorGallery", ($timeout, FileReader, Upload, 
 
         upload: (files) ->
           if files && files.length
-
-
             file = files[0]
             FileReader.readAsDataURL(file, scope).then (data_url) ->
               scope.photos.push({

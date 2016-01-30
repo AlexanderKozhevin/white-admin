@@ -1,4 +1,4 @@
-angular.module("app").controller "workers_editor_ctrl",  ($scope, Restangular, $state, main_helper) ->
+angular.module("app").controller "workers_editor_ctrl",  ($scope, Restangular, $state, main_helper, FileReader, Upload) ->
 
   $scope.method = $state.params.method
 
@@ -10,7 +10,11 @@ angular.module("app").controller "workers_editor_ctrl",  ($scope, Restangular, $
     name: ""
     job: ""
     parameters: []
-    avatar: ""
+    avatar: {
+      url: ""
+      data_url: ""
+      loading: false
+    }
 
   $scope.prepare_params = () ->
     for i in $scope.worker.parameters
@@ -28,28 +32,35 @@ angular.module("app").controller "workers_editor_ctrl",  ($scope, Restangular, $
     $scope.prepare_params()
 
 
+  $scope.get_img = ()->
+    if $scope.worker.avatar.data_url
+      return $scope.worker.avatar.data_url
+    else
+      if $scope.worker.avatar.url
+        return $scope.worker.avatar.url
+      else
+        return false
   $scope.actions =
     is_save_disabled: main_helper.is_save_disabled
     set_job: () ->
       $scope.worker.parameters = _.map($scope.jobs.selected.params, (obj) -> obj.value = null; return obj)
       $scope.prepare_params()
-    upload_avatar: () ->
+    upload_avatar: (files) ->
       if files && files.length
         file = files[0]
-        path = 'http://arduino2.club/api/templates/uploadAvatar'
-        appload = Upload.upload({
-          url: path,
-          file: file,
-          fileFormDataName: "file",
-          withCredentials: true,
-          method: 'POST'
-        })
-        appload.then (resp) ->
-          scope.file.url = resp.data
-          scope.loading = false
-          scope.prepare()
-        ,(resp) ->
-          console.log 'upload error'
-        ,(evt) ->
-          value = parseInt(100.0 * evt.loaded / evt.total)
-          scope.loading = value
+        $scope.worker.avatar.loading = true
+        FileReader.readAsDataURL(file, $scope).then (data_url) ->
+          $scope.worker.avatar.data_url = data_url
+          path = 'http://arduino2.club/api/templates/uploadAvatar'
+          appload = Upload.upload({
+            url: path,
+            file: file,
+            fileFormDataName: "file",
+            withCredentials: true,
+            method: 'POST'
+          })
+          appload.then (resp) ->
+            $scope.worker.avatar.loading = false
+            $scope.worker.avatar.url = resp.data
+          ,(resp) ->
+            console.log 'upload error'

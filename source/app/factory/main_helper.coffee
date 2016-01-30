@@ -31,14 +31,21 @@ angular.module('app').factory 'main_helper',  () ->
 
     return ans
 
-  result.is_save_disabled = (array) ->
+  result.is_save_disabled = (worker) ->
     a = false
-    if array
-      for i in array
+    if worker.parameters
+      for i in worker.parameters
         if i.value
           if i.value.loading
             a = true;
             break;
+            
+    a = true if worker.avatar.loading
+
+    if !worker.name
+      a = true
+    else
+      a = true if worker.name.length <3
     return a
 
 

@@ -4,14 +4,17 @@
   .element-avatar{
     width: 150px;
     height: 150px;
-    background-color: $grey-background;
     border: 1px solid rgba(grey, 0.5);
     margin: $primary-padding 0px 0px $primary-padding;
+    background-color: $grey-background;
     border-radius: 2px;
+    background-size: 100% auto;
+    background-position: center center;
+    background-repeat: no-repeat;
     padding: $primary-padding;
     @include transition(all 0.2s linear);
-    &:hover{background-color: $grey-background/1.03;}
     span{text-align: center; background-color: transparent; @extend .cursor;}
+    &:hover{background-color: $grey-background/1.03;}
   }
 
   //Worker Full name

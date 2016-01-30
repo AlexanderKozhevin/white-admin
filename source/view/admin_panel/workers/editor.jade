@@ -3,17 +3,20 @@ div.block-editor
     div.md-toolbar-tools
       div(ng-click="show_seleced()") {{'simple.editor' | translate}}
       span(flex)
-      md-button(ng-disabled="actions.is_save_disabled(worker.parameters)") {{'simple.save' | translate}}
+      md-button(ng-disabled="actions.is_save_disabled(worker)") {{'simple.save' | translate}}
   div.element-basic_data(layout="row" layout-align="start center")
     
-    div.element-avatar(layout="column" layout-align="center center")
-      span.md-subheader() {{'workers.select' | translate}}
+    div.element-avatar(layout="column" layout-align="center center"  ng-style="{'background-image': 'url('+get_img()+')' }" ngf-select="actions.upload_avatar($files)" ngf-multiple="false" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB")
+      span.md-subheader(ng-hide="worker.avatar.url || worker.avatar.data_url" ) {{'workers.select' | translate}}
+      
     div.element-name(layout="column" layout-align="space-around start" flex)
       md-input-container.input_container-simplified(md-no-float)
-        input(ng-model="jobs.name" aria-label="job title" placeholder="{{'workers.name' | translate}}" type="text" minlength="3")
+        input(ng-model="worker.name" aria-label="worker title" placeholder="{{'workers.name' | translate}}" type="text" minlength="3")
       md-select.simple_select(ng-model="jobs.selected" aria-label="selected job" ng-change="actions.set_job()")
         md-option(ng-value="item" ng-repeat="item in jobs.list") {{item.name}}
+        
   md-divider
+  
   div.block-parameters(layout="column" layout-align="start start" )
     div.element-item(layout="row" ng-repeat="item in worker.parameters" layout-fill)
     
