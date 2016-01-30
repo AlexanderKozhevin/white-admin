@@ -31,4 +31,15 @@ angular.module('app').factory 'main_helper',  () ->
 
     return ans
 
+  result.is_save_disabled = (array) ->
+    a = false
+    if array
+      for i in array
+        if i.value
+          if i.value.loading
+            a = true;
+            break;
+    return a
+
+
   return result

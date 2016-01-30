@@ -23,7 +23,8 @@ angular.module("app").directive "editorGallery", ($timeout, FileReader, Upload, 
 
       scope.actions =
         open: (link) ->
-          $window.open(link)
+          if link
+            $window.open(link)
           return false
 
         delete: (item) ->
