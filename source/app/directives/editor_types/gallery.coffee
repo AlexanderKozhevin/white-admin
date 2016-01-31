@@ -8,6 +8,7 @@ angular.module("app").directive "editorGallery", ($timeout, FileReader, Upload, 
     link: (scope, elm, attrs, ngModel) ->
       ngModel.$render = () ->
         scope.photos = ngModel.$viewValue;
+        scope.prepare()
 
       scope.prepare = () ->
 

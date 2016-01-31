@@ -4,7 +4,7 @@ div.element-gallery
     md-icon.material-icons add
     
   div.block-images(layout="row" layout-wrap layout-align="space-between start" )
-    div.element-photo(ng-repeat="item in photos" row-wrap-fill ng-style="item.data_url && {'background-image': 'url({{item.data_url}})'} || !item.url && {'background-image': 'url({{item.url}})'}")
+    div.element-photo(ng-repeat="item in photos" row-wrap-fill ng-style="item.data_url && {'background-image': 'url({{item.data_url}})'} || !item.data_url && {'background-image': 'url({{item.url}})'}")
       div(role="cover" layout="row" layout-align="center center" ng-style="item.progress && {'opacity': 1}")
       
         span.md-title(ng-show="item.progress") {{item.progress + '%'}} 

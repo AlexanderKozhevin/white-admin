@@ -9,6 +9,7 @@ angular.module("app").directive "editorFile", (Upload, $window) ->
       ngModel.$render = () ->
         scope.file = ngModel.$viewValue;
         scope.loading = false
+        scope.prepare()
 
       scope.prepare = () ->
         if scope.file.url
