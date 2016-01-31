@@ -17,6 +17,9 @@ angular.module('app').factory 'main_helper',  () ->
     else
       return false
 
+  #
+  # Jobs - list
+  #
   result.configure_params = (params, search) ->
 
     ans = {}
@@ -31,17 +34,25 @@ angular.module('app').factory 'main_helper',  () ->
 
     return ans
 
+  #
+  # Workers - Editor
+  #
   result.is_save_disabled = (worker) ->
     a = false
+
+    # Check if there is a loading state
     if worker.parameters
       for i in worker.parameters
         if i.value
           if i.value.loading
             a = true;
             break;
-            
-    a = true if worker.avatar.loading
 
+    # Check if avatar is loading
+    a = true if worker.avatar.loading
+    a = true if worker.saving_process
+
+    # Check if worker name too short
     if !worker.name
       a = true
     else

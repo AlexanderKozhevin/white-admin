@@ -12,9 +12,9 @@ angular.module("app").directive "editorFile", (Upload, $window) ->
 
       scope.prepare = () ->
         if scope.file.url
-          ngModel.$setViewValue({file: scope.file, loading: scope.loading, filled: true})
+          ngModel.$setViewValue({value: scope.file, loading: scope.loading, filled: true})
         else
-          ngModel.$setViewValue({file: scope.file, loading: scope.loading, filled: false})
+          ngModel.$setViewValue({value: scope.file, loading: scope.loading, filled: false})
 
 
 

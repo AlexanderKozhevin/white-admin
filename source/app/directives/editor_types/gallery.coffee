@@ -12,12 +12,12 @@ angular.module("app").directive "editorGallery", ($timeout, FileReader, Upload, 
       scope.prepare = () ->
 
         json = {
-          photos: scope.photos
+          value: scope.photos
           loading: false
           filled: false
         }
 
-        for i in json.photos
+        for i in json.value
           if i.url
             json.filled = true
           if i.progress
