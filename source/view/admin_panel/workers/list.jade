@@ -1,4 +1,4 @@
-div.block-listing
+div.block-listing(ng-cloak)
   
   md-toolbar.md-table-toolbar.md-default(layout="row" layout-align="start center" ng-hide="selected.length>0 || search.show")
     div.md-toolbar-tools
@@ -7,6 +7,18 @@ div.block-listing
       span(flex)
       md-button.md-icon-button(ng-click="search.open()")
         md-icon search
+        
+      md-menu(md-position-mode="target-right target" )
+        md-button.md-icon-button(aria-label="worker submenu" ng-click="actions.menu.open($mdOpenMenu, $event)" )
+          md-icon.material-icons more_vert
+        md-menu-content(width="1")
+          md-menu-item(aria-label="extended search")
+          
+            // Disable button if job not selected or 'All'
+            md-button(ng-disabled="!jobs.selected.$$mdSelectId || jobs.selected.$$mdSelectId==1")
+              md-icon.material-icons search
+              span {{'simple.extsearch' | translate}}
+
 
   md-toolbar.md-table-toolbar.md-default(ng-show="search.show && !selected.length" )
     div.md-toolbar-tools(layout="row" layout-align="start center" )

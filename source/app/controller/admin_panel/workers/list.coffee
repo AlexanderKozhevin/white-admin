@@ -1,4 +1,4 @@
-angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, Restangular, main_helper, $mdToast, clipboard) ->
+angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, Restangular, main_helper, $mdToast, clipboard, $mdDialog) ->
 
   $scope.selected = []
 
@@ -16,11 +16,14 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
 
 
   $scope.request_page = () ->
+
     params = {}
     params.query = $scope.search.value if $scope.search.value
 
     selected_job = $scope.jobs.list.indexOf($scope.jobs.selected)
     params.id = $scope.jobs.selected.id if selected_job != 0
+
+    console.log $scope.jobs.selected.$$mdSelectId
 
     $scope.progress = $q.defer()
     # Get number of maximum possible results
@@ -70,6 +73,12 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
   # Object containing all methods to manage list elements
   #
   $scope.actions =
+    menu: {
+      element: null
+      open: ($mdOpenMenu, ev) ->
+        this.element = ev
+        $mdOpenMenu(ev);
+    }
     link: (item) ->
       clipboard.copyText('http://arduino2.club/' + item);
       $mdToast.show(
@@ -78,9 +87,6 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
           .position("bottom right")
           .hideDelay(3000)
       );
-
-
-
     remove: () ->
       for i in $scope.selected
         _.remove($scope.workers, i)
@@ -100,5 +106,4 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
     $scope.jobs =
       list: data
       selected: data[0]
-
     $scope.request_page()
