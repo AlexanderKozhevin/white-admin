@@ -83,7 +83,7 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
 
     remove: () ->
       for i in $scope.selected
-        _.remove($scope.jobs, i)
+        _.remove($scope.workers, i)
         # Uncomment this line to send 'DELETE' request to server to remove record
         # i.remove()
       $mdToast.show(
