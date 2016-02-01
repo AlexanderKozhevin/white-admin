@@ -17,7 +17,7 @@ angular.module("app").controller "jobs_list_ctrl",  ($scope, $timeout , $q, Rest
     Restangular.one('templates', 'count').get(params).then (max_data) ->
 
       $scope.request_params.max = max_data
-      params = main_helper.configure_params($scope.request_params, $scope.search.value)
+      params = main_helper.configure_params_jobs($scope.request_params, $scope.search.value)
 
       Restangular.all('templates','find').getList(params).then (data) ->
         console.log data

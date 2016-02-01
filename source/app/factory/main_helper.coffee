@@ -17,16 +17,41 @@ angular.module('app').factory 'main_helper',  () ->
     else
       return false
 
+
+  #
+  # Workers - list
+  #
+  result.configure_params_workers = (params, search, job) ->
+
+    ans = {}
+    ans.limit = params.limit
+    ans.skip = (params.index_page-1) * ans.limit
+
+    ans.where = {}
+    ans.where.name = {'contains' : search} if search
+    if (job) and !search
+      ans.where.job = job if job
+
+
+    if params.sort[0] == '-'
+      ans.sort = params.sort.substr(1) + ' desc'
+    else
+      ans.sort = params.sort + ' asc'
+
+    return ans
+
+
   #
   # Jobs - list
   #
-  result.configure_params = (params, search) ->
+  result.configure_params_jobs = (params, search) ->
 
     ans = {}
     ans.limit = params.limit
     ans.skip = (params.index_page-1) * ans.limit
 
     ans.where = {'name': {'contains' : search}} if search
+
     if params.sort[0] == '-'
       ans.sort = params.sort.substr(1) + ' desc'
     else

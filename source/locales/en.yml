@@ -19,6 +19,7 @@ simple:
   create: "Create"
   public: "Public"
   editor: "Worker editor"
+  selected: "Selected"
 
 jobs:
   perpage: "Rows per page:"

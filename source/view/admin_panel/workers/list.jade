@@ -1,1 +1,48 @@
-h1 list
+div.block-listing
+  
+  md-toolbar.md-table-toolbar.md-default(layout="row" layout-align="start center" ng-hide="selected.length>0 || search.show")
+    div.md-toolbar-tools
+      md-select(ng-model="jobs.selected" aria-label="selected job" ng-change="request_page()")
+        md-option(ng-repeat="item in jobs.list" ng-value="item") {{item.name}}
+      span(flex)
+      md-button.md-icon-button(ng-click="search.open()")
+        md-icon search
+
+  md-toolbar.md-table-toolbar.md-default(ng-show="search.show && !selected.length" )
+    div.md-toolbar-tools(layout="row" layout-align="start center" )
+      md-button.md-icon-button()
+        md-icon.material-icons search
+      input.input-transparent(ng-model="search.value" aria-label="search value" placeholder="Search" type="text"  ng-keyup="search.keypress($event)" flex)
+      md-button.md-icon-button.close_button(aria-label="user menu" ng-click="search.close()")
+        md-icon.material-icons close    
+
+  
+  md-toolbar.md-table-toolbar.md-primary(ng-show='selected.length')
+    div.md-toolbar-tools
+      span {{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} {{'simple.selected' | translate}}
+      span(flex='')
+      md-button.md-icon-button(ng-click="actions.remove()")
+        md-icon delete
+      
+      
+  md-table-container
+    table(md-table md-progress="progress.promise" md-row-select="true" ng-model="selected")
+      thead(md-head md-order="request_params.sort" md-on-reorder="request_page")
+        tr(md-row )
+          th(md-column)
+          th(md-column md:order:by="name") {{'simple.name' | translate}}
+          th(md-column  md-numeric="true") {{'simple.job' | translate}}
+          th(md-column md-numeric="true" md:order:by="createdAt") Created At
+          th(md-column)
+      tbody(md-body)
+        tr.animate-listing(ng-repeat="item in workers" md-row  md-select="item")
+          td.cursor( md-cell) 
+            img(ng-src="{{item.avatar}}" alt="&")
+          td.cursor( md-cell) {{item.name}}
+          td( md-cell) {{item.job_name}}
+          td( md-cell) {{item.createdAt | date}}
+          td( md-cell)
+            include snippets/list_item_menu
+            
+
+  data-md-table-pagination(md-limit="request_params.limit" md-page="request_params.index_page" md-total="{{request_params.max}}" md-on-paginate="request_page" md-options="[1,2,3]")
