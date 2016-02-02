@@ -21,24 +21,52 @@ angular.module('app').factory 'main_helper',  () ->
   #
   # Workers - list
   #
-  result.configure_params_workers = (params, search, job) ->
+  result.configure_params_workers = (params, search, job, ext_search_params) ->
 
-    ans = {}
-    ans.limit = params.limit
-    ans.skip = (params.index_page-1) * ans.limit
+    is_ext = false
 
-    ans.where = {}
-    ans.where.name = {'contains' : search} if search
-    if (job) and !search
-      ans.where.job = job if job
+    for i in ext_search_params
+      if i.value
+        is_ext = true;
+        break;
+
+
+    json = {}
+    json.limit = params.limit
+    json.skip = (params.index_page-1) * json.limit
+
+    json.where = {}
+
+    if is_ext
+      json.where = {}
+      for i in ext_search_params
+        if i.value
+
+          if !i.compare
+            json.where['values.'+i.id]  = i.value
+            if i.type == 'string' or i.type == 'text'
+              json.where['values.'+i.id] = {'contains': i.value}
+          else
+
+            if i.compare_value.value == '='
+              json.where['values.'+i.id]  = i.value
+            else
+              json.where['values.'+i.id] = {}
+              json.where['values.'+i.id][i.compare_value.value] = i.value
+    else
+      json.where.name = {'contains' : search} if search
+      if (job) and !search
+        json.where.job = job if job
+
+
 
 
     if params.sort[0] == '-'
-      ans.sort = params.sort.substr(1) + ' desc'
+      json.sort = params.sort.substr(1) + ' desc'
     else
-      ans.sort = params.sort + ' asc'
+      json.sort = params.sort + ' asc'
 
-    return ans
+    return json
 
 
   #
@@ -58,6 +86,41 @@ angular.module('app').factory 'main_helper',  () ->
       ans.sort = params.sort + ' asc'
 
     return ans
+
+
+  #
+  # Workers - request maximum results parameters
+  #
+  result.counter_params = (name_query, selected_job, ext_search_params) ->
+    json = {}
+    is_ext = false
+
+    for i in ext_search_params
+      if i.value
+        is_ext = true;
+        break;
+
+    if is_ext
+      json.querybig = {}
+      json.querybig.where = {}
+      for i in ext_search_params
+        if i.value
+
+          if !i.compare
+            json.querybig.where['values.'+i.id]  = i.value
+          else
+
+            if i.compare_value.value == '='
+              json.querybig.where['values.'+i.id]  = i.value
+            else
+              json.querybig.where['values.'+i.id] = {}
+              json.querybig.where['values.'+i.id][i.compare_value.value] = i.value
+    else
+      if name_query
+        json.query = name_query
+      else
+        json.id = selected_job
+    return json
 
   #
   # Workers - Editor

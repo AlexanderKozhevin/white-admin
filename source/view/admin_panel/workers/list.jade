@@ -2,7 +2,7 @@ div.block-listing(ng-cloak)
   
   md-toolbar.md-table-toolbar.md-default(layout="row" layout-align="start center" ng-hide="selected.length>0 || search.show")
     div.md-toolbar-tools
-      md-select(ng-model="jobs.selected" aria-label="selected job" ng-change="request_page()")
+      md-select(ng-model="jobs.selected" aria-label="selected job" ng-change="actions.set_job()")
         md-option(ng-repeat="item in jobs.list" ng-value="item") {{item.name}}
       span(flex)
       md-button.md-icon-button(ng-click="search.open()")

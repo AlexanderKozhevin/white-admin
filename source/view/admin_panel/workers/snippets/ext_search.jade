@@ -50,6 +50,7 @@ md-dialog.block-extended_search(role="extended search")
   
   
 
-      
-  md-dialog-actions(layout="row")
-    md-button find
+    
+  md-dialog-actions(layout="row" )
+    md-button(ng-click="ext_search.clear()") clear
+    md-button(ng-click="ext_search.find()") find

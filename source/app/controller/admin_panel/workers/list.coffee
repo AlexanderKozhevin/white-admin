@@ -18,6 +18,9 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
     allowed_types: ['string', 'text', 'number', 'date', 'select', 'multiple select']
     compare_types: ['number', 'date'] # Types for which '>', '=', '<' operators could be applied
     compare_values: [{value: '='},{value: '>'},{value: '<'}]
+    clear: () ->
+      for i in this.params
+        i.value = null
     hide_dialog: () ->
       $mdDialog.hide();
     toggle_compare: (item) ->
@@ -26,12 +29,16 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
       index = 0 if index == 3
       item.compare_value = this.compare_values[index]
     find: () ->
-      console.log 'hello'
+      $scope.request_params.index_page = 1
+      $scope.request_page()
+      $mdDialog.hide();
     open: () ->
 
       # Include allowed types only
       this.params = []
-      for i in $scope.jobs.selected.params
+
+      # As far as we need only data - use 'angular.copy' - it prevents object inheritance properties
+      for i in angular.copy($scope.jobs.selected.params)
         if this.allowed_types.indexOf(i.type) != -1
 
           # Check if we compare this type
@@ -50,21 +57,22 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
 
   $scope.request_page = () ->
 
-    params = {}
-    params.query = $scope.search.value if $scope.search.value
+    $scope.progress = $q.defer()
 
     selected_job = $scope.jobs.list.indexOf($scope.jobs.selected)
-    params.id = $scope.jobs.selected.id if selected_job != 0
+    if selected_job != 0
+      job_id = $scope.jobs.selected.id
+    else
+      job_id = undefined
 
-    $scope.progress = $q.defer()
-    # Get number of maximum possible results
+    params = main_helper.counter_params($scope.search.value, job_id, $scope.ext_search.params)
     Restangular.one('workers', 'count').get(params).then (max_data) ->
       if max_data
         $scope.request_params.max = max_data
       else
         $scope.request_params.max = 0
 
-      params = main_helper.configure_params_workers($scope.request_params, $scope.search.value, $scope.jobs.selected.id)
+      params = main_helper.configure_params_workers($scope.request_params, $scope.search.value, $scope.jobs.selected.id, $scope.ext_search.params)
       Restangular.all('workers','find').getList(params).then (data) ->
         $scope.workers = data
         for i in $scope.workers
@@ -82,6 +90,7 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
       this.show = true
       $timeout () ->
         document.querySelector('[ng-model="search.value"]').focus()
+        $scope.ext_search.params = []
       , 10
     close: () ->
       this.show = false
@@ -104,6 +113,9 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
   # Object containing all methods to manage list elements
   #
   $scope.actions =
+    set_job: () ->
+      $scope.ext_search.params = [];
+      $scope.request_page();
     menu: {
       element: null
       open: ($mdOpenMenu, ev) ->
