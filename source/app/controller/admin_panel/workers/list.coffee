@@ -15,9 +15,38 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
 
   $scope.ext_search =
     params: []
+    allowed_types: ['string', 'text', 'number', 'date', 'select', 'multiple select']
+    compare_types: ['number', 'date'] # Types for which '>', '=', '<' operators could be applied
+    compare_values: [{value: '='},{value: '>'},{value: '<'}]
+    hide_dialog: () ->
+      $mdDialog.hide();
+    toggle_compare: (item) ->
+      index = this.compare_values.indexOf(item.compare_value)
+      index++
+      index = 0 if index == 3
+      item.compare_value = this.compare_values[index]
     find: () ->
       console.log 'hello'
+    open: () ->
 
+      # Include allowed types only
+      this.params = []
+      for i in $scope.jobs.selected.params
+        if this.allowed_types.indexOf(i.type) != -1
+
+          # Check if we compare this type
+          if this.compare_types.indexOf(i.type) != -1
+            i.compare = true
+            i.compare_value = this.compare_values[0]
+          this.params.push(i)
+
+      $mdDialog.show({
+        clickOutsideToClose: true,
+        scope: $scope,
+        preserveScope: true,
+        templateUrl: "admin_panel/workers/snippets/ext_search.html"
+        controller: false
+      });
 
   $scope.request_page = () ->
 
@@ -70,7 +99,6 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
           $scope.request_page()
 
 
-  $scope.many = [0..8]
 
   #
   # Object containing all methods to manage list elements
@@ -82,14 +110,6 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
         this.element = ev
         $mdOpenMenu(ev);
     }
-    ext_search: () ->
-      $mdDialog.show({
-        clickOutsideToClose: true,
-        scope: $scope,
-        preserveScope: true,
-        templateUrl: "admin_panel/workers/snippets/ext_search.html"
-        controller: false
-      });
     link: (item) ->
       clipboard.copyText('http://arduino2.club/' + item);
       $mdToast.show(

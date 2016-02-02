@@ -6,5 +6,8 @@
 
       // &:last-child{md-divider{display: none;}}
   }
+  [role="query label"]{
+    width: 100px;
+  }
 
 }
