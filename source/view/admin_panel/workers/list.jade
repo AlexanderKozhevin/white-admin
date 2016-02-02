@@ -15,7 +15,7 @@ div.block-listing(ng-cloak)
           md-menu-item(aria-label="extended search")
           
             // Disable button if job not selected or 'All'
-            md-button(ng-disabled="!jobs.selected.$$mdSelectId || jobs.selected.$$mdSelectId==1")
+            md-button(ng-disabled="!jobs.selected.$$mdSelectId || jobs.selected.$$mdSelectId==1" ng-click="actions.ext_search()")
               md-icon.material-icons search
               span {{'simple.extsearch' | translate}}
 

@@ -1,0 +1,10 @@
+.block-extended_search{
+  width: $dialog-width;
+
+  [role="listitem"]{
+      padding: 0px $primary-padding;
+
+      // &:last-child{md-divider{display: none;}}
+  }
+
+}

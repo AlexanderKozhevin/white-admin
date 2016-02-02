@@ -1,0 +1,24 @@
+md-dialog.block-extended_search(role="extended search")
+  md-toolbar
+    div.md-toolbar-tools(layout="row")
+      h2  {{jobs.selected.name}}
+      span(flex)
+      md-button.md-icon-button()
+        md-icon close
+    
+  md-dialog-content.vespa
+    md-list
+      md-list-item.md-2-line(ng-repeat="item in jobs.selected.params" )
+        div.md-list-item-text(layout="row" layout-align="start center" )
+          div.md-subheader {{item.name}}
+          md-button.md-title.md-icon-button() >
+          md-input-container.input_container-simplified(flex)
+            input(ng-model="value" aria-label="string param" type="text") 
+        
+        md-divider
+  
+  
+
+      
+  md-dialog-actions(layout="row")
+    md-button find

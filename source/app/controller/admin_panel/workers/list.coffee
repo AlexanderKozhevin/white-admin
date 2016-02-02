@@ -7,12 +7,16 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
     selected: null
 
 
-
   $scope.request_params =
     limit: 3
     index_page: 1
     max: 1
     sort: 'name'
+
+  $scope.ext_search =
+    params: []
+    find: () ->
+      console.log 'hello'
 
 
   $scope.request_page = () ->
@@ -23,8 +27,6 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
     selected_job = $scope.jobs.list.indexOf($scope.jobs.selected)
     params.id = $scope.jobs.selected.id if selected_job != 0
 
-    console.log $scope.jobs.selected.$$mdSelectId
-
     $scope.progress = $q.defer()
     # Get number of maximum possible results
     Restangular.one('workers', 'count').get(params).then (max_data) ->
@@ -34,7 +36,6 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
         $scope.request_params.max = 0
 
       params = main_helper.configure_params_workers($scope.request_params, $scope.search.value, $scope.jobs.selected.id)
-      console.log params
       Restangular.all('workers','find').getList(params).then (data) ->
         $scope.workers = data
         for i in $scope.workers
@@ -69,6 +70,8 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
           $scope.request_page()
 
 
+  $scope.many = [0..8]
+
   #
   # Object containing all methods to manage list elements
   #
@@ -79,6 +82,14 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
         this.element = ev
         $mdOpenMenu(ev);
     }
+    ext_search: () ->
+      $mdDialog.show({
+        clickOutsideToClose: true,
+        scope: $scope,
+        preserveScope: true,
+        templateUrl: "admin_panel/workers/snippets/ext_search.html"
+        controller: false
+      });
     link: (item) ->
       clipboard.copyText('http://arduino2.club/' + item);
       $mdToast.show(

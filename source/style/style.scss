@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,100,500&subset=cyrillic,latin);
 
-//Bourbon simplify animation, transition and other cool stuff css features
+//Bourbon simplify animation, transition and other cool css features
 @import "../../bower_components/bourbon/app/assets/stylesheets/bourbon.scss";
 
 
@@ -10,15 +10,12 @@
 @import "components/**/*.scss";
 
 
-@import "sections/landing";
-@import "sections/login";
+// Main style files
+@import "sections/*.scss";
+@import "sections/admin/*.scss";
 
-//
-// Admin particles
-//
-@import "sections/admin/admin_header";
-@import "sections/admin/jobs/main";
-@import "sections/admin/workers/main";
+//Dialogs are attached to body, that why we have to create separate folder which includes in main file.
+@import "sections/admin/dialogs/*.scss";
 
 
 body{
