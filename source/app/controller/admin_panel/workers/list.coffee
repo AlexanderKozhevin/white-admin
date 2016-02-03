@@ -113,7 +113,9 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
   # Object containing all methods to manage list elements
   #
   $scope.actions =
-    side_nav: () ->
+    side_nav: (item) ->
+      user_job = _.find($scope.jobs.list, {id: item.job})
+      $scope.worker_preview.set(main_helper.worker_data(item, user_job)) 
       $mdSidenav('left').toggle()
     set_job: () ->
       $scope.ext_search.params = [];

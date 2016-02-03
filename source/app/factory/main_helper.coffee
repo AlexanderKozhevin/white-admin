@@ -1,6 +1,46 @@
-angular.module('app').factory 'main_helper',  () ->
+angular.module('app').factory 'main_helper',  ($window) ->
 
   result = {}
+
+  #
+  # Workers list :  preview worker data in sidenav - we need to form data to broadcast it to main controller
+  #
+  result.worker_data = (worker, job) ->
+    json =
+      name: worker.name
+      job: job.name
+      avatar: worker.avatar
+      params: []
+    for i in job.params
+      parameter = i
+      parameter.value = worker.values[i.id]
+      switch i.type
+        when 'file'
+          parameter.actions =
+            open: (url) ->
+              $window.open(url)
+              return false
+        when 'date'
+          if parameter.value
+            parameter.value = new Date(parameter.value)
+        when 'gallery'
+
+          i.index = 0
+          if !i.value
+            item.value = []
+
+          i.current = i.value[i.index]
+          i.max = i.value.length
+
+          i.next =  (item) ->
+            item.index++
+            item.current = item.value[item.index]
+          i.prev = (item) ->
+            item.index--
+            item.current = item.value[item.index]
+
+      json.params.push(parameter)
+    return json
   result.select_active_tab = (state) ->
     index = 0
     if state.indexOf('workers') != -1

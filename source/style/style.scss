@@ -15,7 +15,7 @@
 @import "sections/admin/*.scss";
 
 //Dialogs are attached to body, that why we have to create separate folder which includes in main file.
-@import "sections/admin/dialogs/*.scss";
+@import "sections/admin/snippets/*.scss";
 
 
 body{

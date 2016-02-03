@@ -11,6 +11,15 @@ angular.module("app").controller "admin_panel_ctrl",  ($scope, $rootScope, $stat
     set: (value) ->
       this.show = value
 
+
+  #
+  # Special variable to show data in quick view card
+  #
+  $scope.worker_preview =
+    data: {}
+    set: (data) ->
+      this.data = data
+
   #
   # To highlight active ui-router state in tab panel.
   # Because if you reload the page, tab index will be default, not the one you loaded.
