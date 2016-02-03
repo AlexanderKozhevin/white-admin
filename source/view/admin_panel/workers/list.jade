@@ -49,7 +49,7 @@ div.block-listing(ng-cloak)
       tbody(md-body)
         tr.animate-listing(ng-repeat="item in workers" md-row  md-select="item")
           td.cursor( md-cell) 
-            img(ng-src="{{item.avatar}}" alt="&")
+            img(ng-src="{{item.avatar}}" alt="&" ng-click="actions.side_nav()")
           td.cursor( md-cell) {{item.name}}
           td( md-cell) {{item.job_name}}
           td( md-cell) {{item.createdAt | date}}

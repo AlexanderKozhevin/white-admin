@@ -29,3 +29,4 @@ workers:
   extended: "Extended search"
   select: "Select image to upload"
   name: "Worker name"
+  quick: "Quick view"

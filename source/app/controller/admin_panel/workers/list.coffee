@@ -1,4 +1,4 @@
-angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, Restangular, main_helper, $mdToast, clipboard, $mdDialog) ->
+angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, Restangular, main_helper, $mdToast, clipboard, $mdDialog, $mdSidenav) ->
 
   $scope.selected = []
 
@@ -113,6 +113,8 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
   # Object containing all methods to manage list elements
   #
   $scope.actions =
+    side_nav: () ->
+      $mdSidenav('left').toggle()
     set_job: () ->
       $scope.ext_search.params = [];
       $scope.request_page();
