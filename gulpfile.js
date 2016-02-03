@@ -122,7 +122,12 @@ gulp.task('coffee', function() {
     .pipe($.connect.reload());
 });
 
-
+gulp.task('ngdocs', [], function () {
+  var gulpDocs = require('gulp-ngdocs');
+  return gulp.src('production/assets/js/app.js')
+    .pipe(gulpDocs.process())
+    .pipe(gulp.dest('./docs'));
+});
 //
 // Watcher for file changes
 //
@@ -130,7 +135,7 @@ gulp.task('watch', function(){
   gulp.watch('source/style/**/*.scss', ['sass', 'sassdocs']);
   gulp.watch(['source/view/**/*.jade'], ['templates']);
   gulp.watch(['source/*.jade'], ['jade']);
-  gulp.watch('source/app/**/*.coffee', ['coffee']);
+  gulp.watch('source/app/**/*.coffee', ['coffee', 'ngdocs']);
   gulp.watch('source/locales/*.yml', ['locales']);
 });
 
@@ -155,11 +160,19 @@ gulp.task('connect', function() {
   });
 });
 
+gulp.task('connect_ngdocs', function() {
+  $.connect.server({
+    root: 'docs',
+    livereload: false,
+    fallback: 'docs/index.html',
+    port: 8083
+  });
+});
 
 gulp.task('libs', ['jslibs', 'csslibs'])
-gulp.task('compile', ['libs', 'sass', 'jade', 'templates', 'coffee', 'copyi18n', 'locales', 'copy_flags', 'sassdocs'])
+gulp.task('compile', ['libs', 'sass', 'jade', 'templates', 'coffee', 'copyi18n', 'locales', 'copy_flags', 'sassdocs', 'ngdocs'])
 
 
-gulp.task('server', ['compile', 'watch', 'connect']);
+gulp.task('server', ['compile', 'watch', 'connect', 'connect_ngdocs']);
 
 gulp.task('default', ['server'])

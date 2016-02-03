@@ -1,3 +1,9 @@
+
+###*
+* @ngdoc directive
+* @name rowWrapFill
+* @element area
+###
 angular.module("app").directive "rowWrapFill", ($compile) ->
   {
     restrict: 'A',
