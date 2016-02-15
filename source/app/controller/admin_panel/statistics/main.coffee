@@ -31,7 +31,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope) ->
     onlyInteger: true,
     # fullWidth: true,
     axisX: {
-      showGrid: true,
+      showGrid: false,
       labelOffset: {
         x: 0,
         y: 10
@@ -39,6 +39,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope) ->
     }
     axisY: {
       offset: 40,
+      showGrid: true,
     }
     classNames: {
       # chart: 'ct-chart-line',

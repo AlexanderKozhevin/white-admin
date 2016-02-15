@@ -34,11 +34,15 @@
     stroke: #3F51B5;
   }
 
-
   .my-ct-area{
-    fill: url(#gradient);
+    filter: url(#filter);
     stroke: none;
   }
+
+  // .my-ct-area{
+  //   fill: url(#gradient);
+  //   stroke: none;
+  // }
   .ct-series-b .my-ct-area{
     fill: none;
     stroke: none;
