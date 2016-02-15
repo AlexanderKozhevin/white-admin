@@ -12,7 +12,10 @@ section.page-statistics(layout="column" layout-align="start center" )
         div.block-right(flex layout="row" layout-align="center center")
           chartist(flex class="ct-chart" chartist-data="data_cpu" chartist-chart-type="Line" chartist-chart-options="cpuOptions" )
         
-    md-grid-tile.onef.md-whiteframe-z1(md-rowspan="1" md-colspan="1") Hello
+    md-grid-tile.onef.md-whiteframe-z1(md-rowspan="1" md-colspan="1")
+      div.block-memory(layout="column" layout-align="center center")
+        div.element-stat_circle.md-headline(role="info circle") 43
+        div.md-subhead(role="caption") RAM Usage %
     md-grid-tile.onef.md-whiteframe-z1(md-rowspan="1" md-colspan="1") Hello
     md-grid-tile.onef.md-whiteframe-z1(md-rowspan="1" md-colspan="2") Hello
     

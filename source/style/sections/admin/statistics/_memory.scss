@@ -1,0 +1,14 @@
+.block-memory{
+  width: 100%;
+  height: 100%;
+
+
+  .element-stat_circle{
+    border: 2px solid rgba(#FFC107, 1);
+  }
+
+  & [role="caption"]{
+    margin-top: $primary-margin;
+    font-weight: 500;
+  }
+}
