@@ -21,6 +21,12 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout) ->
   };
 
 
+  $scope.traffic = [
+    {label: "Google", value: 55.3},
+    {label: "Direct", value: 18.3},
+    {label: "Yandex", value: 17.5},
+    {label: "Social networks", value: 8.9}
+  ]
 
   $scope.lineOptions = {
     height: "350px"
