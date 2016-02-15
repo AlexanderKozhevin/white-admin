@@ -13,4 +13,10 @@
   [role="listitem"]:nth-child(2n+0){
     background-color: $grey-background;
   }
+
+
+  // Shame !
+  .md-subheader .md-subheader-inner{
+    padding: 24px!important;
+  }
 }
