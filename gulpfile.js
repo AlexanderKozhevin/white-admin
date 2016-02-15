@@ -173,6 +173,6 @@ gulp.task('libs', ['jslibs', 'csslibs'])
 gulp.task('compile', ['libs', 'sass', 'jade', 'templates', 'coffee', 'copyi18n', 'locales', 'copy_flags', 'sassdocs', 'ngdocs'])
 
 
-gulp.task('server', ['compile', 'watch', 'connect', 'connect_ngdocs']);
+gulp.task('server', ['compile', 'watch', 'connect']);
 
 gulp.task('default', ['server'])

@@ -1,0 +1,60 @@
+.page-statistics{
+
+
+  md-content{
+    margin-top: 30px;
+    width: 900px;
+    height: 390px;
+    // background-size: 100% auto;
+    // background: url(http://vectorbeast.com/wp-content/uploads/2013/07/abstract-background.jpg);
+    // @include linear-gradient(to top, #CA00FF, #00dbde);
+    padding-top: 30px;
+  }
+
+
+  .my-ct-label{color: $black-label; padding-top: 40px; }
+
+  .my-ct-grid{
+    stroke-width: 0.2;
+    stroke: rgba(grey, 0.7);
+    stroke-dasharray: 7 3;
+    // stroke-dashoffset: 10;
+  }
+
+
+  .my-ct-line{
+    fill: none;
+    stroke-width: 2px;
+  }
+  .ct-series-a{
+    stroke: #F44336;
+  }
+  .ct-series-b{
+    stroke: #3F51B5;
+  }
+
+
+  .ct-series-a .my-ct-area{
+    fill: none;
+    stroke: none;
+  }
+  .ct-series-b .my-ct-area{
+    fill: none;
+    stroke: none;
+  }
+  .my-ct-point{
+    fill-opacity: 1;
+    @include transition(all 0.2s linear);
+    stroke-width: 0px;
+    &:hover{
+      r: 7;
+      stroke-opacity: 0.2;
+      stroke-width: 20px;
+    }
+  }
+  // .my-ct-area:nth-of-type(2){
+  //   fill: green;
+  //   stroke: none;
+  // }
+
+}
