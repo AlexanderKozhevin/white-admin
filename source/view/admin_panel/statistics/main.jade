@@ -3,8 +3,8 @@ section.page-statistics(layout="column" layout-align="start center" )
     chartist.chart1(flex class="ct-chart" chartist-data="data" chartist-chart-type="Line" chartist-chart-options="lineOptions" chartist-events="events")
 
 
-  md-grid-list.block-cards_box( md-cols="3"   md-row-height="1:1" md-gutter="15px" role="cards box")
-    md-grid-tile.md-whiteframe-z1(md-rowspan="1" md-colspan="2")
+  md-grid-list.block-cards_box( md-cols="3"   md-row-height="1:1" md-gutter="15px" role="cards box" ng-cloak)
+    md-grid-tile.md-whiteframe-z1(md-rowspan="1" md-colspan="2" )
       div.block-cpu(layout="row" layout-align="space-between center" )
         div.block-left(layout="column" layout-align="start center")
           div.element-stat_circle.md-headline(role="info circle") 17

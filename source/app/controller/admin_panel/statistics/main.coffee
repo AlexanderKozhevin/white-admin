@@ -1,16 +1,18 @@
-angular.module("app").controller "statistics_ctrl",  ($scope) ->
+angular.module("app").controller "statistics_ctrl",  ($scope, $timeout) ->
 
 
 
   $scope.colors = ['#F44336', '#3F51B5', '#009688', '#FF9800']
 
-  $scope.data_cpu = {
-    labels: ['10:00', '12:00', '14:00', '16:00', '18:00'],
-    series: [
-      [17, 25, 10, 55, 11, 44]
-    ],
-  };
 
+  $timeout () ->
+    $scope.data_cpu = {
+      labels: ['10:00', '12:00', '14:00', '16:00', '18:00'],
+      series: [
+        [17, 25, 10, 55, 11, 44]
+      ],
+    };
+  , 100
   $scope.data = {
     labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
     series: [
@@ -58,6 +60,8 @@ angular.module("app").controller "statistics_ctrl",  ($scope) ->
 
     ]
   };
+
+
 
 
   $scope.cpuOptions = {
