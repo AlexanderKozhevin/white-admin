@@ -1,16 +1,16 @@
 section.page-statistics(layout="column" layout-align="start center" )
-  md-content.md-whiteframe-z1(layout="column" layout-fill)
+  md-content.md-whiteframe-z1(layout="column" layout-fill role="main chart")
     chartist.chart1(flex class="ct-chart" chartist-data="data" chartist-chart-type="Line" chartist-chart-options="lineOptions" chartist-events="events")
-    //- chartist.chart2(flex class="ct-chart" chartist-data="data" chartist-chart-type="Line" chartist-chart-options="lineOptions" chartist-events="events")
 
-  md-grid-list.mkk( md-cols="3"   md-row-height="1:1" md-gutter="15px" )
-    md-grid-tile.onef.md-whiteframe-z1(md-rowspan="1" md-colspan="2")
-      div.element-cpu_data(layout="row" layout-align="space-between center" )
+
+  md-grid-list.block-cards_box( md-cols="3"   md-row-height="1:1" md-gutter="15px" role="cards box")
+    md-grid-tile.md-whiteframe-z1(md-rowspan="1" md-colspan="2")
+      div.block-cpu(layout="row" layout-align="space-between center" )
         div.block-left(layout="column" layout-align="start center")
           div.element-stat_circle.md-headline(role="info circle") 17
           div.md-subhead(role="caption") CPU Usage %
         div.block-right(flex layout="row" layout-align="center center")
-          chartist(flex class="ct-chart" chartist-data="data_cpu" chartist-chart-type="Line" chartist-chart-options="cpuOptions" chartist-events="events2")
+          chartist(flex class="ct-chart" chartist-data="data_cpu" chartist-chart-type="Line" chartist-chart-options="cpuOptions" )
         
     md-grid-tile.onef.md-whiteframe-z1(md-rowspan="1" md-colspan="1") Hello
     md-grid-tile.onef.md-whiteframe-z1(md-rowspan="1" md-colspan="1") Hello

@@ -1,117 +1,24 @@
 .page-statistics{
 
 
-  md-content{
-    margin-top: 30px;
-    width: 900px;
-    height: 390px;
-    // background-size: 100% auto;
-    // background: url(http://vectorbeast.com/wp-content/uploads/2013/07/abstract-background.jpg);
-    // @include linear-gradient(to top, #CA00FF, #00dbde);
-    padding-top: 30px;
-  }
+  @import "statistics/main_chart";
+  @import "statistics/cpu_chart";
 
 
-  .my-ct-label{color: $black-label; padding-top: 40px; }
 
-  .my-ct-grid{
-    stroke-width: 0.2;
-    stroke: rgba(grey, 0.7);
-    stroke-dasharray: 7 3;
-    // stroke-dashoffset: 10;
-  }
-
-
-  .my-ct-line{
-    fill: none;
-    stroke-width: 2px;
-    stroke-opacity: 0.5;
-  }
-  .ct-series-a{
-    stroke: #F44336;
-  }
-  .ct-series-b{
-    stroke: #3F51B5;
-  }
-
-  .my-ct-area{
-    filter: url(#filter);
-    stroke: none;
-  }
-
-  // .my-ct-area{
-  //   fill: url(#gradient);
-  //   stroke: none;
-  // }
-  .ct-series-b .my-ct-area{
-    fill: none;
-    stroke: none;
-  }
-  .my-ct-point{
-    fill-opacity: 1;
-    @include transition(all 0.2s linear);
-    stroke-width: 0px;
-    &:hover{
-      r: 7;
-      stroke-opacity: 0.2;
-      stroke-width: 20px;
-    }
-  }
-  // .my-ct-area:nth-of-type(2){
-  //   fill: green;
-  //   stroke: none;
-  // }
-
-  .mkk{
-    width: 900px;
-    margin-top: 15px;
-    // border: 1px solid red;
-  }
-  .onef{
-    background-color: white;
-  }
-
-  .element-cpu_data{
-    width: 100%;
-    height: 100%;
-  }
-  .block-left{
-    width: 230px;
-    padding-left: 20px;
-
-  }
-  .block-right chartist{
-    // opacity: 0.1;
-    margin-left: -20px;
-  }
-  [role="caption"]{
+  md-content[role="main chart"]{
     margin-top: $primary-margin;
-    font-weight: 500;
+    width: $primary-width;
+    height: 400px;
+    padding-top: $primary-margin;
   }
 
 
-  .block-right{
-    height: 100%;
-    // background-color: pink;
-    padding-right: 20px;
+  .block-cards_box{
+    width: $primary-width;
+    margin-top: $primary-margin / 2;
 
+    & > * {background-color: white;}
   }
-  .block-right chartist {
-  }
-
-
-  .my-ct-grid2{
-    // filter: url(#filter);
-  }
-  .ct-chart-line{
-    // opacity: 0.2;
-    // filter: url(#filter);
-  }
-
-  .my-ct-grid2{
-    stroke: rgba(grey, 0.2);
-    stroke-width: 0.5px;
-  }
-
 
 }

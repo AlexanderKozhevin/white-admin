@@ -1,17 +1,13 @@
 angular.module("app").controller "statistics_ctrl",  ($scope) ->
 
-    # $scope.data = {
-    #   labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-    #   series: [
-    #     [{value: 7, meta: 'line1'}, {value: 15, meta: 'line1'}, {value: 167, meta: 'line1'}, {value: 18, meta: 'line1'}, {value: 199, meta: 'line1'}, {value: 150, meta: 'line1'} ]
-    #     [{value: 1, meta: 'line2'}, {value: 25, meta: 'line2'}, {value: 137, meta: 'line2'}, {value: 22, meta: 'line2'}, {value: 19, meta: 'line2'}, {value: 10, meta: 'line2'} ]
-    #   ],
-    # };
+
+
+  $scope.colors = ['#F44336', '#3F51B5', '#009688', '#FF9800']
 
   $scope.data_cpu = {
     labels: ['10:00', '12:00', '14:00', '16:00', '18:00'],
     series: [
-      [{value: 25, meta: 'line2'}, {value: 15, meta: 'line2'}, {value: 67, meta: 'line2'}, {value: 18, meta: 'line2'}, {value: 199, meta: 'line2'} ]
+      [17, 25, 10, 55, 11, 44]
     ],
   };
 
@@ -22,7 +18,8 @@ angular.module("app").controller "statistics_ctrl",  ($scope) ->
     ],
   };
 
-  $scope.colors = ['#F44336', '#3F51B5', '#009688', '#FF9800']
+
+
   $scope.lineOptions = {
     height: "350px"
     width: "900px"
@@ -36,7 +33,6 @@ angular.module("app").controller "statistics_ctrl",  ($scope) ->
     showPoint: true,
     showLine: true,
     onlyInteger: true,
-    # fullWidth: true,
     axisX: {
       showGrid: false,
       labelOffset: {
@@ -49,19 +45,11 @@ angular.module("app").controller "statistics_ctrl",  ($scope) ->
       showGrid: true,
     }
     classNames: {
-      # chart: 'ct-chart-line',
-      label: 'md-caption my-ct-label',
-      # labelGroup: 'my-ct-labels',
-      # series: 'my-ct-series',
-      line: 'my-ct-line',
-      point: 'my-ct-point',
-      area: 'my-ct-area',
-      grid: 'my-ct-grid',
-      # gridGroup: 'ct-grids',
-      # vertical: 'ct-vertical',
-      # horizontal: 'ct-horizontal',
-      # start: 'ct-start',
-      # end: 'ct-end'
+      label: 'md-caption main_chart-ct-label',
+      line: 'main_chart-ct-line',
+      point: 'main_chart-ct-point',
+      area: 'main_chart-ct-area',
+      grid: 'main_chart-ct-grid',
     }
     plugins: [
       Chartist.plugins.tooltip({
@@ -84,7 +72,6 @@ angular.module("app").controller "statistics_ctrl",  ($scope) ->
     showPoint: true,
     showLine: true,
     onlyInteger: true,
-    # fullWidth: true,
     axisX: {
       showGrid: true,
       showLabel: true
@@ -98,19 +85,9 @@ angular.module("app").controller "statistics_ctrl",  ($scope) ->
       showLabel: false
     }
     classNames: {
-      # chart: 'ct-chart-line',
-      # label: 'md-caption my-ct-label',
-      # labelGroup: 'my-ct-labels',
-      # series: 'my-ct-series',
-      line: 'my-ct-line',
-      point: 'my-ct-point',
-      # area: 'my-ct-area',
-      grid: 'my-ct-grid2',
-      # gridGroup: 'ct-grids',
-      # vertical: 'ct-vertical',
-      # horizontal: 'ct-horizontal',
-      # start: 'ct-start',
-      # end: 'ct-end'
+      line: 'cpu_chart-ct-line',
+      grid: 'cpu_chart-grid',
+      point: 'cpu_chart-ct-point',
     }
 
   };
@@ -131,13 +108,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope) ->
           cx: [data.x],
           cy: [data.y],
           r: [5],
-          class: 'my-ct-point',
+          class: 'main_chart-ct-point',
           style: style
           }, 'ct-area');
         data.element.replace(point);
-
-  $scope.events2 =
-    created: (data) ->
-      console.log data
-    draw: (data) ->
-      console.log 'hello'
