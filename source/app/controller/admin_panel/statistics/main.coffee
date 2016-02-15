@@ -1,10 +1,17 @@
 angular.module("app").controller "statistics_ctrl",  ($scope) ->
 
+    # $scope.data = {
+    #   labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    #   series: [
+    #     [{value: 7, meta: 'line1'}, {value: 15, meta: 'line1'}, {value: 167, meta: 'line1'}, {value: 18, meta: 'line1'}, {value: 199, meta: 'line1'}, {value: 150, meta: 'line1'} ]
+    #     [{value: 1, meta: 'line2'}, {value: 25, meta: 'line2'}, {value: 137, meta: 'line2'}, {value: 22, meta: 'line2'}, {value: 19, meta: 'line2'}, {value: 10, meta: 'line2'} ]
+    #   ],
+    # };
+
   $scope.data = {
     labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
     series: [
       [{value: 7, meta: 'line1'}, {value: 15, meta: 'line1'}, {value: 167, meta: 'line1'}, {value: 18, meta: 'line1'}, {value: 199, meta: 'line1'}, {value: 150, meta: 'line1'} ]
-      [{value: 1, meta: 'line2'}, {value: 25, meta: 'line2'}, {value: 137, meta: 'line2'}, {value: 22, meta: 'line2'}, {value: 19, meta: 'line2'}, {value: 10, meta: 'line2'} ]
     ],
   };
 
@@ -13,12 +20,12 @@ angular.module("app").controller "statistics_ctrl",  ($scope) ->
     height: "350px"
     width: "900px"
     lineSmooth: Chartist.Interpolation.cardinal({
-      tension: 1
+      tension: 0
     })
     showPoint: false,
     low: 0
     chartPadding: 30,
-    showArea: false,
+    showArea: true,
     showPoint: true,
     showLine: true,
     onlyInteger: true,

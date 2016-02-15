@@ -4,7 +4,11 @@
 
   <defs>
 
-    
+    <linearGradient id="gradient" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="rgba(244,67,54,0.3)"></stop>
+      <stop offset="100%" stop-color="rgba(244,67,54,0)"></stop>
+    </linearGradient>
+
 
   </defs>
 
