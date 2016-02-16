@@ -76,17 +76,22 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout) ->
 
   $scope.profilesOptions = {
     height: "200px"
-    width: "570px",
+    width: "100%",
     lineSmooth: Chartist.Interpolation.cardinal({
       tension: 1
     })
     showPoint: false,
     low: 0
-    chartPadding: 0,
+    chartPadding: {
+      top: 15,
+      right: 25,
+      bottom: 5,
+      left: 10
+    },
     showArea: false,
     showPoint: true,
     showLine: true,
-    fullWidth: true,
+    fullWidth: false,
     onlyInteger: true,
     axisX: {
       showGrid: true,
@@ -112,7 +117,8 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout) ->
 
 
   $scope.cpuOptions = {
-    height: "200px"
+    width: "100%",
+    height: "240px",
     lineSmooth: Chartist.Interpolation.cardinal({
       tension: 1
     })
@@ -123,6 +129,12 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout) ->
     showPoint: true,
     showLine: true,
     onlyInteger: true,
+    chartPadding: {
+      top: 55,
+      right: 20,
+      bottom: 20,
+      left: 10
+    },
     axisX: {
       showGrid: true,
       showLabel: true

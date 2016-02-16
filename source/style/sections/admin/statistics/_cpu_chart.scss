@@ -19,9 +19,12 @@
 
   .block-right{
     height: 100%;
-    padding-right: 20px;
+    chartist{margin-left: -20px; }
 
-    chartist{margin-left: -20px;}
+    [role="hide-sm label"]{
+      padding: 2*$primary-padding;
+      padding-bottom: 0px;
+    }
 
     .cpu_chart-grid{
       stroke: rgba(grey, 0.2);
