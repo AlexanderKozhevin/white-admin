@@ -1,3 +1,17 @@
+md-content[role="main chart"]{
+  margin-top: $primary-margin;
+  width: $primary-width;
+  height: 430px;
+}
+
+md-content [role="title"]{
+  padding: 2*$primary-padding;
+}
+.element-date_range{
+  .md-datepicker-button{display: none!important;}
+  & > * {margin-left: $primary-padding;}
+}
+
 .main_chart-ct-label{color: $black-label; padding-top: 40px;}
 .main_chart-ct-grid{
   stroke-width: 0.2;

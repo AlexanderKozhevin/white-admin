@@ -30,3 +30,7 @@ workers:
   select: "Select image to upload"
   name: "Worker name"
   quick: "Quick view"
+
+
+stat:
+  site: "Site visites"

@@ -26,6 +26,10 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout) ->
     ],
   };
 
+  $scope.date_range = {
+    from: new Date('2/1/2016'),
+    to: new Date('2/17/2016')
+  }
 
   $scope.traffic = [
     {label: "Google", value: 55.3},
