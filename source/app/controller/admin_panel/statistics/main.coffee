@@ -110,6 +110,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout) ->
 
 
 
+
   $scope.cpuOptions = {
     height: "200px"
     lineSmooth: Chartist.Interpolation.cardinal({
