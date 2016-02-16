@@ -12,6 +12,12 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout) ->
         [17, 25, 10, 55, 11, 44]
       ],
     };
+    $scope.data_profiles = {
+      labels: ['15.02', '15.02', '15.02', '15.02', '15.02'],
+      series: [
+        [17, 25, 10, 55, 11, 44]
+      ],
+    };
   , 100
   $scope.data = {
     labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
@@ -67,6 +73,40 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout) ->
     ]
   };
 
+
+  $scope.profilesOptions = {
+    height: "200px"
+    width: "570px",
+    lineSmooth: Chartist.Interpolation.cardinal({
+      tension: 1
+    })
+    showPoint: false,
+    low: 0
+    chartPadding: 0,
+    showArea: false,
+    showPoint: true,
+    showLine: true,
+    fullWidth: true,
+    onlyInteger: true,
+    axisX: {
+      showGrid: true,
+      showLabel: true
+      labelOffset: {
+        x: 0
+        y: 10
+      }
+    }
+    axisY: {
+      showGrid: true,
+      showLabel: true
+    }
+    classNames: {
+      line: 'ext_chart-ct-line',
+      grid: 'ext_chart-ct-grid',
+      point: 'ext_chart-ct-point',
+    }
+
+  };
 
 
 
