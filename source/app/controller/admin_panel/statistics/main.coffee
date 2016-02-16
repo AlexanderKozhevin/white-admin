@@ -1,4 +1,4 @@
-angular.module("app").controller "statistics_ctrl",  ($scope, $timeout) ->
+angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangular, $filter) ->
 
 
 
@@ -19,17 +19,30 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout) ->
       ],
     };
   , 100
-  $scope.data = {
-    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-    series: [
-      [{value: 7, meta: 'line1'}, {value: 15, meta: 'line1'}, {value: 167, meta: 'line1'}, {value: 18, meta: 'line1'}, {value: 199, meta: 'line1'}, {value: 150, meta: 'line1'} ]
-    ],
-  };
+
 
   $scope.date_range = {
-    from: new Date('2/1/2016'),
+    from: new Date('2/1/2015'),
     to: new Date('2/17/2016')
   }
+
+  Restangular.one('stat', 'mainsite').get({from: $scope.date_range.from, to: $scope.date_range.to}).then (data) ->
+    labels = _.map(data, (obj) -> return $filter('date')(new Date(obj.label), 'd/M'))
+    values = _.map(data, (obj) -> return {value: obj.value, meta: 'line1'})
+    temp = []
+    if labels.length
+      pace = Math.round(labels.length / 20)
+      if pace >= 2
+        for i,index in labels
+          if index % pace != 0
+            labels[index] = ""
+    $scope.data = {
+      labels: labels
+      series: [
+        values
+      ],
+    };
+
 
   $scope.traffic = [
     {label: "Google", value: 55.3},
