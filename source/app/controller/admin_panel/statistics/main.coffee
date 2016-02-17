@@ -22,7 +22,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
 
 
   $scope.date_range = {
-    from: new Date('2/1/2015'),
+    from: new Date('2/9/2016'),
     to: new Date('2/17/2016')
   }
 
@@ -36,6 +36,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
         for i,index in labels
           if index % pace != 0
             labels[index] = ""
+      labels.pop()
     $scope.data = {
       labels: labels
       series: [
@@ -172,6 +173,8 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
 
   };
 
+  $scope.checker = () ->
+    console.log $scope.date_range
 
 
   $scope.events =
@@ -185,7 +188,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
           when 'line2' then color = $scope.colors[1]
         style = 'fill: ' + color + '!important; stroke: ' + color
         circle_width = 5
-        if $scope.data.series[0].length
+        if $scope.data.series[0].length > 25
           circle_width = 1
         point = new Chartist.Svg('circle', {
           cx: [data.x],
