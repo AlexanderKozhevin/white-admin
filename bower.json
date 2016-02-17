@@ -45,12 +45,13 @@
     "angular-google-chart": "0.1.0-beta.1",
     "ng-file-upload": "~10.1.9",
     "angular-chartist.js": "~3.3.12",
-    "chartist": "~0.9.5",
     "chartist-plugin-tooltip": "git@github.com:Globegitter/chartist-plugin-tooltip.git#master",
     "angular-material-data-table": "~0.9.5",
     "bourbon": "~4.2.6",
     "js-md5": "md5#~0.3.0",
     "angular-clipboard": "~1.2.1",
-    "angular-fileupload": "angular-filereader#~1.0.4"
+    "angular-fileupload": "angular-filereader#~1.0.4",
+    "chartist": "~0.9.5",
+    "material-color": "~2.2.0"
   }
 }

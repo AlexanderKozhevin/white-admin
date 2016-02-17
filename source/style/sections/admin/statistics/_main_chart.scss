@@ -25,10 +25,10 @@ md-content [role="title"]{
   stroke-opacity: 0.5;
 }
 .ct-series-a{
-  stroke: #F44336;
+  stroke: $clr-red;
 }
 .ct-series-b{
-  stroke: #3F51B5;
+  stroke: $clr-pink;
 }
 .main_chart-ct-area{
   filter: url(#filter);
@@ -38,6 +38,8 @@ md-content [role="title"]{
   fill: none;
   stroke: none;
 }
+
+
 .main_chart-ct-point{
   fill-opacity: 1;
   @include transition(all 0.2s linear);

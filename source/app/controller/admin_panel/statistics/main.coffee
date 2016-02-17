@@ -23,26 +23,30 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
 
   $scope.date_range = {
     from: new Date('2/9/2016'),
-    to: new Date('2/17/2016')
+    to: new Date('2/17/2016'),
+    today: new Date()
   }
 
-  Restangular.one('stat', 'mainsite').get({from: $scope.date_range.from, to: $scope.date_range.to}).then (data) ->
-    labels = _.map(data, (obj) -> return $filter('date')(new Date(obj.label), 'd/M'))
-    values = _.map(data, (obj) -> return {value: obj.value, meta: 'line1'})
-    temp = []
-    if labels.length
-      pace = Math.round(labels.length / 20)
-      if pace >= 2
-        for i,index in labels
-          if index % pace != 0
-            labels[index] = ""
-      labels.pop()
-    $scope.data = {
-      labels: labels
-      series: [
-        values
-      ],
-    };
+  $scope.request_main = () ->
+    Restangular.one('stat', 'mainsite').get({from: $scope.date_range.from, to: $scope.date_range.to}).then (data) ->
+      labels = _.map(data, (obj) -> return $filter('date')(new Date(obj.label), 'd/M'))
+      values = _.map(data, (obj) -> return {value: obj.value, meta: 'line1'})
+      values2 = _.map(data, (obj) -> return {value: obj.value/2, meta: 'line2'})
+      temp = []
+      if labels.length
+        pace = Math.round(labels.length / 20)
+        if pace >= 2
+          for i,index in labels
+            if index % pace != 0
+              labels[index] = ""
+        labels.pop()
+      $scope.data = {
+        labels: labels
+        series: [
+          values,
+          values2
+        ],
+      };
 
 
   $scope.traffic = [
@@ -78,14 +82,15 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
     }
     classNames: {
       label: 'md-caption main_chart-ct-label',
-      line: 'main_chart-ct-line',
-      point: 'main_chart-ct-point',
+      # line: 'main_chart-ct-line',
       area: 'main_chart-ct-area',
       grid: 'main_chart-ct-grid',
     }
     plugins: [
       Chartist.plugins.tooltip({
-        class: "geniusz"
+        class: "mytool",
+        appendToBody: true,
+        # pointClass: 'main_chart-ct-point'
       })
 
     ]
@@ -173,28 +178,33 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
 
   };
 
-  $scope.checker = () ->
-    console.log $scope.date_range
-
 
   $scope.events =
     created: (data) ->
       console.log data
     draw: (data) ->
-      if data.type == 'point'
-        color = ""
-        switch data.meta
-          when 'line1' then color = $scope.colors[0]
-          when 'line2' then color = $scope.colors[1]
-        style = 'fill: ' + color + '!important; stroke: ' + color
-        circle_width = 5
-        if $scope.data.series[0].length > 25
-          circle_width = 1
-        point = new Chartist.Svg('circle', {
-          cx: [data.x],
-          cy: [data.y],
-          r: [circle_width],
-          class: 'main_chart-ct-point',
-          style: style
-          }, 'ct-area');
-        data.element.replace(point);
+      # if data.type == 'point'
+      #   console.log data
+      #   color = ""
+      #   switch data.meta
+      #     when 'line1' then color = $scope.colors[0]
+      #     when 'line2' then color = $scope.colors[1]
+      #   style = 'fill: ' + color + '!important; stroke: ' + color
+      #   circle_width = 5
+      #   if $scope.data.series[0].length > 25
+      #     circle_width = 2
+      #   point = new Chartist.Svg('circle', {
+      #     cx: [data.x],
+      #     cy: [data.y],
+      #     r: [circle_width],
+      #     'ct:value': data.value.y,
+      #     'ct:meta': data.meta,
+      #     class: 'main_chart-ct-point',
+      #     style: style
+      #     }, 'ct-area');
+      #   data.element.replace(point);
+
+
+
+
+  $scope.request_main()
