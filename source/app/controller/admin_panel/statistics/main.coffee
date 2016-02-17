@@ -184,10 +184,13 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
           when 'line1' then color = $scope.colors[0]
           when 'line2' then color = $scope.colors[1]
         style = 'fill: ' + color + '!important; stroke: ' + color
+        circle_width = 5
+        if $scope.data.series[0].length
+          circle_width = 1
         point = new Chartist.Svg('circle', {
           cx: [data.x],
           cy: [data.y],
-          r: [5],
+          r: [circle_width],
           class: 'main_chart-ct-point',
           style: style
           }, 'ct-area');
