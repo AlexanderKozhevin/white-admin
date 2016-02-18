@@ -46,6 +46,18 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
         ],
       };
 
+  $scope.request_external = () ->
+    Restangular.one('stat', 'external_views').get().then (data) ->
+      labels = _.map(data, (obj) -> return $filter('date')(new Date(obj.label), 'd/M'))
+      values = _.map(data, (obj) -> return {value: obj.value, meta: 'Views'})
+      labels.pop()
+      $scope.data_profiles = {
+        labels: labels
+        series: [
+          values
+        ],
+      };
+
 
   $scope.traffic = [
     {label: "Google", value: 55.3},
@@ -198,3 +210,4 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
 
 
   $scope.request_main()
+  $scope.request_external()
