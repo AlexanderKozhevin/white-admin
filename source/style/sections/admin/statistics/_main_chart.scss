@@ -12,6 +12,19 @@ md-content [role="title"]{
   & > * {margin-left: $primary-padding;}
 }
 
+.element-tooltip{
+  background-color: white;
+  border: 1px solid rgba(grey, 0.2);
+  font-family: Roboto;
+  font-weight: 400;
+  text-align: center;
+  .chartist-tooltip-meta{opacity: 0.6;}
+  .chartist-tooltip-value{color: $clr-teal;}
+  &:before{
+    display: none;
+  }
+}
+
 
 $colors: (
   $clr-red,
@@ -44,10 +57,7 @@ $ct-names: (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o) !default;
       stroke: #{nth($colors, $i)};
       fill: #{nth($colors, $i)};
     }
-
   }
-
-
 }
 
 
@@ -56,28 +66,16 @@ $ct-names: (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o) !default;
   stroke-width: 0.2;
   stroke: rgba(grey, 0.7);
   stroke-dasharray: 7 3;
-  // stroke-dashoffset: 10;
 }
 .main_chart-ct-line{
   fill: none;
   stroke-width: 2px;
   stroke-opacity: 0.5;
 }
-.ct-series-a{
-  stroke: $clr-red;
-}
-.ct-series-b{
-  stroke: $clr-pink;
-}
 .main_chart-ct-area{
   filter: url(#filter);
   stroke: none;
 }
-.ct-series-b .main_chart-ct-area{
-  fill: none;
-  stroke: none;
-}
-
 .main_chart-ct-point{
   fill-opacity: 1;
   @include transition(all 0.2s linear);

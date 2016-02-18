@@ -23,15 +23,8 @@
 
 body{
   height: 100vh!important;
-
 }
 
-.mytool{
-  background-color: pink!important;
-  width: 100px!important;
-  height: 100px!important;
-  border: 5px solid red;
-}
 
 .root_layout{
   height: calc(100vh - $toolbar-height)!important;

@@ -30,8 +30,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
   $scope.request_main = () ->
     Restangular.one('stat', 'mainsite').get({from: $scope.date_range.from, to: $scope.date_range.to}).then (data) ->
       labels = _.map(data, (obj) -> return $filter('date')(new Date(obj.label), 'd/M'))
-      values = _.map(data, (obj) -> return {value: obj.value, meta: 'line1'})
-      values2 = _.map(data, (obj) -> return {value: obj.value/2, meta: 'line2'})
+      values = _.map(data, (obj) -> return {value: obj.value, meta: 'Views'})
       temp = []
       if labels.length
         pace = Math.round(labels.length / 20)
@@ -43,8 +42,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
       $scope.data = {
         labels: labels
         series: [
-          values,
-          values2
+          values
         ],
       };
 
@@ -88,8 +86,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
     }
     plugins: [
       Chartist.plugins.tooltip({
-        class: "mytool",
-        appendToBody: true,
+        class: "element-tooltip",
         pointClass: 'main_chart-ct-point'
       })
 
@@ -184,11 +181,6 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
       console.log data
     draw: (data) ->
       if data.type == 'point'
-        console.log data
-        color = ""
-        switch data.meta
-          when 'line1' then color = $scope.colors[0]
-          when 'line2' then color = $scope.colors[1]
         circle_width = 4
         if $scope.data.series[0].length > 25
           circle_width = 2
