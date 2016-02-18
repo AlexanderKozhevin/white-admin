@@ -58,6 +58,17 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
         ],
       };
 
+  $scope.request_cpu = () ->
+    Restangular.one('stat', 'cpu_data').get().then (data) ->
+      labels = _.map(data, (obj) -> return $filter('date')(new Date(obj.label), 'HH:mm'))
+      values = _.map(data, (obj) -> return {value: obj.value, meta: 'Load %'})
+      labels.pop()
+      $scope.data_cpu = {
+        labels: labels
+        series: [
+          values
+        ],
+      };
 
   $scope.traffic = [
     {label: "Google", value: 55.3},
@@ -211,3 +222,4 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
 
   $scope.request_main()
   $scope.request_external()
+  $scope.request_cpu()
