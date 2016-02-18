@@ -12,6 +12,45 @@ md-content [role="title"]{
   & > * {margin-left: $primary-padding;}
 }
 
+
+$colors: (
+  $clr-red,
+  $clr-pink,
+  $clr-purple,
+  $clr-deep-purple,
+  $clr-indigo,
+  $clr-blue,
+  $clr-light-blue,
+  $clr-cyan,
+  $clr-teal,
+  $clr-green,
+  $clr-light-green,
+  $clr-lime,
+  $clr-yellow,
+  $clr-amber,
+  $clr-orange
+) !default;
+
+
+$ct-names: (a, b, c, d, e, f, g, h, i, j, k, l, m, n, o) !default;
+
+@for $i from 1 through length($ct-names) {
+
+  .ct-series-#{nth($ct-names, $i)}{
+    .main_chart-ct-line{
+      stroke: #{nth($colors, $i)};
+    }
+    .main_chart-ct-point{
+      stroke: #{nth($colors, $i)};
+      fill: #{nth($colors, $i)};
+    }
+
+  }
+
+
+}
+
+
 .main_chart-ct-label{color: $black-label; padding-top: 40px;}
 .main_chart-ct-grid{
   stroke-width: 0.2;
@@ -38,7 +77,6 @@ md-content [role="title"]{
   fill: none;
   stroke: none;
 }
-
 
 .main_chart-ct-point{
   fill-opacity: 1;

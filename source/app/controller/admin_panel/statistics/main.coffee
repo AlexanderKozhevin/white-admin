@@ -82,7 +82,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
     }
     classNames: {
       label: 'md-caption main_chart-ct-label',
-      # line: 'main_chart-ct-line',
+      line: 'main_chart-ct-line',
       area: 'main_chart-ct-area',
       grid: 'main_chart-ct-grid',
     }
@@ -90,7 +90,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
       Chartist.plugins.tooltip({
         class: "mytool",
         appendToBody: true,
-        # pointClass: 'main_chart-ct-point'
+        pointClass: 'main_chart-ct-point'
       })
 
     ]
@@ -183,26 +183,24 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
     created: (data) ->
       console.log data
     draw: (data) ->
-      # if data.type == 'point'
-      #   console.log data
-      #   color = ""
-      #   switch data.meta
-      #     when 'line1' then color = $scope.colors[0]
-      #     when 'line2' then color = $scope.colors[1]
-      #   style = 'fill: ' + color + '!important; stroke: ' + color
-      #   circle_width = 5
-      #   if $scope.data.series[0].length > 25
-      #     circle_width = 2
-      #   point = new Chartist.Svg('circle', {
-      #     cx: [data.x],
-      #     cy: [data.y],
-      #     r: [circle_width],
-      #     'ct:value': data.value.y,
-      #     'ct:meta': data.meta,
-      #     class: 'main_chart-ct-point',
-      #     style: style
-      #     }, 'ct-area');
-      #   data.element.replace(point);
+      if data.type == 'point'
+        console.log data
+        color = ""
+        switch data.meta
+          when 'line1' then color = $scope.colors[0]
+          when 'line2' then color = $scope.colors[1]
+        circle_width = 4
+        if $scope.data.series[0].length > 25
+          circle_width = 2
+        point = new Chartist.Svg('circle', {
+          cx: [data.x],
+          cy: [data.y],
+          r: [circle_width],
+          'ct:value': data.value.y,
+          'ct:meta': data.meta,
+          class: 'main_chart-ct-point',
+          }, 'ct-area');
+        data.element.replace(point);
 
 
 
