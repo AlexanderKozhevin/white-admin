@@ -5,7 +5,7 @@ section.page-statistics(layout="column" layout-align="start center" )
       div.element-date_range
         md-datepicker(ng-model="date_range.from" md-placeholder="Date from" ng-change="request_main()" md-max-date="date_range.to")
         md-datepicker(ng-model="date_range.to" md-placeholder="Date to" ng-change="request_main()" md-min-date="date_range.from" md-max-date="date_range.today")
-    chartist.chart1(flex class="ct-chart" chartist-data="charts_data.main" chartist-chart-type="Line" chartist-chart-options="options.main" chartist-events="events" ng-show="charts_data.main")
+    chartist.chart1(flex class="ct-chart" chartist-data="charts_data.main" chartist-chart-type="Line" chartist-chart-options="charts_options.main" chartist-events="events" ng-show="charts_data.main")
     div.element-loading(layout="row" layout-align="center center" ng-hide="charts_data.main")
       md-progress-circular(md-mode="indeterminate" md-diameter="60")
 
@@ -19,7 +19,7 @@ section.page-statistics(layout="column" layout-align="start center" )
           div.md-subhead(role="caption") CPU Usage %
         div.block-right(flex layout="column" )
           div.md-subheader(hide-gt-xs role="hide-sm label") CPU Usage
-          chartist(class="ct-chart" chartist-data="charts_data.cpu" chartist-chart-type="Line" chartist-chart-options="options.cpu" )
+          chartist(class="ct-chart" chartist-data="charts_data.cpu" chartist-chart-type="Line" chartist-chart-options="charts_options.cpu" )
           div.element-loading(layout="row" layout-align="center center" ng-hide="charts_data.cpu")
             md-progress-circular(md-mode="indeterminate"  md-diameter="60")
 
@@ -46,7 +46,7 @@ section.page-statistics(layout="column" layout-align="start center" )
         div.element-loading(layout="row" layout-align="center center" ng-hide="charts_data.profiles")
           md-progress-circular(md-mode="indeterminate"  md-diameter="60")
         div(role="chart" flex ng-show="charts_data.profiles")
-          chartist(flex class="ct-chart" chartist-data="charts_data.profiles" chartist-chart-type="Line" chartist-chart-options="options.profiles"  ng-show="charts_data.profiles")
+          chartist(flex class="ct-chart" chartist-data="charts_data.profiles" chartist-chart-type="Line" chartist-chart-options="charts_options.profiles"  ng-show="charts_data.profiles")
           
     
     //- 

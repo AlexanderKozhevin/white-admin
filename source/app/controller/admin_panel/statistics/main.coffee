@@ -2,12 +2,9 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
 
 
 
-  $scope.charts_data =
-    main: undefined
-    cpu: undefined
-    profiles: undefined
 
   io.sails.url = 'http://arduino2.club';
+
   io.socket.on 'message',  (data)->
     console.log data
 
@@ -15,56 +12,67 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
     io.socket.get('/api/server/subscribe');
 
 
-  $scope.date_range = {
+
+  $scope.charts_data =
+    main: undefined
+    cpu: undefined
+    profiles: undefined
+
+  $scope.charts_options =
+    main: chart_helper.options_main
+    profiles: chart_helper.options_profiles
+    cpu: chart_helper.options_cpu
+
+
+  $scope.date_range =
     from: new Date('2/9/2016'),
     to: new Date('2/17/2016'),
     today: new Date()
-  }
 
-  $scope.request_main = () ->
-    $scope.charts_data.main = undefined
-    Restangular.one('stat', 'mainsite').get({from: $scope.date_range.from, to: $scope.date_range.to}).then (data) ->
-      labels = _.map(data, (obj) -> return $filter('date')(new Date(obj.label), 'd/M'))
-      values = _.map(data, (obj) -> return {value: obj.value, meta: 'Views'})
-      temp = []
-      if labels.length
-        pace = Math.round(labels.length / 20)
-        if pace >= 2
-          for i,index in labels
-            if index % pace != 0
-              labels[index] = ""
+
+  $scope.request =
+    cpu: () ->
+      $scope.charts_data.cpu = undefined
+      Restangular.one('stat', 'cpu_data').get().then (data) ->
+        labels = _.map(data, (obj) -> return $filter('date')(new Date(obj.label), 'HH:mm'))
+        values = _.map(data, (obj) -> return {value: obj.value, meta: 'Load %'})
         labels.pop()
-      $scope.charts_data.main =
-        labels: labels
-        series: [
-          values
-        ]
+        $scope.charts_data.cpu =
+          labels: labels
+          series: [
+            values
+          ],
 
+    ext: () ->
+      $scope.charts_data.profiles = undefined
+      Restangular.one('stat', 'external_views').get().then (data) ->
+        labels = _.map(data, (obj) -> return $filter('date')(new Date(obj.label), 'd/M'))
+        values = _.map(data, (obj) -> return {value: obj.value, meta: 'Views'})
+        labels.pop()
+        $scope.charts_data.profiles =
+          labels: labels
+          series: [
+            values
+          ],
 
-  $scope.request_external = () ->
-    $scope.charts_data.profiles = undefined
-    Restangular.one('stat', 'external_views').get().then (data) ->
-      labels = _.map(data, (obj) -> return $filter('date')(new Date(obj.label), 'd/M'))
-      values = _.map(data, (obj) -> return {value: obj.value, meta: 'Views'})
-      labels.pop()
-      $scope.charts_data.profiles =
-        labels: labels
-        series: [
-          values
-        ],
-      
-
-  $scope.request_cpu = () ->
-    $scope.charts_data.cpu = undefined
-    Restangular.one('stat', 'cpu_data').get().then (data) ->
-      labels = _.map(data, (obj) -> return $filter('date')(new Date(obj.label), 'HH:mm'))
-      values = _.map(data, (obj) -> return {value: obj.value, meta: 'Load %'})
-      labels.pop()
-      $scope.charts_data.cpu =
-        labels: labels
-        series: [
-          values
-        ],
+    main: () ->
+      $scope.charts_data.main = undefined
+      Restangular.one('stat', 'mainsite').get({from: $scope.date_range.from, to: $scope.date_range.to}).then (data) ->
+        labels = _.map(data, (obj) -> return $filter('date')(new Date(obj.label), 'd/M'))
+        values = _.map(data, (obj) -> return {value: obj.value, meta: 'Views'})
+        temp = []
+        if labels.length
+          pace = Math.round(labels.length / 20)
+          if pace >= 2
+            for i,index in labels
+              if index % pace != 0
+                labels[index] = ""
+          labels.pop()
+        $scope.charts_data.main =
+          labels: labels
+          series: [
+            values
+          ]
 
 
   $scope.traffic = [
@@ -73,12 +81,6 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
     {label: "Yandex", value: 17.5},
     {label: "Social networks", value: 8.9}
   ]
-
-  $scope.options =
-    main: chart_helper.options_main
-    profiles: chart_helper.options_profiles
-    cpu: chart_helper.options_cpu
-
 
 
   $scope.events =
@@ -100,8 +102,6 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
         data.element.replace(point);
 
 
-
-
-  $scope.request_main()
-  $scope.request_external()
-  $scope.request_cpu()
+  $scope.request.main()
+  $scope.request.ext()
+  $scope.request.cpu()
