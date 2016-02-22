@@ -15,7 +15,7 @@ section.page-statistics(layout="column" layout-align="start center" )
       div.block-cpu(layout="row" layout-align="space-between center" )
         
         div.block-left(layout="column" layout-align="start center" hide-xs)
-          div.element-stat_circle.md-headline(role="info circle" ) 17
+          div.element-stat_circle.md-headline(role="info circle" ) {{socket_data.cpu}}
           div.md-subhead(role="caption") CPU Usage %
         div.block-right(flex layout="column" )
           div.md-subheader(hide-gt-xs role="hide-sm label") CPU Usage
@@ -26,7 +26,7 @@ section.page-statistics(layout="column" layout-align="start center" )
         
     md-grid-tile.onef.md-whiteframe-z1(md-rowspan="1" md-colspan="1"  )
       div.block-memory(layout="column" layout-align="center center")
-        div.element-stat_circle.md-headline(role="info circle") 43
+        div.element-stat_circle.md-headline(role="info circle") {{socket_data.ram}}
         div.md-subhead(role="caption") RAM Usage %
     md-grid-tile.md-whiteframe-z1.block-traffic(md-rowspan="1" md-colspan="1"  )
       div.block-container(layout="column" layout-align="start center")
@@ -49,19 +49,3 @@ section.page-statistics(layout="column" layout-align="start center" )
           chartist(flex class="ct-chart" chartist-data="charts_data.profiles" chartist-chart-type="Line" chartist-chart-options="charts_options.profiles"  ng-show="charts_data.profiles")
           
     
-    //- 
-    //- <md-grid-list
-    //-       md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="6"
-    //-       md-row-height-gt-md="1:1" md-row-height="2:2"
-    //-       md-gutter="12px" md-gutter-gt-sm="8px" >
-    //-   <md-grid-tile class="gray"
-    //-       md-rowspan="3" md-colspan="2" md-colspan-sm="1">
-    //-     <md-grid-tile-footer>
-    //-       <h3>#1: (3r x 2c)</h3>
-    //-     </md-grid-tile-footer>
-    //-   </md-grid-tile>
-    //-   <md-grid-tile class="green">
-    //-     <md-grid-tile-footer>
-    //-       <h3>#2: (1r x 1c)</h3>
-    //-     </md-grid-tile-footer>
-    //-   </md-grid-tile>

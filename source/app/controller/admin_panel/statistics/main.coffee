@@ -6,17 +6,23 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
   io.sails.url = 'http://arduino2.club';
 
   io.socket.on 'message',  (data)->
-    console.log data
+    $scope.socket_data =
+      cpu: Math.round(data.cpu*100)
+      ram: 100-Math.round(data.memory*100)
 
   io.socket.on 'connect',  (data)->
     io.socket.get('/api/server/subscribe');
 
 
+  $scope.socket_data =
+    cpu: 43
+    ram: 22
 
   $scope.charts_data =
     main: undefined
     cpu: undefined
     profiles: undefined
+
 
   $scope.charts_options =
     main: chart_helper.options_main
