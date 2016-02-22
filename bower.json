@@ -52,6 +52,7 @@
     "angular-clipboard": "~1.2.1",
     "angular-fileupload": "angular-filereader#~1.0.4",
     "chartist": "~0.9.5",
-    "material-color": "~2.2.0"
+    "material-color": "~2.2.0",
+    "sails.io.js": "~0.13.5"
   }
 }

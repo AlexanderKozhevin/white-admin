@@ -1,9 +1,23 @@
-angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangular, $filter) ->
+angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangular, $filter, $websocket) ->
 
 
 
   $scope.colors = ['#F44336', '#3F51B5', '#009688', '#FF9800']
 
+
+  io.sails.url = 'http://arduino2.club/';
+  io.socket.on 'message',  (data)->
+    console.log data
+
+  io.socket.on 'connect',  (data)->
+    io.socket.get('/api/server/subscribe');
+
+    # io.socket.on('connect', function(){
+      # io.socket.get('/messages');
+      # io.socket.get('/notifications/subscribe/statusUpdates');
+  # });
+
+  Restangular.one('server', 'subscribe')
 
   $timeout () ->
     $scope.data_cpu = {
