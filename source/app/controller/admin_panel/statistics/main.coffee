@@ -1,38 +1,18 @@
-angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangular, $filter, $websocket) ->
+angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangular, $filter, $websocket, chart_helper) ->
 
 
 
-  $scope.colors = ['#F44336', '#3F51B5', '#009688', '#FF9800']
+  $scope.charts_data =
+    main: undefined
+    cpu: undefined
+    profiles: undefined
 
-
-  io.sails.url = 'http://arduino2.club/';
+  io.sails.url = 'http://arduino2.club';
   io.socket.on 'message',  (data)->
     console.log data
 
   io.socket.on 'connect',  (data)->
     io.socket.get('/api/server/subscribe');
-
-    # io.socket.on('connect', function(){
-      # io.socket.get('/messages');
-      # io.socket.get('/notifications/subscribe/statusUpdates');
-  # });
-
-  Restangular.one('server', 'subscribe')
-
-  $timeout () ->
-    $scope.data_cpu = {
-      labels: ['10:00', '12:00', '14:00', '16:00', '18:00'],
-      series: [
-        [17, 25, 10, 55, 11, 44]
-      ],
-    };
-    $scope.data_profiles = {
-      labels: ['15.02', '15.02', '15.02', '15.02', '15.02'],
-      series: [
-        [17, 25, 10, 55, 11, 44]
-      ],
-    };
-  , 100
 
 
   $scope.date_range = {
@@ -42,6 +22,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
   }
 
   $scope.request_main = () ->
+    $scope.charts_data.main = undefined
     Restangular.one('stat', 'mainsite').get({from: $scope.date_range.from, to: $scope.date_range.to}).then (data) ->
       labels = _.map(data, (obj) -> return $filter('date')(new Date(obj.label), 'd/M'))
       values = _.map(data, (obj) -> return {value: obj.value, meta: 'Views'})
@@ -53,36 +34,38 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
             if index % pace != 0
               labels[index] = ""
         labels.pop()
-      $scope.data = {
+      $scope.charts_data.main =
         labels: labels
         series: [
           values
-        ],
-      };
+        ]
+
 
   $scope.request_external = () ->
+    $scope.charts_data.profiles = undefined
     Restangular.one('stat', 'external_views').get().then (data) ->
       labels = _.map(data, (obj) -> return $filter('date')(new Date(obj.label), 'd/M'))
       values = _.map(data, (obj) -> return {value: obj.value, meta: 'Views'})
       labels.pop()
-      $scope.data_profiles = {
+      $scope.charts_data.profiles =
         labels: labels
         series: [
           values
         ],
-      };
+      
 
   $scope.request_cpu = () ->
+    $scope.charts_data.cpu = undefined
     Restangular.one('stat', 'cpu_data').get().then (data) ->
       labels = _.map(data, (obj) -> return $filter('date')(new Date(obj.label), 'HH:mm'))
       values = _.map(data, (obj) -> return {value: obj.value, meta: 'Load %'})
       labels.pop()
-      $scope.data_cpu = {
+      $scope.charts_data.cpu =
         labels: labels
         series: [
           values
         ],
-      };
+
 
   $scope.traffic = [
     {label: "Google", value: 55.3},
@@ -91,126 +74,11 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
     {label: "Social networks", value: 8.9}
   ]
 
-  $scope.lineOptions = {
-    height: "350px"
-    width: "900px"
-    lineSmooth: Chartist.Interpolation.cardinal({
-      tension: 1
-    })
-    showPoint: false,
-    low: 0
-    chartPadding: 30,
-    showArea: true,
-    showPoint: true,
-    showLine: true,
-    onlyInteger: true,
-    axisX: {
-      showGrid: false,
-      labelOffset: {
-        x: 0,
-        y: 10
-      },
-    }
-    axisY: {
-      offset: 40,
-      showGrid: true,
-    }
-    classNames: {
-      label: 'md-caption main_chart-ct-label',
-      line: 'main_chart-ct-line',
-      area: 'main_chart-ct-area',
-      grid: 'main_chart-ct-grid',
-    }
-    plugins: [
-      Chartist.plugins.tooltip({
-        class: "element-tooltip",
-        pointClass: 'main_chart-ct-point'
-      })
+  $scope.options =
+    main: chart_helper.options_main
+    profiles: chart_helper.options_profiles
+    cpu: chart_helper.options_cpu
 
-    ]
-  };
-
-
-  $scope.profilesOptions = {
-    height: "200px"
-    width: "100%",
-    lineSmooth: Chartist.Interpolation.cardinal({
-      tension: 1
-    })
-    showPoint: false,
-    low: 0
-    chartPadding: {
-      top: 15,
-      right: 25,
-      bottom: 5,
-      left: 10
-    },
-    showArea: false,
-    showPoint: true,
-    showLine: true,
-    fullWidth: false,
-    onlyInteger: true,
-    axisX: {
-      showGrid: true,
-      showLabel: true
-      labelOffset: {
-        x: 0
-        y: 10
-      }
-    }
-    axisY: {
-      showGrid: true,
-      showLabel: true
-    }
-    classNames: {
-      line: 'ext_chart-ct-line',
-      grid: 'ext_chart-ct-grid',
-      point: 'ext_chart-ct-point',
-    }
-
-  };
-
-
-
-
-  $scope.cpuOptions = {
-    width: "100%",
-    height: "240px",
-    lineSmooth: Chartist.Interpolation.cardinal({
-      tension: 1
-    })
-    showPoint: false,
-    low: 0
-    chartPadding: 0,
-    showArea: false,
-    showPoint: true,
-    showLine: true,
-    onlyInteger: true,
-    chartPadding: {
-      top: 55,
-      right: 20,
-      bottom: 20,
-      left: 10
-    },
-    axisX: {
-      showGrid: true,
-      showLabel: true
-      labelOffset: {
-        x: 0
-        y: 10
-      }
-    }
-    axisY: {
-      showGrid: true,
-      showLabel: false
-    }
-    classNames: {
-      line: 'cpu_chart-ct-line',
-      grid: 'cpu_chart-grid',
-      point: 'cpu_chart-ct-point',
-    }
-
-  };
 
 
   $scope.events =
@@ -219,7 +87,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
     draw: (data) ->
       if data.type == 'point'
         circle_width = 4
-        if $scope.data.series[0].length > 25
+        if $scope.charts_data.main.series[0].length > 25
           circle_width = 2
         point = new Chartist.Svg('circle', {
           cx: [data.x],
