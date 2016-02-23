@@ -33,7 +33,12 @@
   // Block containing all other parameters specified in job
   .block-parameters{
     padding: 0px $primary-padding $primary-padding $primary-padding;
+
+
   }
+
+
+  [role="progressbar"]{margin-top: $primary-margin;}
 
   @import "snippets/element-item";
   @import "snippets/types";

@@ -25,8 +25,9 @@ angular.module("app").controller "workers_editor_ctrl",  ($scope, Restangular, $
         when 'select' then i.value = {selected: "", list: i.values}
         when 'multiple select' then i.value = {selected: [], list: i.values}
         when 'gallery' then  i.value = []
-
+    $scope.loading = false
   $scope.restore_params = () ->
+
     Restangular.one('workers', $state.params.id).get().then (data) ->
 
       $scope.jobs.selected = _.find($scope.jobs.list, {id: data.job})
@@ -42,11 +43,14 @@ angular.module("app").controller "workers_editor_ctrl",  ($scope, Restangular, $
           when 'select' then i.value = {selected: data.values[i.id], list: i.values}
           when 'multiple select' then i.value = {selected: data.values[i.id], list: i.values}
           when 'gallery' then i.value = _.map(data.values[i.id], (obj) -> return {url: obj})
+      $scope.loading = false
+
+
 
 
   Restangular.one('templates').get().then (data) ->
     $scope.jobs.list = data
-
+    $scope.loading = true
     if $scope.method == 'new'
       $scope.jobs.selected = data[0]
       $scope.worker.parameters = _.map($scope.jobs.selected.params, (obj) -> obj.value = null; return obj)

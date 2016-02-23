@@ -1,7 +1,9 @@
-.dialog{
+.dialog-values{
+  max-width: $dialog-width;
+  @media #{$phone} {width: 100%;}
   .element-actions{padding: $primary-padding;
-    width: $dialog-width;
-    @media #{$phone} {width: 100%;}
+
+
   }
 
 }

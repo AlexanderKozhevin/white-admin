@@ -12,12 +12,15 @@ div.block-editor
     div.element-name(layout="column" layout-align="space-around start" flex)
       md-input-container.input_container-simplified(md-no-float)
         input(ng-model="worker.name" aria-label="worker title" placeholder="{{'workers.name' | translate}}" type="text" minlength="3")
-      md-select.simple_select(ng-model="jobs.selected" aria-label="selected job" ng-change="actions.set_job()")
+      md-select.simple_select(ng-model="jobs.selected" aria-label="selected job" ng-change="actions.set_job()" ng-disabled="method=='edit'")
         md-option(ng-value="item" ng-repeat="item in jobs.list") {{item.name}}
         
-  md-divider
+  md-divider(ng-show="!loading")
+  
+
   
   div.block-parameters(layout="column" layout-align="start start" )
+    md-progress-linear(md-mode="indeterminate" ng-show="loading" )
     div.element-item(layout="row" ng-repeat="item in worker.parameters" layout-fill)
     
       div.element-item-label(layout="column" layout-align="start center" ng-class="{'done' : item.value.filled}")
