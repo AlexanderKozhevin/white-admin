@@ -15,7 +15,9 @@ var $ = require('gulp-load-plugins')({
 //
 // Additional files to be included, which not mentioned in **main** in bower.json of packages
 //
-var jslibs = [];
+var jslibs = [
+  'source/libs/analytics_code.js'
+];
 var csslibs = [
   "bower_components/angular-material/angular-material.layouts.min.css",
 ];

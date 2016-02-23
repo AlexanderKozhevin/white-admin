@@ -3,8 +3,8 @@ section.page-statistics(layout="column" layout-align="start center" )
     div(role="title" layout="row" layout-align="space-between center")
       div.md-subheader {{'stat.site' | translate}}
       div.element-date_range
-        md-datepicker(ng-model="date_range.from" md-placeholder="Date from" ng-change="request_main()" md-max-date="date_range.to")
-        md-datepicker(ng-model="date_range.to" md-placeholder="Date to" ng-change="request_main()" md-min-date="date_range.from" md-max-date="date_range.today")
+        md-datepicker(ng-model="date_range.from" md-placeholder="Date from" ng-change="request.main()" md-max-date="date_range.to")
+        md-datepicker(ng-model="date_range.to" md-placeholder="Date to" ng-change="request.main()" md-min-date="date_range.from" md-max-date="date_range.today")
     chartist.chart1(flex class="ct-chart" chartist-data="charts_data.main" chartist-chart-type="Line" chartist-chart-options="charts_options.main" chartist-events="events" ng-show="charts_data.main")
     div.element-loading(layout="row" layout-align="center center" ng-hide="charts_data.main")
       md-progress-circular(md-mode="indeterminate" md-diameter="60")

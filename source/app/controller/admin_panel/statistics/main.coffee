@@ -8,7 +8,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
   io.socket.on 'message',  (data)->
     $scope.socket_data =
       cpu: Math.round(data.cpu*100)
-      ram: 100-Math.round(data.memory*100)
+      ram: 100-ulpMath.round(data.memory*100)
 
   io.socket.on 'connect',  (data)->
     io.socket.get('/api/server/subscribe');
@@ -74,12 +74,13 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
               if index % pace != 0
                 labels[index] = ""
           labels.pop()
-        $scope.charts_data.main =
-          labels: labels
-          series: [
-            values
-          ]
-
+        $timeout () ->
+          $scope.charts_data.main =
+            labels: labels
+            series: [
+              values
+            ]
+        , 1500
 
   $scope.traffic = [
     {label: "Google", value: 55.3},
@@ -95,17 +96,18 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
     draw: (data) ->
       if data.type == 'point'
         circle_width = 4
-        if $scope.charts_data.main.series[0].length > 25
-          circle_width = 2
-        point = new Chartist.Svg('circle', {
-          cx: [data.x],
-          cy: [data.y],
-          r: [circle_width],
-          'ct:value': data.value.y,
-          'ct:meta': data.meta,
-          class: 'main_chart-ct-point',
-          }, 'ct-area');
-        data.element.replace(point);
+        if $scope.charts_data.main
+          if $scope.charts_data.main.series[0].length > 25
+            circle_width = 2
+          point = new Chartist.Svg('circle', {
+            cx: [data.x],
+            cy: [data.y],
+            r: [circle_width],
+            'ct:value': data.value.y,
+            'ct:meta': data.meta,
+            class: 'main_chart-ct-point',
+            }, 'ct-area');
+          data.element.replace(point);
 
 
   $scope.request.main()

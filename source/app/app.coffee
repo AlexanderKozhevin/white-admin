@@ -1,6 +1,7 @@
 app = angular.module('app', ['ui.router', 'ngSanitize',  'ngRoute', 'ngAnimate',
   'ngMaterial',  'restangular', 'templates', 'pascalprecht.translate', 'ngLocale',
-  'ngCookies', 'ngMessages', 'tmh.dynamicLocale', 'ngWebSocket', 'googlechart', 'md.data.table', 'ngFileUpload', 'filereader', 'angular-clipboard',  'angular-chartist'
+  'ngCookies', 'ngMessages', 'tmh.dynamicLocale', 'ngWebSocket', 'googlechart', 'md.data.table', 'ngFileUpload', 'filereader',
+  'angular-clipboard',  'angular-chartist', 'angulartics', 'angulartics.google.analytics'
   ])
 
 
@@ -15,6 +16,9 @@ app.config (RestangularProvider) ->
 
 app.config ($animateProvider) ->
   $animateProvider.classNameFilter(/^(?:(?!ng-animate-disabled).)*$/);
+
+app.config ($analyticsProvider) ->
+  $analyticsProvider.virtualPageviews(false);
 
 
 app.config ($translateProvider, tmhDynamicLocaleProvider) ->
