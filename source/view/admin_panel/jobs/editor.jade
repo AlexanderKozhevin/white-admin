@@ -14,7 +14,7 @@ div.block-editor
 
   md-toolbar.md-table-toolbar.md-primary(ng-show='selected.length')
     div.md-toolbar-tools
-      span {{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected
+      span {{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} {{'simple.selected' | translate}}
       span(flex='')
       md-button.md-icon-button(ng-click="actions.remove()")
         md-icon delete

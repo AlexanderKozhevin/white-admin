@@ -1,4 +1,4 @@
-angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, Restangular, main_helper, $mdToast, clipboard, $mdDialog, $mdSidenav) ->
+angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, Restangular, main_helper, $mdToast, clipboard, $mdDialog, $mdSidenav, $translate) ->
 
   $scope.selected = []
 
@@ -115,7 +115,7 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
   $scope.actions =
     side_nav: (item) ->
       user_job = _.find($scope.jobs.list, {id: item.job})
-      $scope.worker_preview.set(main_helper.worker_data(item, user_job)) 
+      $scope.worker_preview.set(main_helper.worker_data(item, user_job))
       $mdSidenav('left').toggle()
     set_job: () ->
       $scope.ext_search.params = [];
@@ -128,12 +128,13 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
     }
     link: (item) ->
       clipboard.copyText('http://arduino2.club/' + item);
-      $mdToast.show(
-        $mdToast.simple()
-          .textContent("Link is copied to clipboard")
-          .position("bottom right")
-          .hideDelay(3000)
-      );
+      $translate('errors.double').then (translation) ->
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent("Link is copied to clipboard")
+            .position("bottom right")
+            .hideDelay(3000)
+        );
     remove: () ->
       for i in $scope.selected
         _.remove($scope.workers, i)

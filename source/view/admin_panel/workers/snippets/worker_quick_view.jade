@@ -56,38 +56,3 @@ md-sidenav.md-sidenav-right.md-whiteframe-z2.block-worker_quick_view(layout="col
     
     
     
-    //- img.avatar(ng-src="{{sidenav_worker.user.params['32036005d1f6ed59803ba3e13c80993e'].url}}" )
-    
-    //- div.name {{sidenav_worker.user.params['f11b368cddfe37c47af9b9d91c6ba4f0']}}
-    //- div.divider
-    //-   md-divider
-    //- div.item(ng-repeat="item in sidenav_worker.job.params" ng-switch="item.type")
-    //-   div(ng-switch-when="string" layout="column")
-    //-     md-subheader.md-no-sticky {{item.name}}
-    //-     div.value()
-    //-       md-input-container.clean_input.md-block(flex md-no-float)
-    //-         input(aria-label="sample"  type="text" ng-model="sidenav_worker.user.params[item.id]")
-    //-       
-    //-   div(ng-switch-when="text" layout="column")
-    //-     md-subheader.md-no-sticky {{item.name}}
-    //-     div.value()
-    //-       md-input-container.md-block()
-    //-         textarea(ng-model="sidenav_worker.user.params[item.id]" aria-label="sample")  
-    //-           
-    //-   div(ng-switch-when="date" layout="column")
-    //-     md-subheader.md-no-sticky {{item.name}}
-    //-     div.value()
-    //-       md-datepicker(ng-model="sidenav_worker.user.params[item.id]" md-placeholder="Enter date")
-    //-       
-    //-   div(ng-switch-when="select" layout="column")
-    //-     md-subheader.md-no-sticky {{item.name}}
-    //-     div.value()
-    //-       md-select(ng-model="sidenav_worker.user.params[item.id].selected" aria-label="select type")
-    //-         md-option(value="{{one}}" ng-repeat="one in sidenav_worker.user.params[item.id].values") {{one}}
-    //-         
-    //-   
-    //-   div(ng-switch-when="multiple select" layout="column")
-    //-     md-subheader.md-no-sticky {{item.name}}
-    //-     div.value()
-    //-       md-select(ng-model="sidenav_worker.user.params[item.id].selected" aria-label="select type" multiple)
-    //-         md-option(value="{{one}}" ng-repeat="one in sidenav_worker.user.params[item.id].values") {{one}}

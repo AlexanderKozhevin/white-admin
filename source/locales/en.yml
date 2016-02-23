@@ -20,6 +20,16 @@ simple:
   public: "Public"
   editor: "Worker editor"
   selected: "Selected"
+  new_param: "New parameter"
+  rec_removed: "Records removed"
+  link_copy: "Link is copied to clipboard"
+
+errors:
+  double: "Duplicating labels!"
+
+types:
+  string: "String"
+  photo: "Photo"
 
 jobs:
   perpage: "Rows per page:"
@@ -34,3 +44,7 @@ workers:
 
 stat:
   site: "Site visites"
+  cpu: "CPU Usage %"
+  ram: "RAM Usage %"
+  traffic: "Traffic"
+  views: "Profiles views"

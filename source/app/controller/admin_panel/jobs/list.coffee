@@ -60,9 +60,10 @@ angular.module("app").controller "jobs_list_ctrl",  ($scope, $timeout , $q, Rest
         _.remove($scope.jobs, i)
         # Uncomment this line to send 'DELETE' request to server to remove record
         # i.remove()
+      $translate('simple.rec_removed').then (translation) ->
       $mdToast.show(
         $mdToast.simple()
-          .textContent("Records removed")
+          .textContent(translation)
           .position("bottom right")
           .hideDelay(3000)
       );

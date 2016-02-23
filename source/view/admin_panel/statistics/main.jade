@@ -16,9 +16,9 @@ section.page-statistics(layout="column" layout-align="start center" )
         
         div.block-left(layout="column" layout-align="start center" hide-xs)
           div.element-stat_circle.md-headline(role="info circle" ) {{socket_data.cpu}}
-          div.md-subhead(role="caption") CPU Usage %
+          div.md-subhead(role="caption") {{'stat.cpu' | translate}}
         div.block-right(flex layout="column" )
-          div.md-subheader(hide-gt-xs role="hide-sm label") CPU Usage
+          div.md-subheader(hide-gt-xs role="hide-sm label") {{'stat.cpu' | translate}}
           chartist(class="ct-chart" chartist-data="charts_data.cpu" chartist-chart-type="Line" chartist-chart-options="charts_options.cpu" )
           div.element-loading(layout="row" layout-align="center center" ng-hide="charts_data.cpu")
             md-progress-circular(md-mode="indeterminate"  md-diameter="60")
@@ -27,11 +27,11 @@ section.page-statistics(layout="column" layout-align="start center" )
     md-grid-tile.onef.md-whiteframe-z1(md-rowspan="1" md-colspan="1"  )
       div.block-memory(layout="column" layout-align="center center")
         div.element-stat_circle.md-headline(role="info circle") {{socket_data.ram}}
-        div.md-subhead(role="caption") RAM Usage %
+        div.md-subhead(role="caption") {{'stat.ram' | translate}}
     md-grid-tile.md-whiteframe-z1.block-traffic(md-rowspan="1" md-colspan="1"  )
       div.block-container(layout="column" layout-align="start center")
         md-list
-          md-subheader.md-no-sticky Traffic
+          md-subheader.md-no-sticky {{'stat.traffic' | translate}}
           
           md-list-item.md-2-line(ng-repeat="item in traffic")
             div.md-list-item-text(layout="row")
@@ -42,7 +42,7 @@ section.page-statistics(layout="column" layout-align="start center" )
     md-grid-tile.md-whiteframe-z1(md-rowspan="1" md-colspan="2"  md-colspan-xs="1")
       div.block-external_views(layout="column" )
         div(role="label" layout="row" layout-align="start center")
-          div.md-subheader Profiles views
+          div.md-subheader {{'stat.views' | translate}}
         div.element-loading(layout="row" layout-align="center center" ng-hide="charts_data.profiles")
           md-progress-circular(md-mode="indeterminate"  md-diameter="60")
         div(role="chart" flex ng-show="charts_data.profiles")

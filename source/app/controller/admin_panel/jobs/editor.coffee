@@ -1,4 +1,4 @@
-angular.module("app").controller "jobs_editor_ctrl",  ($scope, $timeout, FileReader, Upload, $mdDialog, $state, $mdToast, Restangular, $q) ->
+angular.module("app").controller "jobs_editor_ctrl",  ($scope, $timeout, FileReader, Upload, $mdDialog, $state, $mdToast, Restangular, $q, $translate) ->
 
   # Selected parameters from list
   $scope.selected = []
@@ -47,12 +47,13 @@ angular.module("app").controller "jobs_editor_ctrl",  ($scope, $timeout, FileRea
       if _.uniq(json.params, 'name').length != json.params.length
 
         # Show notification if there are one or more duplicates
-        $mdToast.show(
-          $mdToast.simple()
-            .textContent("Duplicating labels!")
-            .position("bottom right")
-            .hideDelay(3000)
-        );
+        $translate('simple.link_copy').then (translation) ->
+          $mdToast.show(
+            $mdToast.simple()
+              .textContent(translation)
+              .position("bottom right")
+              .hideDelay(3000)
+          );
       else
 
         # Variable to disable saving button during saving process
@@ -119,11 +120,12 @@ angular.module("app").controller "jobs_editor_ctrl",  ($scope, $timeout, FileRea
 
     add: () ->
       # Add new parameter
-      $scope.job.params.push({
-        name: "New parameter"
-        type: $scope.types[0]
-        public: true
-      })
+      $translate('simple.new_param').then (translation) ->
+        $scope.job.params.push({
+          name: translation
+          type: $scope.types[0]
+          public: true
+        })
     remove: () ->
       # Remove selected parameters
       for i in $scope.selected
