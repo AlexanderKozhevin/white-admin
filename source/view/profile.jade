@@ -1,0 +1,20 @@
+div.page-profile(layout="column" layout-align="start center")
+  div.md-whiteframe-z2.block-profile_data(layout="column")
+    div(role="basic data" layout="row" layout-align="start center")
+      div.user_avatar(layout="column" layout-align="center center"  ng-style="{'background-image': 'url('+user.logo+')' }" )
+      div.element-name(layout="column" layout-align="space-around start" flex)
+        div.md-headline {{user.name}}
+        div.md-title {{user.job}}
+    md-divider
+    div(role="all data")
+    
+    
+      div.element-item(layout="row" layout-align="start center")
+        div.element-label()
+          span.md-subheader Text
+        div.element-value(layout="row" flex)
+          md-input-container.md-block.input_container-simplified(flex)
+            textarea(ng-model="value" columns="45" rows="5" aria-label="text type")
+
+      
+      

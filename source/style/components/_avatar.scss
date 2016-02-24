@@ -3,3 +3,18 @@
   height: $avatar-size;
   border-radius: 50%;
 }
+
+
+.user_avatar{
+  width: $user_avatar-size;
+  height: $user_avatar-size;
+  border: 1px solid rgba(grey, 0.5);
+  margin: $primary-padding 0px 0px $primary-padding;
+  background-color: $grey-background;
+  border-radius: 2px;
+  background-size: 100% auto;
+  background-position: center center;
+  background-repeat: no-repeat;
+  padding: $primary-padding;
+  @include transition(all 0.2s linear);
+}

@@ -15,11 +15,11 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $locationProvi
     views:
       root_layout: {templateUrl: 'login.html', controller: 'login_ctrl'}
 
-  $stateProvider.state 'svg',
-    url: '/svg'
+  $stateProvider.state 'profile',
+    url: '/profile'
     abstract: false,
     views:
-      root_layout: {templateUrl: 'svg.html', controller: 'svg_ctrl'}
+      root_layout: {templateUrl: 'profile.html', controller: 'profile_ctrl'}
 
 
   $stateProvider.state 'admin',

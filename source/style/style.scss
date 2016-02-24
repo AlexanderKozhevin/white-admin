@@ -13,6 +13,10 @@
 @import "components/**/*.scss";
 
 
+// External page
+@import "sections/profile/*.scss";
+
+
 // Main style files
 @import "sections/*.scss";
 @import "sections/admin/*.scss";

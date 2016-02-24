@@ -1,0 +1,38 @@
+.page-profile{
+
+
+  @import "snippets/element-item";
+
+  height: 100vh;
+  overflow: auto;
+  padding-top: 3*$primary-margin;
+
+  background: linear-gradient(45deg, $clr-teal, rgba($clr-teal, 1));
+  background-repeat: no-repeat;
+  background-size: 100% 6*$primary-margin;
+  background-color: $grey-background;
+
+
+  .block-profile_data{
+    width: $medium-width;
+    max-width: 100%;
+    background-color: white;
+    height: 500px;
+  }
+  .element-name{
+    margin-top: $primary-padding;
+    height:  $user_avatar-size;
+    padding-left: $primary-padding;
+  }
+
+  md-divider{margin: $primary-padding;}
+
+  [role="all data"]{
+    width: 100%;
+    padding: 0px $primary-padding;
+    box-sizing: border-box;
+
+  }
+
+
+}

@@ -6,7 +6,7 @@ div.block-editor
       md-button(ng-disabled="actions.is_save_disabled(worker)" ng-click="actions.save()") {{'simple.save' | translate}}
   div.element-basic_data(layout="row" layout-align="start center")
     
-    div.element-avatar(layout="column" layout-align="center center"  ng-style="{'background-image': 'url('+get_img()+')' }" ngf-select="actions.upload_avatar($files)" ngf-multiple="false" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB")
+    div.user_avatar(layout="column" layout-align="center center"  ng-style="{'background-image': 'url('+get_img()+')' }" ngf-select="actions.upload_avatar($files)" ngf-multiple="false" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB")
       span.md-subheader(ng-hide="worker.avatar.url || worker.avatar.data_url" ) {{'workers.select' | translate}}
       
     div.element-name(layout="column" layout-align="space-around start" flex)
