@@ -11,10 +11,70 @@ div.page-profile(layout="column" layout-align="start center")
     
       div.element-item(layout="row" layout-align="start center")
         div.element-label()
+          span.md-subheader String
+        div.element-value(layout="row" flex)
+          md-input-container.md-block.input_container-simplified(flex)
+            input(ng-model="value" aria-label="string param" type="text") 
+
+      
+      div.element-item(layout="row" layout-align="start center")
+        div.element-label()
           span.md-subheader Text
         div.element-value(layout="row" flex)
           md-input-container.md-block.input_container-simplified(flex)
             textarea(ng-model="value" columns="45" rows="5" aria-label="text type")
+      
+      div.element-item(layout="row" layout-align="start center")
+        div.element-label()
+          span.md-subheader Number
+        div.element-value(layout="row" flex)
+          md-input-container.md-block.input_container-simplified(flex)
+            input(ng-model="value" aria-label="number param" type="number") 
 
+
+      div.element-item(layout="row" layout-align="start center")
+        div.element-label()
+          span.md-subheader Date
+        div.element-value(layout="row" flex)
+          md-datepicker(ng-model="value" md-placeholder="Enter date")
+
+      div.element-item(layout="row" layout-align="start center")
+        div.element-label()
+          span.md-subheader File
+        div.element-value(layout="row" flex)
+          div.pointer(layout="row" layout-align="start center")
+            md-icon.material-icons(aria-label="delete file" ) attach_file
+            div filename
+
+
+      div.element-item(layout="row" layout-align="start center")
+        div.element-label()
+          span.md-subheader Gallery
+        div.element-value(layout="row" flex)
+          div.block-images(layout="row" layout-wrap layout-align="space-between start" )
+            div.element-photo(ng-repeat="item in photos" row-wrap-fill ng-style="{'background-image': 'url({{item}})' }")
+
+      div.element-item(layout="row" layout-align="start center")
+        div.element-label()
+          span.md-subheader Select
+        div.element-value(layout="row" flex)
+          md-select(ng-model="selected" aria-label="select type" )
+            md-option(ng-repeat="one in list" value="{{one}}") {{one}}
       
-      
+      div.element-item(layout="row" layout-align="start center")
+        div.element-label()
+          span.md-subheader Multi Select
+        div.element-value(layout="row" flex)
+          md-select(ng-model="selected" aria-label="multi select type" multiple)
+            md-option(ng-repeat="one in list" value="{{one}}") {{one}}
+        
+        
+      div.element-item(layout="row" layout-align="start center")
+        div.element-label()
+          span.md-subheader Multi Select
+        div.element-value(layout="row" flex)
+          md-checkbox(ng-model="value" aria-label="boolean type")
+        
+        
+        
+        
