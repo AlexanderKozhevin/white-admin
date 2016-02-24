@@ -15,7 +15,8 @@ section.page-statistics(layout="column" layout-align="start center" )
       div.block-cpu(layout="row" layout-align="space-between center" )
         
         div.block-left(layout="column" layout-align="start center" hide-xs)
-          div.element-stat_circle.md-headline(role="info circle" ) {{socket_data.cpu}}
+          div.element-stat_circle.md-headline(role="info circle" status-color="cpu") {{socket_data.cpu}}
+          
           div.md-subhead(role="caption") {{'stat.cpu' | translate}}
         div.block-right(flex layout="column" )
           div.md-subheader(hide-gt-xs role="hide-sm label") {{'stat.cpu' | translate}}
@@ -26,7 +27,7 @@ section.page-statistics(layout="column" layout-align="start center" )
         
     md-grid-tile.onef.md-whiteframe-z1(md-rowspan="1" md-colspan="1"  )
       div.block-memory(layout="column" layout-align="center center")
-        div.element-stat_circle.md-headline(role="info circle") {{socket_data.ram}}
+        div.element-stat_circle.md-headline(role="info circle" status-color="ram") {{socket_data.ram}}
         div.md-subhead(role="caption") {{'stat.ram' | translate}}
     md-grid-tile.md-whiteframe-z1.block-traffic(md-rowspan="1" md-colspan="1"  )
       div.block-container(layout="column" layout-align="start center")

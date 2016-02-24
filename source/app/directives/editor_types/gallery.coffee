@@ -2,7 +2,6 @@ angular.module("app").directive "editorGallery", ($timeout, FileReader, Upload, 
   {
     restrict: 'E',
     require: 'ngModel',
-    replace: true,
     templateUrl: "admin_panel/workers/editor_types/gallery.html",
     scope: {},
     link: (scope, elm, attrs, ngModel) ->

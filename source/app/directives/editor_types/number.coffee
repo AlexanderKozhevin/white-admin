@@ -2,7 +2,6 @@ angular.module("app").directive "editorNumber", ($timeout) ->
   {
     restrict: 'E',
     require: 'ngModel',
-    replace: true,
     templateUrl: "admin_panel/workers/editor_types/number.html",
     scope: {},
     link: (scope, elm, attrs, ngModel) ->

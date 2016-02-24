@@ -31,7 +31,7 @@ div.block-listing
           th(md-column)
           th(md-column md:order:by="name") {{'simple.name' | translate}}
           th(md-column  md-numeric="true") {{'simple.params' | translate}}
-          th(md-column md-numeric="true" md:order:by="createdAt") Created At
+          th(md-column md-numeric="true" md:order:by="createdAt") {{item.createdAt | date}}
       tbody(md-body)
         tr.animate-listing(ng-repeat="item in jobs" md-row  md-select="item")
           td.cursor(ui-sref="admin.jobs.editor({method: 'edit', id: item.id})" md-cell) 

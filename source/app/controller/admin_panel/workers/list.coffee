@@ -1,11 +1,9 @@
 angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, Restangular, main_helper, $mdToast, clipboard, $mdDialog, $mdSidenav, $translate) ->
 
   $scope.selected = []
-
   $scope.jobs =
     list:[]
     selected: null
-
 
   $scope.request_params =
     limit: 3

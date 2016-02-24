@@ -2,7 +2,6 @@ angular.module("app").directive "editorFile", (Upload, $window) ->
   {
     restrict: 'E',
     require: 'ngModel',
-    replace: true,
     templateUrl: "admin_panel/workers/editor_types/file.html",
     scope: {},
     link: (scope, elm, attrs, ngModel) ->
