@@ -1,4 +1,4 @@
-angular.module("app").controller "admin_panel_ctrl",  ($scope, $rootScope, $state, main_helper, $timeout) ->
+angular.module("app").controller "admin_panel_ctrl",  ($scope, $rootScope, $state, main_helper, $timeout, tmhDynamicLocale, $translate) ->
 
 
   #
@@ -10,6 +10,33 @@ angular.module("app").controller "admin_panel_ctrl",  ($scope, $rootScope, $stat
       $scope.$broadcast('new_item')
     set: (value) ->
       this.show = value
+
+
+
+  $scope.toolbar_menu =
+    element: null
+    open: ($mdOpenMenu, ev) ->
+      this.element = ev
+      $mdOpenMenu(ev);
+
+  $scope.language_menu =
+    element: null
+    open: ($mdOpenMenu, ev) ->
+      this.element = ev
+      $mdOpenMenu(ev);
+    set_language: (language) ->
+      switch language
+        when 'ru'
+          tmhDynamicLocale.set('ru-ru')
+          $translate.use('ru');
+        when 'en'
+          tmhDynamicLocale.set('en-us')
+          $translate.use('en');
+
+
+
+
+
 
 
   #

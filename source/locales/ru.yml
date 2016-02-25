@@ -42,6 +42,10 @@ workers:
   quick: "Быстрый просмотр"
 
 
+toolbar_menu:
+  exit: "Выйти"
+  language: "Язык"
+
 stat:
   site: "Заходов на лэндинг"
   cpu: "Загрузка CPU %"

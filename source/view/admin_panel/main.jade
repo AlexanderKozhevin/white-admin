@@ -8,8 +8,33 @@ header
           md-tab(label="{{'menu.jobs' | translate}}" ui-sref="admin.jobs.list" )
           md-tab(label="{{'menu.stat' | translate}}" ui-sref="admin.statistics" )
       
-      md-button.md-icon-button(aria-label="user menu")
-        md-icon.material-icons more_vert
+
+      md-menu
+        md-button.md-icon-button(aria-label="user menu" ng-click="toolbar_menu.open($mdOpenMenu, $event)")
+          md-icon.material-icons more_vert
+        md-menu-content(width="3")
+          md-menu-item
+            md-menu
+              md-menu-item()
+                md-button(aria-label="user menu" ng-click="language_menu.open($mdOpenMenu, $event)")
+                  md-icon.material-icons language
+                  span {{'toolbar_menu.language' | translate}}
+              md-menu-content(width="1")
+                md-menu-item(ng-click="language_menu.set_language('en')")
+                  md-button(aria-label="gb flag")
+                    span.flag-icon.flag-icon-gb
+                md-menu-item(ng-click="language_menu.set_language('ru')")
+                  md-button(aria-label="de flag")
+                    span.flag-icon.flag-icon-ru
+            
+          md-menu-item()
+            md-button
+              md-icon.material-icons exit_to_app
+              span {{'toolbar_menu.exit' | translate}}
+      
+      
+      //- md-button.md-icon-button(aria-label="user menu")
+      //-   md-icon.material-icons more_vert
       md-button.md-fab.md-accent.md-hue-2.element-add_item(aria-label="Add item button" ng-click="new_item.broadcast()" ng-show="new_item.show")
         md-icon.material-icons add
 

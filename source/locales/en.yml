@@ -42,6 +42,11 @@ workers:
   quick: "Quick view"
 
 
+toolbar_menu:
+  exit: "Exit"
+  language: "Language"
+
+
 stat:
   site: "Site visites"
   cpu: "CPU Usage %"
