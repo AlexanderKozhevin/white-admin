@@ -15,7 +15,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
 
 
 
-  io.sails.url = 'http://arduino2.club';
+  io.sails.url = 'http://95.213.191.67:1338';
 
   io.socket.on 'message',  (data)->
     console.log data

@@ -146,7 +146,7 @@ gulp.task('watch', function(){
 // Compile and minify js files
 //
 gulp.task('production', function(){
-  $.runSequence(['uglify', 'gzip']);
+  $.runSequence('uglify', 'gzip');
 })
 
 

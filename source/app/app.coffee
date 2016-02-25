@@ -10,7 +10,7 @@ app.config ($mdThemingProvider) ->
 
 
 app.config (RestangularProvider) ->
-  RestangularProvider.setBaseUrl('http://arduino2.club/api')
+  RestangularProvider.setBaseUrl('http://95.213.191.67:1338/api')
   RestangularProvider.setDefaultHeaders({'Content-Type': 'application/json'});
 
   # RestangularProvider.setErrorInterceptor (response, deferred, responseHandler) ->
@@ -33,12 +33,12 @@ app.config ($translateProvider, tmhDynamicLocaleProvider) ->
     suffix: '.json'
   });
   locale = document.querySelector('body').getAttribute('locale')
-  locale = "en-us" if !locale
+  locale = "ru-ru" if !locale
 
-  $translateProvider.preferredLanguage('en');
+  $translateProvider.preferredLanguage('ru');
 
   tmhDynamicLocaleProvider.localeLocationPattern('/locales/angular-locale_{{locale}}.js');
-  tmhDynamicLocaleProvider.defaultLocale('en-us')
+  tmhDynamicLocaleProvider.defaultLocale('ru-ru')
 
 
 angular.element(document).ready () ->

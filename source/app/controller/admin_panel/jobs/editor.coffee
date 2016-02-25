@@ -97,7 +97,7 @@ angular.module("app").controller "jobs_editor_ctrl",  ($scope, $timeout, FileRea
     upload: (files) ->
       if files && files.length
         $scope.file =  files[0];
-        path = 'http://arduino2.club/api/templates/uploadAvatar'
+        path = 'http://95.213.191.67:1338/api/templates/uploadAvatar'
         appload = Upload.upload({
           url: path,
           file: $scope.file,
