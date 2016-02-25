@@ -1,7 +1,7 @@
 .element-item{
   padding-bottom: $primary-padding;
 
-
+  min-height: 50px;
   .element-label{width: $primary-padding + $user_avatar-size; }
 }
 .element-photo{
@@ -14,5 +14,11 @@
   background-size: 100% auto;
   @include transition(all 0.2s linear);
   @media #{$phone} {width: 100px; height: 63px;}
+}
+
+
+.element-datepicker{
+  // Shame !
+  margin-left: -15px;
 
 }

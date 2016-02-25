@@ -16,7 +16,7 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $locationProvi
       root_layout: {templateUrl: 'login.html', controller: 'login_ctrl'}
 
   $stateProvider.state 'profile',
-    url: '/profile'
+    url: '/profile/:id'
     abstract: false,
     views:
       root_layout: {templateUrl: 'profile.html', controller: 'profile_ctrl'}

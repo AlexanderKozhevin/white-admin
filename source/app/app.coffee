@@ -13,6 +13,10 @@ app.config (RestangularProvider) ->
   RestangularProvider.setBaseUrl('http://arduino2.club/api')
   RestangularProvider.setDefaultHeaders({'Content-Type': 'application/json'});
 
+  # RestangularProvider.setErrorInterceptor (response, deferred, responseHandler) ->
+  #   if response.status == 404
+  #     $window.location.href='/';
+
 
 app.config ($animateProvider) ->
   $animateProvider.classNameFilter(/^(?:(?!ng-animate-disabled).)*$/);
