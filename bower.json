@@ -54,7 +54,6 @@
     "chartist": "~0.9.5",
     "material-color": "~2.2.0",
     "sails.io.js": "~0.13.5",
-    "angulartics-google-analytics": "~0.1.4",
-    "angulartics": "~1.0.3"
+    "angular-google-analytics": "~1.1.6"
   }
 }

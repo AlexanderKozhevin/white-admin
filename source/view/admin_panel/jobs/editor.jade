@@ -42,7 +42,7 @@ div.block-editor
           td(md-cell)
             md-checkbox(ng-model="item.public" aria-label="public")
           td(md-cell)
-            md-button.md-icon-button(aria-label="values" ng-show="item.type==types[5] || item.type==types[6]" ng-click="actions.show_dialog(item)")
+            md-button.md-icon-button(aria-label="values" ng-show="item.type==types[5].name || item.type==types[6].name" ng-click="actions.show_dialog(item)")
               md-icon.material-icons mode_edit
 
 

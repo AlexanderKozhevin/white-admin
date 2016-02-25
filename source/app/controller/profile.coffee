@@ -1,4 +1,7 @@
-angular.module("app").controller "profile_ctrl",  ($scope, $state, Restangular, $window) ->
+angular.module("app").controller "profile_ctrl",  ($scope, $state, Restangular, $window, Analytics) ->
+
+
+  Analytics.trackPage('/profile');
 
   if !$state.params.id
     $state.go('main')
@@ -39,6 +42,3 @@ angular.module("app").controller "profile_ctrl",  ($scope, $state, Restangular, 
     if link
       $window.open(link)
     return false
-
-
-  console.log 'hello'
