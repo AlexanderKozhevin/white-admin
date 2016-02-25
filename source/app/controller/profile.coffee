@@ -1,15 +1,15 @@
-angular.module("app").controller "profile_ctrl",  ($scope, $state, Restangular) ->
+angular.module("app").controller "profile_ctrl",  ($scope, $state, Restangular, $window) ->
 
   if !$state.params.id
     $state.go('main')
   else
     Restangular.one('workers', $state.params.id).get().then (data) ->
-      $scope.user = {
-        name: data.name
-        avatar: data.avatar
-        params: []
-      }
       Restangular.one('templates', data.job).get().then (job) ->
+        $scope.user = {
+          name: data.name
+          avatar: data.avatar
+          params: []
+        }
         $scope.user.job = job.name
         for i,index in job.params
           $scope.user.params[index] = {
@@ -22,14 +22,11 @@ angular.module("app").controller "profile_ctrl",  ($scope, $state, Restangular) 
             $scope.user.params[index].values = i.values
           if i.type == 'date'
             $scope.user.params[index].value = new Date($scope.user.params[index].value)
+
         console.log $scope.user
     ,(error) ->
       $state.go('main')
 
-  $scope.user =
-    logo: "http://static.ddmcdn.com/gif/blogs/6a00d8341bf67c53ef014e8af06d1b970d-800wi.jpg"
-    name: "Jimmy Neutron"
-    job: "Genius"
 
   $scope.photos = [
     'https://thehacktoday.com/wp-content/uploads/2015/10/hacking-2.jpg',
@@ -37,6 +34,11 @@ angular.module("app").controller "profile_ctrl",  ($scope, $state, Restangular) 
     'https://securitygladiators.com/wp-content/uploads/2015/05/know-how-hacked-what-to-do.jpg',
     'http://3.bp.blogspot.com/-qllvndzYpes/VZ5mlZ4rLxI/AAAAAAAAjeU/W_yymRKV2Ns/s1600/Hacking-Team-Flash-Zero-Day.jpg'
   ]
+
+  $scope.open = (link) ->
+    if link
+      $window.open(link)
+    return false
 
 
   console.log 'hello'

@@ -1,13 +1,13 @@
 div.page-profile(layout="column" layout-align="start center")
   div.md-whiteframe-z2.block-profile_data(layout="column")
-    div(role="basic data" layout="row" layout-align="start center")
+    div(role="basic data" layout="row" layout-align="start center" )
       div.user_avatar(layout="column" layout-align="center center"  ng-style="{'background-image': 'url('+user.avatar+')' }" )
       div.element-name(layout="column" layout-align="space-around start" flex)
         div.md-headline {{user.name}}
         div.md-title {{user.job}}
-    md-divider
-    div(role="all data")
-    
+    md-divider(ng-show="user")
+    div(role="all data" )
+      md-progress-linear(md-mode="indeterminate" ng-hide="user")
     
       div.element-item(layout="row" layout-align="start center" ng-repeat="item in user.params")
         div.element-label()
@@ -44,17 +44,17 @@ div.page-profile(layout="column" layout-align="start center")
           // File type
           //   
           div.element-value(layout="row" flex ng-switch-when="file")
-            div.pointer(layout="row" layout-align="start center")
-              md-icon.material-icons(aria-label="delete file" ) attach_file
-              div {{item.value.name}} 
+            div.cursor(layout="row" layout-align="start center")
+              md-icon.material-icons(aria-label="delete file" ng-click="open(item.value.url)") attach_file
+              div(ng-click="open(item.value.url)") {{item.value.name}} 
   
   
           //
           // Gallery type
           //             
           div.element-value(layout="row" flex ng-switch-when="gallery")
-            div.block-images(layout="row" layout-wrap layout-align="space-between start" )
-              div.element-photo(ng-repeat="one in item.value" row-wrap-fill ng-style="{'background-image': 'url({{one}})' }")
+            div.element-gallery(layout="row" layout-wrap layout-align="space-between start" )
+              div.element-photo.cursor(ng-repeat="one in item.value" row-wrap-fill ng-style="{'background-image': 'url({{one}})' }" ng-click="open(one)")
           
         
           //

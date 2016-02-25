@@ -26,6 +26,8 @@ angular.module("app").controller "workers_editor_ctrl",  ($scope, Restangular, $
         when 'multiple select' then i.value = {selected: [], list: i.values}
         when 'gallery' then  i.value = []
     $scope.loading = false
+
+
   $scope.restore_params = () ->
 
     Restangular.one('workers', $state.params.id).get().then (data) ->
@@ -72,6 +74,8 @@ angular.module("app").controller "workers_editor_ctrl",  ($scope, Restangular, $
         return $scope.worker.avatar.url
       else
         return false
+
+        
   $scope.actions =
     is_save_disabled: main_helper.is_save_disabled
     save: () ->
