@@ -1,7 +1,6 @@
 .element-item{
-  padding-bottom: $primary-padding;
-
   min-height: 50px;
+  padding-bottom: $primary-padding;
   .element-label{width: $primary-padding + $user_avatar-size; }
 }
 .element-photo{
@@ -28,4 +27,15 @@
 
 md-progress-linear{
   margin-top: $primary-margin;
+}
+
+
+.element-select{
+  margin: 0px!important;
+}
+
+
+.element-checkbox{
+  width: 20px;
+  height: 20px;
 }

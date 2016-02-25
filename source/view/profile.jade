@@ -60,20 +60,20 @@ div.page-profile(layout="column" layout-align="start center")
           //
           // Select type
           //          
-          md-select(ng-model="item.value" aria-label="select type" ng-switch-when="select")
+          md-select.element-select(ng-model="item.value" aria-label="select type" ng-switch-when="select")
             md-option(ng-repeat="one in item.values" ng-value="one") {{one}}
   
 
           //
           // Multiple select type
           //          
-          md-select(ng-model="item.value" aria-label="select type" ng-switch-when="multiple select" multiple)
+          md-select.element-select(ng-model="item.value" aria-label="select type" ng-switch-when="multiple select" multiple)
             md-option(ng-repeat="one in item.values" ng-value="one") {{one}}
 
           //
           // Multiple select type
           //    
-          div(ng-switch-when="boolean")
+          div.element-checkbox(ng-switch-when="boolean" )
             md-checkbox(ng-model="item.value"  aria-label="boolean type" )
           
           

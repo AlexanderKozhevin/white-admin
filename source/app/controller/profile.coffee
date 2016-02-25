@@ -12,17 +12,17 @@ angular.module("app").controller "profile_ctrl",  ($scope, $state, Restangular, 
         }
         $scope.user.job = job.name
         for i,index in job.params
-          $scope.user.params[index] = {
-            name: i.name
-            value: data.values[i.id]
-            type: i.type
-            public: i.public
-          }
-          if i.type == 'select' or i.type == 'multiple select'
-            $scope.user.params[index].values = i.values
-          if i.type == 'date'
-            $scope.user.params[index].value = new Date($scope.user.params[index].value)
-
+          if i.public
+            $scope.user.params.push({
+              name: i.name
+              value: data.values[i.id]
+              type: i.type
+              public: i.public
+            })
+            if i.type == 'select' or i.type == 'multiple select'
+              $scope.user.params[index].values = i.values
+            if i.type == 'date'
+              $scope.user.params[index].value = new Date($scope.user.params[index].value)
         console.log $scope.user
     ,(error) ->
       $state.go('main')
