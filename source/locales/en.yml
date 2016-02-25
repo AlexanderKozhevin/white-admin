@@ -14,7 +14,7 @@ simple:
   inputval: "Enter values"
   job: "Job"
   remove: "Remove"
-  timelink: "Time link"
+  timelink: "Profile link"
   extsearch: "Extended search"
   create: "Create"
   public: "Public"
@@ -31,6 +31,19 @@ types:
   string: "String"
   photo: "Photo"
 
+all_types:
+  string: "string"
+  text: "text"
+  number: "number"
+  date: "date"
+  boolean: "boolean"
+  file: "file"
+  select: "select"
+  multi: "multiple select"
+  gallery: "gallery"
+
+
+
 jobs:
   perpage: "Rows per page:"
   title: "Job name"
@@ -40,6 +53,7 @@ workers:
   select: "Select image to upload"
   name: "Worker name"
   quick: "Quick view"
+  removed: "Workers removed"
 
 
 toolbar_menu:

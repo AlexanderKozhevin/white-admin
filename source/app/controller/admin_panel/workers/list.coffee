@@ -126,10 +126,10 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
     }
     link: (item) ->
       clipboard.copyText('http://95.213.191.67:1338/profile/' + item);
-      $translate('errors.double').then (translation) ->
+      $translate('simple.timelink').then (translation) ->
         $mdToast.show(
           $mdToast.simple()
-            .textContent("Link is copied to clipboard")
+            .textContent(translation)
             .position("bottom right")
             .hideDelay(3000)
         );
@@ -137,13 +137,14 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
       for i in $scope.selected
         _.remove($scope.workers, i)
         # Uncomment this line to send 'DELETE' request to server to remove record
-        # i.remove()
-      $mdToast.show(
-        $mdToast.simple()
-          .textContent("Records removed")
-          .position("bottom right")
-          .hideDelay(3000)
-      );
+        i.remove()
+      $translate('workers.removed').then (translation) ->
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent(translation)
+            .position("bottom right")
+            .hideDelay(3000)
+        );
       $scope.selected = []
 
 

@@ -38,7 +38,7 @@ div.block-editor
               input(ng-model="item.name" aria-label="job title")
           td(md-cell) 
             md-select.by_pages(ng-model="item.type" aria-label="item type" )
-              md-option(ng-repeat="one in types" value="{{one}}") {{one}}
+              md-option(ng-repeat="one in types" value="{{one.name}}") {{one.key | translate}}
           td(md-cell)
             md-checkbox(ng-model="item.public" aria-label="public")
           td(md-cell)

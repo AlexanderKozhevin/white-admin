@@ -123,7 +123,7 @@ angular.module("app").controller "jobs_editor_ctrl",  ($scope, $timeout, FileRea
       $translate('simple.new_param').then (translation) ->
         $scope.job.params.push({
           name: translation
-          type: $scope.types[0]
+          type: $scope.types[0].name
           public: true
         })
     remove: () ->
@@ -187,13 +187,13 @@ angular.module("app").controller "jobs_editor_ctrl",  ($scope, $timeout, FileRea
 
 
   $scope.types = [
-    'string',
-    'number'
-    'text',
-    'file',
-    'date'
-    'select',
-    'multiple select',
-    'gallery',
-    'boolean'
+    {name: 'string', key: 'all_types.string'},
+    {name: 'number', key: 'all_types.number'},
+    {name: 'text', key: 'all_types.text'},
+    {name: 'file', key: 'all_types.file'},
+    {name: 'date', key: 'all_types.date'},
+    {name: 'select', key: 'all_types.select'},
+    {name: 'multiple select', key: 'all_types.multi'},
+    {name: 'gallery', key: 'all_types.gallery'},
+    {name: 'boolean', key: 'all_types.boolean'}
   ]
