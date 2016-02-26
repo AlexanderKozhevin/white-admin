@@ -10,21 +10,21 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
   # $interval () ->
   #   $scope.socket_data.cpu = Math.round(Math.random()*100)
   #   $scope.socket_data.ram = Math.round(Math.random()*100)
-  # , 3000
+  # , 1000
 
 
-
-
-  io.sails.url = 'http://95.213.191.67:1338';
-
-  io.socket.on 'message',  (data)->
-    console.log data
-    $scope.socket_data.cpu =  Math.round(data.cpu*100)
-    $scope.socket_data.ram = 100-Math.round(data.memory*100)
-
-  io.socket.on 'connect',  (data)->
-    io.socket.get('/api/server/subscribe');
-
+  #
+  #
+  # io.sails.url = 'http://95.213.191.67:1338';
+  #
+  # io.socket.on 'message',  (data)->
+  #   console.log data
+  #   $scope.socket_data.cpu =  Math.round(data.cpu*100)
+  #   $scope.socket_data.ram = 100-Math.round(data.memory*100)
+  #
+  # io.socket.on 'connect',  (data)->
+  #   io.socket.get('/api/server/subscribe');
+  #
 
 
   $scope.charts_data =

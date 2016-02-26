@@ -1,12 +1,12 @@
 .component-data_ring{
-  border: 10px solid $clr-teal;
-  font-weight: 300!important;
-  width: $stat-circle;
-  height: $stat-circle;
-  border-radius: 50%;
-  text-align: center;
-  line-height: $stat-circle!important;
-  @include transition(all 0.2s linear);
+    border: 3px solid $clr-teal;
+    font-weight: 300!important;
+    width: $stat-circle;
+    height: $stat-circle;
+    border-radius: 50%;
+    text-align: center;
+    line-height: $stat-circle!important;
+    @include transition(all 0.2s linear);
 
 
   &.green{border: 3px solid $clr-teal;}

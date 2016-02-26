@@ -133,7 +133,7 @@ gulp.task('ngdocs', [], function () {
 //
 gulp.task('watch', function(){
   gulp.watch(['source/style/**/*.scss', 'source/components/**/*.scss'], ['sass', 'sassdocs']);
-  gulp.watch(['source/*.jade', 'source/components/**/*.jade'], ['templates']);
+  gulp.watch(['source/view/**/*.jade', 'source/components/**/*.jade'], ['templates']);
   gulp.watch(['source/index.jade'], ['index']);
   gulp.watch(['source/app/**/*.coffee', 'source/components/**/*.coffee'], ['coffee', 'ngdocs']);
   gulp.watch('source/locales/*.yml', ['locales']);
