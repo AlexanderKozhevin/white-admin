@@ -1,7 +1,7 @@
 app = angular.module('app', ['ui.router', 'ngSanitize',  'ngRoute', 'ngAnimate',
   'ngMaterial',  'restangular', 'templates', 'pascalprecht.translate', 'ngLocale',
   'ngCookies', 'ngMessages', 'tmh.dynamicLocale', 'ngWebSocket', 'googlechart', 'md.data.table', 'ngFileUpload', 'filereader',
-  'angular-clipboard',  'angular-chartist', 'angular-google-analytics'
+  'angular-clipboard',  'angular-chartist', 'angular-google-analytics', 'LocalStorageModule'
   ])
 
 
@@ -49,3 +49,21 @@ app.config ($translateProvider, tmhDynamicLocaleProvider) ->
 
 angular.element(document).ready () ->
   angular.bootstrap(document, ["app"]);
+
+
+
+app.run (localStorageService, $http, $rootScope, $state) ->
+  localStorageService.get('auth');
+  $http.get('http://vnedesign.ru/api/auth/is_logged').success (data) ->
+    if data == 'good'
+      localStorageService.set('auth', true)
+    else
+      localStorageService.set('auth', false)
+      $state.go('main')
+
+
+  $rootScope.$on '$stateChangeStart', (event, toState, toParams, fromState, fromParams) ->
+    if !localStorageService.get('auth')
+      if ((toState.name != 'main') or (toState.name != 'login') or (toState.name != 'profile'))
+        console.log 'hello'
+        event.preventDefault();
