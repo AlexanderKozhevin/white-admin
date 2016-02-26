@@ -47,6 +47,6 @@ section.page-statistics(layout="column" layout-align="start center" )
         div.element-loading(layout="row" layout-align="center center" ng-hide="charts_data.profiles")
           md-progress-circular(md-mode="indeterminate"  md-diameter="60")
         div(role="chart" flex ng-show="charts_data.profiles")
-          chartist(flex class="ct-chart" chartist-data="charts_data.profiles" chartist-chart-type="Line" chartist-chart-options="charts_options.profiles"  ng-show="charts_data.profiles")
+          chartist(class="ct-chart" chartist-data="charts_data.profiles" chartist-chart-type="Line" chartist-chart-options="charts_options.profiles"  ng-show="charts_data.profiles")
           
     

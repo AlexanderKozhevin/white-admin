@@ -125,7 +125,7 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
         $mdOpenMenu(ev);
     }
     link: (item) ->
-      clipboard.copyText('http://95.213.191.67:1338/profile/' + item);
+      clipboard.copyText('http://vnedesign.ru/profile/' + item);
       $translate('simple.timelink').then (translation) ->
         $mdToast.show(
           $mdToast.simple()

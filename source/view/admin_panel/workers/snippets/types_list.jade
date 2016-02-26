@@ -27,14 +27,14 @@ md-datepicker.element-datepicker(ng-model="item.value" md-placeholder="Enter dat
 //
 // Select type
 //          
-md-select.element-select(ng-model="item.value" ng-switch-when="select" role="select type")
+md-select.element-select(ng-model="item.value" ng-switch-when="select" aria-label="select" role="select type")
   md-option(ng-repeat="one in item.values" ng-value="one") {{one}}
 
 
 //
 // Multiple select type
 //          
-md-select.element-select(ng-model="item.value"  ng-switch-when="multiple select" multiple role="multi select type")
+md-select.element-select(ng-model="item.value" aria-label="select"  ng-switch-when="multiple select" multiple role="multi select type")
   md-option(ng-repeat="one in item.values" ng-value="one") {{one}}
 
 //

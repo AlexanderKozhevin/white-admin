@@ -108,7 +108,7 @@ gulp.task('gzip', function() {
 
 gulp.task('sass',  function() {
 	return gulp.src(['source/style/**/*.scss'])
-  .pipe($.sassBulkImport())
+  .pipe($.sassGlob())
 	.pipe($.sass().on('error', $.sass.logError))
 	.pipe(gulp.dest('production/assets/css'))
 	.pipe($.connect.reload());

@@ -13,18 +13,16 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
   # , 1000
 
 
-  #
-  #
-  # io.sails.url = 'http://95.213.191.67:1338';
-  #
-  # io.socket.on 'message',  (data)->
-  #   console.log data
-  #   $scope.socket_data.cpu =  Math.round(data.cpu*100)
-  #   $scope.socket_data.ram = 100-Math.round(data.memory*100)
-  #
-  # io.socket.on 'connect',  (data)->
-  #   io.socket.get('/api/server/subscribe');
-  #
+  io.sails.url = 'http://vnedesign.ru';
+
+  io.socket.on 'message',  (data)->
+    $scope.socket_data.cpu =  Math.round(data.cpu*100)
+    $scope.socket_data.ram = 100-Math.round(data.memory*100)
+
+  io.socket.on 'connect',  (data)->
+    console.log 'connect yo'
+    io.socket.get('/api/server/subscribe');
+
 
 
   $scope.charts_data =
@@ -68,7 +66,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
           labels: labels
           series: [
             values
-          ],
+          ]
 
     main: () ->
       $scope.charts_data.main = undefined

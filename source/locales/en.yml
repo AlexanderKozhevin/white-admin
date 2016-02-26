@@ -23,6 +23,7 @@ simple:
   new_param: "New parameter"
   rec_removed: "Records removed"
   link_copy: "Link is copied to clipboard"
+  wrong: "Incorrect password"
 
 errors:
   double: "Duplicating labels!"

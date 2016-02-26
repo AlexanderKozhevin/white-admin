@@ -5,12 +5,15 @@ app = angular.module('app', ['ui.router', 'ngSanitize',  'ngRoute', 'ngAnimate',
   ])
 
 
+io.sails.url = 'http://vnedesign.ru';
+
 app.config ($mdThemingProvider) ->
   $mdThemingProvider.theme('default').primaryPalette('teal')
 
 
+
 app.config (RestangularProvider) ->
-  RestangularProvider.setBaseUrl('http://95.213.191.67:1338/api')
+  RestangularProvider.setBaseUrl('http://vnedesign.ru/api')
   RestangularProvider.setDefaultHeaders({'Content-Type': 'application/json'});
 
   # RestangularProvider.setErrorInterceptor (response, deferred, responseHandler) ->

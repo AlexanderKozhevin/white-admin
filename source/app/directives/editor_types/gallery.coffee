@@ -53,7 +53,7 @@ angular.module("app").directive "editorGallery", ($timeout, FileReader, Upload, 
               })
               file_object = _.last(scope.photos)
               scope.prepare()
-              path = 'http://95.213.191.67:1338/api/templates/uploadAvatar'
+              path = 'http://vnedesign.ru/api/templates/uploadAvatar'
               appload = Upload.upload({
                 url: path,
                 file: file,

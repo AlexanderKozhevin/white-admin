@@ -110,7 +110,7 @@ angular.module("app").controller "workers_editor_ctrl",  ($scope, Restangular, $
         $scope.worker.avatar.loading = true
         FileReader.readAsDataURL(file, $scope).then (data_url) ->
           $scope.worker.avatar.data_url = data_url
-          path = 'http://95.213.191.67:1338/api/templates/uploadAvatar'
+          path = 'http://vnedesign.ru/api/templates/uploadAvatar'
           appload = Upload.upload({
             url: path,
             file: file,
