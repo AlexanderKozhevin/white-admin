@@ -14,31 +14,8 @@ div.page-profile(layout="column" layout-align="start center")
           span.md-subheader {{item.name}}
         div.element-value(layout="row" flex ng-switch="item.type")
         
-        
-          //
-          // String type
-          //
-          md-input-container.md-block.input_container-simplified(flex ng-switch-when="string")
-            input(ng-model="item.value" aria-label="string param" type="text") 
 
-
-          //
-          // Text type
-          //
-          md-input-container.md-block.input_container-simplified(flex ng-switch-when="text")
-            textarea(ng-model="item.value" columns="45" rows="5" aria-label="text type")
-            
-          //
-          // Text type
-          //
-          md-input-container.md-block.input_container-simplified(flex ng-switch-when="number")
-            input(ng-model="item.value" aria-label="number param" type="number") 
-            
-
-          //
-          // Date type
-          //
-          md-datepicker.element-datepicker(ng-model="item.value" md-placeholder="Enter date" ng-switch-when="date")
+          include admin_panel/workers/snippets/types_list
           
           //
           // File type
@@ -57,32 +34,5 @@ div.page-profile(layout="column" layout-align="start center")
               div.element-photo.cursor(ng-repeat="one in item.value" row-wrap-fill ng-style="{'background-image': 'url({{one}})' }" ng-click="open(one)")
           
         
-          //
-          // Select type
-          //          
-          md-select.element-select(ng-model="item.value" aria-label="select type" ng-switch-when="select")
-            md-option(ng-repeat="one in item.values" ng-value="one") {{one}}
-  
 
-          //
-          // Multiple select type
-          //          
-          md-select.element-select(ng-model="item.value" aria-label="select type" ng-switch-when="multiple select" multiple)
-            md-option(ng-repeat="one in item.values" ng-value="one") {{one}}
-
-          //
-          // Multiple select type
-          //    
-          div.element-checkbox(ng-switch-when="boolean" )
-            md-checkbox(ng-model="item.value"  aria-label="boolean type" )
-          
-          
-      //- div.element-item(layout="row" layout-align="start center")
-      //-   div.element-label()
-      //-     span.md-subheader Multi Select
-      //-   div.element-value(layout="row" flex)
-      //-     md-checkbox(ng-model="value" aria-label="boolean type")
-      //-   
-      //-   
-      //-   
-      //-   
+        

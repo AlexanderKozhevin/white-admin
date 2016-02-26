@@ -1,0 +1,44 @@
+//
+// String type
+//
+md-input-container.input_container-simplified(ng-switch-when="string" flex role="string type")
+  input(ng-model="item.value" aria-label="string param" type="text") 
+  
+//
+// Number type
+//
+md-input-container.input_container-simplified(ng-switch-when="number" flex role="number type")
+  input(ng-model="item.value" aria-label="number param" type="number") 
+
+
+//
+// Text type
+//
+md-input-container.md-block.input_container-simplified(flex ng-switch-when="text" role="text type")
+  textarea(ng-model="item.value" columns="45" rows="5" aria-label="text type")
+
+
+//
+// Date type
+//
+md-datepicker.element-datepicker(ng-model="item.value" md-placeholder="Enter date" ng-switch-when="date" role="date type")
+
+
+//
+// Select type
+//          
+md-select.element-select(ng-model="item.value" ng-switch-when="select" role="select type")
+  md-option(ng-repeat="one in item.values" ng-value="one") {{one}}
+
+
+//
+// Multiple select type
+//          
+md-select.element-select(ng-model="item.value"  ng-switch-when="multiple select" multiple role="multi select type")
+  md-option(ng-repeat="one in item.values" ng-value="one") {{one}}
+
+//
+// boolean
+//    
+div.element-checkbox(ng-switch-when="boolean" role="boolean type")
+  md-checkbox(ng-model="item.value"  aria-label="boolean type" )

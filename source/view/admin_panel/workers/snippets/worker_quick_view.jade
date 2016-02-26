@@ -9,39 +9,14 @@ md-sidenav.md-sidenav-right.md-whiteframe-z2.block-worker_quick_view(layout="col
       div.md-subheader(role="type label") {{item.name}}
       div.element-value(ng-switch="item.type")
       
-        // String Type
-        md-input-container.input_container-simplified(ng-switch-when="string" role="string type")
-          input(ng-model="item.value" aria-label="string param" type="text") 
-          
-        // Number Type
-        md-input-container.input_container-simplified(ng-switch-when="number" role="number type")
-          input(ng-model="item.value" aria-label="number param" type="number") 
-          
-        // Text Type
-        md-input-container.md-block.input_container-simplified(ng-switch-when="text" role="text type")
-          textarea(ng-model="item.value" columns="45" rows="5" aria-label="text type")
+        
+        include types_list
+        
 
         // File Type
         div.cursor(ng-switch-when="file" role="file type")
           div(ng-click="item.actions.open(item.value.url)") {{item.value.name}}
           
-        // Date Type
-        div(ng-switch-when="date" role="date type")
-          md-datepicker(ng-model="item.value" md-placeholder="Enter date")
-
-        // Select Type
-        div(ng-switch-when="select" role="date type")
-          md-select(ng-model="item.value" aria-label="select type" )
-            md-option(ng-repeat="one in item.values" ng-value="one") {{one}}
-
-        // Multiple select Type
-        div(ng-switch-when="multiple select" role="date type")
-          md-select(ng-model="item.value" aria-label="multi select type" multiple)
-            md-option(ng-repeat="one in item.values" ng-value="one") {{one}}
-    
-        // Multiple select Type
-        div(ng-switch-when="boolean" role="boolean type")
-          md-checkbox(ng-model="item.value" aria-label="boolean type")
     
         // Gallery Type
         div(ng-switch-when="gallery" role="gallery type" layout="column" layout-align="start center")
