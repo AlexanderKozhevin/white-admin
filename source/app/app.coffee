@@ -64,6 +64,5 @@ app.run (localStorageService, $http, $rootScope, $state) ->
 
   $rootScope.$on '$stateChangeStart', (event, toState, toParams, fromState, fromParams) ->
     if !localStorageService.get('auth')
-      if ((toState.name != 'main') or (toState.name != 'login') or (toState.name != 'profile'))
-        console.log 'hello'
+      if ((toState.name != 'main') and (toState.name != 'login') and (toState.name != 'profile'))
         event.preventDefault();

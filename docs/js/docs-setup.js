@@ -2,16 +2,7 @@ NG_DOCS={
   "sections": {
     "api": "API Documentation"
   },
-  "pages": [
-    {
-      "section": "api",
-      "id": "rowWrapFill",
-      "shortName": "rowWrapFill",
-      "type": "directive",
-      "moduleName": "rowWrapFill",
-      "keywords": "api area directive rowwrapfill"
-    }
-  ],
+  "pages": [],
   "apis": {
     "api": true
   },
