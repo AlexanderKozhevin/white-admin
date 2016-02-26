@@ -1,5 +1,5 @@
-.element-stat_circle{
-  border: 3px solid $primary-teal;
+.component-data_ring{
+  border: 10px solid $clr-teal;
   font-weight: 300!important;
   width: $stat-circle;
   height: $stat-circle;
@@ -12,5 +12,4 @@
   &.green{border: 3px solid $clr-teal;}
   &.yellow{border: 3px solid $clr-yellow;}
   &.red{border: 3px solid $clr-red;}
-
 }

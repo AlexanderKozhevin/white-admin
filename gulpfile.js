@@ -44,14 +44,20 @@ gulp.task('csslibs', function() {
 });
 
 gulp.task('templates', function() {
-	return gulp.src(['source/view/**/*.jade'])
+	return gulp.src(['source/view/**/*.jade', 'source/components/**/*.jade'])
   .pipe($.jadeGlobbing())
 	.pipe($.jade())
   .pipe($.angularTemplatecache({standalone: true}))
 	.pipe(gulp.dest('production/assets/js'))
 	.pipe($.connect.reload());
 });
-
+gulp.task('index', function() {
+	return gulp.src(['source/index.jade'])
+  .pipe($.jadeGlobbing())
+	.pipe($.jade())
+	.pipe(gulp.dest('production/assets/'))
+	.pipe($.connect.reload());
+});
 
 //
 // Assets
@@ -98,24 +104,18 @@ gulp.task('gzip', function() {
 //
 // HTML, JS, CSS compilers
 //
-gulp.task('jade', function() {
-  return gulp.src(['source/*.jade'])
-  .pipe($.jadeGlobbing())
-  .pipe($.jade())
-  .pipe(gulp.dest('production/assets'))
-  .pipe($.connect.reload());
-});
+
 
 gulp.task('sass',  function() {
-	return gulp.src('source/style/**/*.scss')
-  .pipe($.sassGlob())
-	.pipe($.sass())
+	return gulp.src(['source/style/**/*.scss'])
+  .pipe($.sassBulkImport())
+	.pipe($.sass().on('error', $.sass.logError))
 	.pipe(gulp.dest('production/assets/css'))
 	.pipe($.connect.reload());
 });
 
 gulp.task('coffee', function() {
-  gulp.src('source/app/**/*.coffee')
+  gulp.src(['source/app/**/*.coffee', 'source/components/**/*.coffee'])
     .pipe($.coffee())
     .pipe($.concat('app.js'))
     .pipe(gulp.dest('production/assets/js'))
@@ -132,10 +132,10 @@ gulp.task('ngdocs', [], function () {
 // Watcher for file changes
 //
 gulp.task('watch', function(){
-  gulp.watch('source/style/**/*.scss', ['sass', 'sassdocs']);
-  gulp.watch(['source/view/**/*.jade'], ['templates']);
-  gulp.watch(['source/*.jade'], ['jade']);
-  gulp.watch('source/app/**/*.coffee', ['coffee', 'ngdocs']);
+  gulp.watch(['source/style/**/*.scss', 'source/components/**/*.scss'], ['sass', 'sassdocs']);
+  gulp.watch(['source/*.jade', 'source/components/**/*.jade'], ['templates']);
+  gulp.watch(['source/index.jade'], ['index']);
+  gulp.watch(['source/app/**/*.coffee', 'source/components/**/*.coffee'], ['coffee', 'ngdocs']);
   gulp.watch('source/locales/*.yml', ['locales']);
 });
 
@@ -170,7 +170,7 @@ gulp.task('connect_ngdocs', function() {
 });
 
 gulp.task('libs', ['jslibs', 'csslibs'])
-gulp.task('compile', ['libs', 'sass', 'jade', 'templates', 'coffee', 'copyi18n', 'locales', 'copy_flags', 'sassdocs', 'ngdocs'])
+gulp.task('compile', ['libs', 'sass', 'templates', 'coffee', 'copyi18n', 'locales', 'copy_flags', 'sassdocs', 'ngdocs'])
 
 
 gulp.task('server', ['compile', 'watch', 'connect']);

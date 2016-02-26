@@ -16,6 +16,7 @@ section.page-statistics(layout="column" layout-align="start center" )
         
         div.block-left(layout="column" layout-align="start center" hide-xs)
           div.element-stat_circle.md-headline(role="info circle" status-color="cpu") {{socket_data.cpu}}
+          component-data-ring
           
           div.md-subhead(role="caption") {{'stat.cpu' | translate}}
         div.block-right(flex layout="column" )
