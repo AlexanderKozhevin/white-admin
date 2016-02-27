@@ -5,7 +5,7 @@
 
     md-card{
       margin-top: -50px;
-      @media #{$phone} {margin-top: 0px;}
+      @media #{$screen-xs} {margin-top: 0px;}
     }
 
     .block-controls{

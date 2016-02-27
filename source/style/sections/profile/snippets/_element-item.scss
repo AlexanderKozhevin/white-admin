@@ -12,7 +12,7 @@
   margin-bottom: $primary-padding;
   background-size: 100% auto;
   @include transition(all 0.2s linear);
-  @media #{$phone} {width: 100px; height: 63px;}
+  @media #{$screen-xs} {width: 100px; height: 63px;}
 }
 
 
