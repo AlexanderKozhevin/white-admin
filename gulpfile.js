@@ -129,7 +129,7 @@ gulp.task('ngdocs', [], function () {
     .pipe(gulp.dest('./docs'));
 });
 //
-// Watcher for file changes
+// §er for file changes
 //
 gulp.task('watch', function(){
   gulp.watch(['source/style/**/*.scss', 'source/components/**/*.scss'], ['sass', 'sassdocs']);

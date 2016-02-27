@@ -30,8 +30,11 @@
 
   [role="progressbar"]{margin-top: $primary-margin;}
 
-  @import "snippets/element-item";
-  @import "snippets/types";
+  component-worker-field{
+    width: 100%;
+  }
+  // @import "snippets/element-item";
+  // @import "snippets/types";
 
 
 

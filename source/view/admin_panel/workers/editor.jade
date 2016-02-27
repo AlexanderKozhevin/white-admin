@@ -17,29 +17,8 @@ div.block-editor
         
   md-divider(ng-show="!loading")
   
-
-  
   div.block-parameters(layout="column" layout-align="start start" )
+  
     md-progress-linear(md-mode="indeterminate" ng-show="loading" )
-    div.element-item(layout="row" ng-repeat="item in worker.parameters track by $index" layout-fill)
     
-      div.element-item-label(layout="column" layout-align="start center" ng-class="{'done' : item.value.filled}")
-        div(role="info" layout="column" layout-align="center center")
-          span {{$index + 1}}
-          md-icon.material-icons() done
-        div(role="line" flex ng-hide="$index == worker.parameters.length-1")
-        
-        
-      div.element-item-value(flex) 
-        div.md-subheader(role="label") {{item.name}}
-        div(role="value" layout="column" ng-switch="item.type")
-          editor-gallery(ng-model="item.value" ng-switch-when="gallery")
-          editor-text(ng-model="item.value" ng-switch-when="text")
-          editor-number(ng-model="item.value" ng-switch-when="number")
-          editor-select(ng-model="item.value" ng-switch-when="select")
-          editor-multi-select(ng-model="item.value" ng-switch-when="multiple select")
-          editor-string(ng-model="item.value" ng-switch-when="string")
-          editor-file(ng-model="item.value" ng-switch-when="file")
-          editor-date(ng-model="item.value" ng-switch-when="date")
-          editor-boolean(ng-model="item.value" ng-switch-when="boolean")
-      
+    component-worker-field(ng-repeat="item in worker.parameters track by $index" ng-model="item")

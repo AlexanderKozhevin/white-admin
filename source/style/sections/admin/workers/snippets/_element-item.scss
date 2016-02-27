@@ -25,13 +25,13 @@
     &.done{
 
       div[role="info"]{
-        background-color: $primary-teal;
+        background-color: $clr-teal;
         color: white;
 
         span{display: none;}
         md-icon{color: white; display: block;}
       }
-      div[role="line"]{background-color: $primary-teal;}
+      div[role="line"]{background-color: $clr-teal;}
 
     }
 

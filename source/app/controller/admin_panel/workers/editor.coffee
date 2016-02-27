@@ -2,7 +2,6 @@ angular.module("app").controller "WorkersEditorCtrl",  ($scope, Restangular, $st
 
   $scope.method = $state.params.method
 
-  
   workers = Restangular.one('workers')
   templates = Restangular.one('templates')
 
@@ -52,7 +51,7 @@ angular.module("app").controller "WorkersEditorCtrl",  ($scope, Restangular, $st
           when 'multiple select' then i.value = {selected: data.values[i.id], list: i.values}
           when 'gallery' then i.value = _.map(data.values[i.id], (obj) -> return {url: obj})
       $scope.loading = false
-
+      console.log $scope.worker.parameters
 
 
 

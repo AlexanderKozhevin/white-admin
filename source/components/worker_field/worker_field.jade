@@ -1,0 +1,21 @@
+div.component__worker-field(layout="row" layout-fill)
+  div.block__label(layout="column" layout-align="start center" ng-class="{'block__label--done' : item.value.filled}")
+    div.block__label__index(layout="column" layout-align="center center")
+      span.block__label__index__number {{index}}
+      md-icon.material-icons.block__label__index__icon done
+    div.block__label__line(flex ng-hide="last")
+    
+    
+  div.element-item-value(flex) 
+    div.md-subheader(role="label") {{item.name}}
+    div(role="value" layout="column" ng-switch="item.type")
+      editor-gallery(ng-model="item.value" ng-switch-when="gallery")
+      editor-text(ng-model="item.value" ng-switch-when="text")
+      editor-number(ng-model="item.value" ng-switch-when="number")
+      editor-select(ng-model="item.value" ng-switch-when="select")
+      editor-multi-select(ng-model="item.value" ng-switch-when="multiple select")
+      editor-string(ng-model="item.value" ng-switch-when="string")
+      editor-file(ng-model="item.value" ng-switch-when="file")
+      editor-date(ng-model="item.value" ng-switch-when="date")
+      editor-boolean(ng-model="item.value" ng-switch-when="boolean")
+  

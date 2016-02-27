@@ -1,0 +1,39 @@
+.component__worker-field{
+
+  .block__label{
+    width: $user_avatar-size;
+
+    &__index{
+      @extend .avatar;
+      @include transition(all 0.2s linear);
+      border: 1px solid rgba($clr-grey, 0.5);
+      background-color: $clr-grey-50;
+      color: $clr-grey;
+
+      &__number{display: block;}
+      &__icon{display: none;}
+    }
+
+    &__line{
+      width: 1px;
+      background-color: rgba(grey, 0.5);
+    }
+
+  }
+
+  .block__label--done{
+    .block__label__line{background-color: $clr-teal;}
+
+    .block__label__index{
+      background-color: $clr-teal;
+
+      .block__label__index__number{display: none;}
+      .block__label__index__icon{display: block;color: white;}
+    }
+  }
+
+
+
+
+
+}
