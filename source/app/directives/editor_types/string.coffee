@@ -7,7 +7,7 @@ angular.module("app").directive "editorString", ($timeout) ->
     link: (scope, elm, attrs, ngModel) ->
       ngModel.$render = () ->
         scope.value = ngModel.$viewValue;
-
+        
       scope.$watch 'value', () ->
         if scope.value
           ngModel.$setViewValue({value: scope.value, filled: true})

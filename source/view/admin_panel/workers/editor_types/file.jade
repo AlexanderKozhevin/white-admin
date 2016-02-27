@@ -1,10 +1,8 @@
-div.element-file(layout="row" layout-align="start center")
-
-  md-button.md-fab.md-accent.md-mini(aria-label="add file" ngf-select="actions.upload($files)" ngf-multiple="false" ngf-max-size="3MB")
-    md-icon.material-icons add
-  div.md-subhead.cursor(ng-click="actions.open(file.url)") 
-    span {{file.name}}
-    span(ng-show="loading") &nbsp;&nbsp; {{ loading }} %
-  md-button.md-icon-button(ng-show="file.url")
-    md-icon.material-icons(aria-label="delete file"  ng-click="actions.delete()") close
-        
+md-button.md-fab.md-accent.md-mini.file__attach(aria-label="add file" ngf-select="actions.upload($files)" ngf-multiple="false" ngf-max-size="3MB")
+  md-icon.material-icons attach_file
+div.md-subhead.cursor(ng-click="actions.open(file.url)") 
+  span {{file.name}}
+  span(ng-show="loading") &nbsp;&nbsp; {{ loading }} %
+md-button.md-icon-button(ng-show="file.url")
+  md-icon.material-icons(aria-label="delete file"  ng-click="actions.delete()") close
+      

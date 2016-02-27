@@ -1,17 +1,15 @@
-div.element-gallery
-
-  md-button.md-fab.md-accent.md-mini(aria-label="add photo" ngf-select="actions.pre_upload($files)" ngf-multiple="true" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB")
-    md-icon.material-icons add
+md-button.md-fab.md-accent.md-mini(aria-label="add photo" ngf-select="actions.pre_upload($files)" ngf-multiple="true" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB")
+  md-icon.material-icons add
+  
+div.box(layout="row" layout-wrap layout-align="space-between start" )
+  div.box-item(ng-repeat="item in photos" row-wrap-fill ng-style="item.data_url && {'background-image': 'url({{item.data_url}})'} || !item.data_url && {'background-image': 'url({{item.url}})'}")
+    div.cover(layout="row" layout-align="center center" ng-style="item.progress && {'opacity': 1}")
     
-  div.block-images(layout="row" layout-wrap layout-align="space-between start" )
-    div.element-photo(ng-repeat="item in photos" row-wrap-fill ng-style="item.data_url && {'background-image': 'url({{item.data_url}})'} || !item.data_url && {'background-image': 'url({{item.url}})'}")
-      div(role="cover" layout="row" layout-align="center center" ng-style="item.progress && {'opacity': 1}")
+      span.cover__progress.md-title(ng-show="item.progress") {{item.progress + '%'}} 
       
-        span.md-title(ng-show="item.progress") {{item.progress + '%'}} 
+      div.cover__controls(ng-hide="item.progress")
+        md-button.md-icon-button(ng-click="actions.open(item.url)")
+          md-icon visibility
+        md-button.md-icon-button(ng-click="actions.delete(item)")
+          md-icon delete
         
-        div(ng-hide="item.progress")
-          md-button.md-icon-button(ng-click="actions.open(item.url)")
-            md-icon visibility
-          md-button.md-icon-button(ng-click="actions.delete(item)")
-            md-icon delete
-          
