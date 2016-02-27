@@ -29,6 +29,8 @@ simple:
   find: "Найти"
   all: "Все"
   search: "Поиск"
+  date: "Введите дату"
+
 
 errors:
   double: "Повторяющиеся названия!"

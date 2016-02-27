@@ -29,6 +29,7 @@ simple:
   clear: "Clear"
   find: "Find"
   all: "All"
+  date: "Enter date"
 
 errors:
   double: "Duplicating labels!"

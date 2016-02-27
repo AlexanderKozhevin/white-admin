@@ -18,7 +18,7 @@
   .user-item{
     width: 100%;
     padding: $primary-padding;
-
+    margin-bottom: $primary-padding;
     &__value{
       margin-bottom: $primary-padding;
     }
@@ -26,7 +26,21 @@
 
 
 
-  .file{min-height: $type-min-height;}
+  .file{
+    min-height: $type-min-height;
+
+    // SHAME!
+    &__icon{margin-left: -6px;}
+  }
+
+
+
+  .date{
+    // SHAME!
+    margin-left: -16px;
+  }
+
+
 
 
   .gallery{
