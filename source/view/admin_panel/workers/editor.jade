@@ -1,24 +1,26 @@
-div.block-editor
+div.editor
+
   md-toolbar.md-table-toolbar.md-primary(layout="row" layout-align="start center")
     div.md-toolbar-tools
       div(ng-click="show_seleced()") {{'simple.editor' | translate}}
       span(flex)
       md-button(ng-disabled="actions.is_save_disabled(worker)" ng-click="actions.save()") {{'simple.save' | translate}}
-  div.element-basic_data(layout="row" layout-align="start center")
-    
-    div.user_avatar(layout="column" layout-align="center center"  ng-style="{'background-image': 'url('+get_img()+')' }" ngf-select="actions.upload_avatar($files)" ngf-multiple="false" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB")
-      span.md-subheader(ng-hide="worker.avatar.url || worker.avatar.data_url" ) {{'workers.select' | translate}}
       
-    div.element-name(layout="column" layout-align="space-around start" flex)
-      md-input-container.input_container-simplified(md-no-float)
+      
+  div.basic(layout="row" layout-align="start center")
+    div.cursor.element-user-avatar.basic-avatar(layout="column" layout-align="center center"  ng-style="{'background-image': 'url('+get_img()+')' }" ngf-select="actions.upload_avatar($files)" ngf-multiple="false" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB")
+      span.basic-avatar__text.md-subheader(ng-hide="worker.avatar.url || worker.avatar.data_url" ) {{'workers.select' | translate}}
+      
+    div.basic-info(layout="column" layout-align="space-around start" flex)
+      md-input-container.element-container--simplified.basic-info__name(md-no-float flex)
         input(ng-model="worker.name" aria-label="worker title" placeholder="{{'workers.name' | translate}}" type="text" minlength="3")
-      md-select.simple_select(ng-model="jobs.selected" aria-label="selected job" ng-change="actions.set_job()" ng-disabled="method=='edit'")
+      md-select.basic-info__job(ng-model="jobs.selected" aria-label="selected job" ng-change="actions.set_job()" ng-disabled="method=='edit'")
         md-option(ng-value="item" ng-repeat="item in jobs.list track by $index") {{item.name}}
         
   md-divider(ng-show="!loading")
   
-  div.block-parameters(layout="column" layout-align="start start" )
+  div.parameters(layout="column" layout-align="start start" )
   
-    md-progress-linear(md-mode="indeterminate" ng-show="loading" )
+    md-progress-linear.parameters__progress(md-mode="indeterminate" ng-show="loading" )
     
     component-worker-field(ng-repeat="item in worker.parameters track by $index" ng-model="item")

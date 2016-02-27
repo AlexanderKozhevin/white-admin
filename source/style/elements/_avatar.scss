@@ -5,12 +5,12 @@
 }
 
 
-.user_avatar{
+.element-user-avatar{
   width: $user_avatar-size;
   height: $user_avatar-size;
-  border: 1px solid rgba(grey, 0.5);
+  border: 1px solid rgba($clr-grey, 0.5);
   margin: $primary-padding 0px 0px $primary-padding;
-  background-color: $grey-background;
+  background-color: $clr-grey-50;
   border-radius: 2px;
   background-size: 100% auto;
   background-position: center center;

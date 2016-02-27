@@ -1,10 +1,12 @@
-.input-transparent{
+.element-input--transparent{
   background-color: transparent!important;
   border: none!important;
 }
 
-.input_container-simplified{
+.element-container--simplified{
   margin: $primary-padding/2 0px!important;
+
+  // SHAME!
   .md-errors-spacer{display: none;}
 
 }

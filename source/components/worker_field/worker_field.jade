@@ -6,9 +6,9 @@ div.component__worker-field(layout="row" layout-fill)
     div.label-line(flex ng-hide="last")
     
     
-  div.block__value(flex) 
-    div.block__value__label.md-subheader {{item.name}}
-    div.block__value__data(layout="row" ng-switch="item.type")
+  div.value(flex) 
+    div.value__label.md-subheader {{item.name}}
+    div.value__data(layout="row" ng-switch="item.type")
       editor-gallery(ng-model="item.value" ng-switch-when="gallery" layout="column" flex)
       editor-text(ng-model="item.value" ng-switch-when="text" flex layout="row")
       editor-number(ng-model="item.value" ng-switch-when="number" flex layout="row")

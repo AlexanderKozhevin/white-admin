@@ -1,41 +1,41 @@
-.block-editor{
+.editor{
+  .basic-avatar{
 
-  // Worker Avatar
-  .user_avatar{
+    &:hover{
+      background-color: rgba($clr-grey, 0.15);
+    }
 
-    span{text-align: center; background-color: transparent; @extend .cursor;}
-    &:hover{background-color: $grey-background/1.03;}
-  }
-
-  //Worker Full name
-  .element-name{
-    padding: $primary-padding;
-    & .input_container-simplified{
-      width: 300px;
-      max-width: 100%;
+    .basic-avatar__text{
+      background-color: transparent;
+      text-align: center;
     }
   }
 
-  md-divider{
-    margin: $primary-padding;
+  .basic-info{
+    margin-top: $primary-padding;
+    box-sizing: border-box;
+    padding: $primary-padding;
+
+    &__name,
+    &__job{
+      width: 50%;
+    }
   }
 
-  // Block containing all other parameters specified in job
-  .block-parameters{
+
+
+  md-divider{margin: $primary-padding;}
+
+
+
+  .parameters{
     padding: 0px $primary-padding $primary-padding $primary-padding;
 
-
+    &__progress{margin-top: $primary-margin;}
   }
 
 
-  [role="progressbar"]{margin-top: $primary-margin;}
 
-  component-worker-field{
-    width: 100%;
-  }
-  // @import "snippets/element-item";
-  // @import "snippets/types";
-
-
+  component-worker-field{width: 100%;}
 
 }
