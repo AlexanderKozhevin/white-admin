@@ -24,6 +24,9 @@ simple:
   rec_removed: "Записи удалены"
   link_copy: "Ссылка сохранена в буфер обмена"
   wrong: "Неверный пароль"
+  created: "Добавлен"
+  clear: "Очистить"
+  find: "Найти"
 
 errors:
   double: "Повторяющиеся названия!"
@@ -33,8 +36,12 @@ types:
   photo: "Аватарка"
 
 jobs:
-  perpage: "Кол-во на странице:"
   title: "Название профессии"
+
+table:
+  perpage: "кол-во на странице:"
+  of: "из"
+  page: "стр."
 
 workers:
   extended: "Расширенные поиск"

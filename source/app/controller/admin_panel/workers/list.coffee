@@ -3,7 +3,6 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
   templates = Restangular.one('templates')
   workers = Restangular.all('workers')
 
-
   $scope.selected = []
   $scope.jobs =
     list:[]

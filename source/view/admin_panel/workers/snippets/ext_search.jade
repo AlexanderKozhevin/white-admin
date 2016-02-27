@@ -1,4 +1,4 @@
-md-dialog.block-extended_search(role="extended search")
+md-dialog.extsearch()
   md-toolbar
     div.md-toolbar-tools(layout="row")
       h2  {{jobs.selected.name}}
@@ -6,13 +6,13 @@ md-dialog.block-extended_search(role="extended search")
       md-button.md-icon-button(ng-click="ext_search.hide_dialog()")
         md-icon close
     
-  md-dialog-content.vespa
-    md-list
+  md-dialog-content
+    md-list.list
       md-list-item.md-2-line(ng-repeat="item in ext_search.params" )
-        div.md-list-item-text(layout="row" layout-align="start center" )
+        div.md-list-item-text.list-item(layout="row" layout-align="start center" )
         
           // Label Column
-          div.md-subheader(role="query label") {{item.name}}
+          div.md-subheader.list-item__name() {{item.name}}
           
           // Compare Column
           md-button.md-title.md-icon-button.md-title(ng-click="ext_search.toggle_compare(item)" ng-if="item.compare") {{item.compare_value.value}}
@@ -52,5 +52,5 @@ md-dialog.block-extended_search(role="extended search")
 
     
   md-dialog-actions(layout="row" )
-    md-button(ng-click="ext_search.clear()") clear
-    md-button(ng-click="ext_search.find()") find
+    md-button(ng-click="ext_search.clear()") {{'simple.clear' | translate}}
+    md-button(ng-click="ext_search.find()") {{'simple.find' | translate}}

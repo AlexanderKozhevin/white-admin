@@ -1,13 +1,12 @@
-.block-extended_search{
-  width: $dialog-width;
+.extsearch{
+  width: $dialog-width!important;
 
-  [role="listitem"]{
+  .list{
+    &-item{
       padding: 0px $primary-padding;
+    }
+  }
+  .list-item__name{width: 100px;}
 
-      // &:last-child{md-divider{display: none;}}
-  }
-  [role="query label"]{
-    width: 100px;
-  }
 
 }

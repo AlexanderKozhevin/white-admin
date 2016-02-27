@@ -1,33 +1,20 @@
-.block-listing{
+.listing{
 
-  // Extended seasrch
-  // @import "snippets/ext_search";
+  @import "../snippets/worker_extended_search";
 
-  // Toolbox column
-  [md-body] tr{
-    td:last-child{
+  .worker{
+    &-menu{
       text-align: right;
-      & > *{opacity: 0;}
+      &__controls{opacity: 0;}
     }
-    &:hover td:last-child > * {opacity: 1;}
+
+    &:hover  .worker-menu__controls{opacity: 1;}
+
+    &__photo{
+      text-align: center;
+      width: 3*$primary-margin;
+      padding: $primary-padding/2 0px!important;
+    }
   }
 
-  // Avatar column
-  [md-body] tr td:nth-child(2){
-    text-align: center;
-    width: 90px;
-    padding: $primary-padding/2 0px!important;
-
-    & img{@extend .avatar;}
-
-  }
-
-  //
-  // Shame!
-  //
-
-  table.md-table.md-row-select tbody.md-body > tr.md-row{
-    transition: none;
-    @include animate-listing();
-  }
 }

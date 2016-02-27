@@ -6,24 +6,27 @@ menu:
   stat: "Statistics"
 
 simple:
-  name: "Name"
-  params: "Parameters"
-  type: "Type"
-  values: "Values"
-  save: "Save"
+  create: "Create"
+  created: "Created At"
+  editor: "Worker editor"
+  extsearch: "Extended search"
   inputval: "Enter values"
   job: "Job"
-  remove: "Remove"
-  timelink: "Profile link"
-  extsearch: "Extended search"
-  create: "Create"
-  public: "Public"
-  editor: "Worker editor"
-  selected: "Selected"
-  new_param: "New parameter"
-  rec_removed: "Records removed"
   link_copy: "Link is copied to clipboard"
+  name: "Name"
+  new_param: "New parameter"
+  params: "Parameters"
+  public: "Public"
+  rec_removed: "Records removed"
+  remove: "Remove"
+  save: "Save"
+  selected: "Selected"
+  timelink: "Profile link"
+  type: "Type"
+  values: "Values"
   wrong: "Incorrect password"
+  clear: "Clear"
+  find: "Find"
 
 errors:
   double: "Duplicating labels!"
@@ -48,6 +51,11 @@ all_types:
 jobs:
   perpage: "Rows per page:"
   title: "Job name"
+
+table:
+  perpage: "per page:"
+  of: "of"
+  page: "page"
 
 workers:
   extended: "Extended search"
