@@ -27,6 +27,7 @@ simple:
   wrong: "Incorrect password"
   clear: "Clear"
   find: "Find"
+  all: "All"
 
 errors:
   double: "Duplicating labels!"

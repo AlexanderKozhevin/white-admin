@@ -27,6 +27,7 @@ simple:
   created: "Добавлен"
   clear: "Очистить"
   find: "Найти"
+  all: "Все"
 
 errors:
   double: "Повторяющиеся названия!"

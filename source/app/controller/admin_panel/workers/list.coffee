@@ -156,8 +156,9 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
 
 
   templates.get().then (data) ->
-    data.unshift({name: "All"})
-    $scope.jobs =
-      list: data
-      selected: data[0]
-    $scope.request_page()
+    $translate('simple.all').then (translation) ->
+      data.unshift({name: translation})
+      $scope.jobs =
+        list: data
+        selected: data[0]
+      $scope.request_page()
