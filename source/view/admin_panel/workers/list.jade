@@ -47,7 +47,7 @@ div.block-listing(ng-cloak)
           th(md-column md-numeric="true" md:order:by="createdAt") Created At
           th(md-column)
       tbody(md-body)
-        tr.animate-listing(ng-repeat="item in workers" md-row  md-select="item")
+        tr.animate-listing(ng-repeat="item in workers  track by $index" md-row  md-select="item")
           td.cursor( md-cell) 
             img(ng-src="{{item.avatar}}" alt="&" ng-click="actions.side_nav(item)")
           td.cursor( md-cell) {{item.name}}

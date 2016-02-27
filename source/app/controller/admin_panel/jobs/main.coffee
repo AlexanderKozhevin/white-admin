@@ -1,4 +1,4 @@
-angular.module("app").controller "jobs_ctrl",  ($scope, $rootScope, $state, main_helper) ->
+angular.module("app").controller "JobsCtrl",  ($scope, $rootScope, $state, MainHelper) ->
 
 
   $scope.$on 'new_item', () ->

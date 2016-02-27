@@ -52,17 +52,17 @@ angular.element(document).ready () ->
 
 
 
-app.run (localStorageService, $http, $rootScope, $state) ->
-  localStorageService.get('auth');
-  $http.get('http://vnedesign.ru/api/auth/is_logged').success (data) ->
-    if data == 'good'
-      localStorageService.set('auth', true)
-    else
-      localStorageService.set('auth', false)
-      $state.go('main')
-
-
-  $rootScope.$on '$stateChangeStart', (event, toState, toParams, fromState, fromParams) ->
-    if !localStorageService.get('auth')
-      if ((toState.name != 'main') and (toState.name != 'login') and (toState.name != 'profile'))
-        event.preventDefault();
+# app.run (localStorageService, $http, $rootScope, $state) ->
+#   localStorageService.get('auth');
+#   $http.get('http://vnedesign.ru/api/auth/is_logged').success (data) ->
+#     if data == 'good'
+#       localStorageService.set('auth', true)
+#     else
+#       localStorageService.set('auth', false)
+#       $state.go('main')
+#
+#
+#   $rootScope.$on '$stateChangeStart', (event, toState, toParams, fromState, fromParams) ->
+#     if !localStorageService.get('auth')
+#       if ((toState.name != 'main') and (toState.name != 'login') and (toState.name != 'profile'))
+#         event.preventDefault();

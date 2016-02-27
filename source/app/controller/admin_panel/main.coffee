@@ -1,4 +1,5 @@
-angular.module("app").controller "admin_panel_ctrl",  ($scope, $rootScope, $state, main_helper, $timeout, tmhDynamicLocale, $translate) ->
+angular.module("app").controller "AdminPanelCtrl",  ($scope, $rootScope, $state, MainHelper, $timeout, tmhDynamicLocale, $translate) ->
+
 
 
   #
@@ -51,12 +52,12 @@ angular.module("app").controller "admin_panel_ctrl",  ($scope, $rootScope, $stat
   # To highlight active ui-router state in tab panel.
   # Because if you reload the page, tab index will be default, not the one you loaded.
   #
-  $scope.root_tab_index = main_helper.select_active_tab($state.$current.self.name)
+  $scope.root_tab_index = MainHelper.select_active_tab($state.$current.self.name)
 
   #
   # Little function to show/hide floating add button corresponding to ui-router state
   #
-  $scope.new_item.set(main_helper.is_new($state.$current.self.name))
+  $scope.new_item.set(MainHelper.is_new($state.$current.self.name))
 
   #
   # Used to toggle main Jobs/Worker container class - for smooth width changing
@@ -65,4 +66,4 @@ angular.module("app").controller "admin_panel_ctrl",  ($scope, $rootScope, $stat
 
   $rootScope.$on '$stateChangeStart', (event, toState) ->
     $scope.active_state = toState.name
-    $scope.new_item.set(main_helper.is_new(toState.name))
+    $scope.new_item.set(MainHelper.is_new(toState.name))

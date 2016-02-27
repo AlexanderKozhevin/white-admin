@@ -1,4 +1,4 @@
-angular.module("app").controller "login_ctrl",  ($scope, $http, $state, $translate, $mdToast, localStorageService) ->
+angular.module("app").controller "LoginCtrl",  ($scope, $http, $state, $translate, $mdToast, localStorageService) ->
 
   $scope.credentials = {
     login: ""

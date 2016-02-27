@@ -1,6 +1,12 @@
-angular.module("app").controller "workers_editor_ctrl",  ($scope, Restangular, $state, main_helper, FileReader, Upload) ->
+angular.module("app").controller "WorkersEditorCtrl",  ($scope, Restangular, $state, MainHelper, FileReader, Upload) ->
 
   $scope.method = $state.params.method
+
+  
+  workers = Restangular.one('workers')
+  templates = Restangular.one('templates')
+
+
 
   $scope.jobs =
     list: []
@@ -30,7 +36,7 @@ angular.module("app").controller "workers_editor_ctrl",  ($scope, Restangular, $
 
   $scope.restore_params = () ->
 
-    Restangular.one('workers', $state.params.id).get().then (data) ->
+    workers.one($state.params.id).get().then (data) ->
 
       $scope.jobs.selected = _.find($scope.jobs.list, {id: data.job})
       $scope.worker.parameters = _.map($scope.jobs.selected.params, (obj) -> obj.value = null; return obj)
@@ -50,7 +56,7 @@ angular.module("app").controller "workers_editor_ctrl",  ($scope, Restangular, $
 
 
 
-  Restangular.one('templates').get().then (data) ->
+  templates.get().then (data) ->
     $scope.jobs.list = data
     $scope.loading = true
     if $scope.method == 'new'
@@ -77,7 +83,7 @@ angular.module("app").controller "workers_editor_ctrl",  ($scope, Restangular, $
 
 
   $scope.actions =
-    is_save_disabled: main_helper.is_save_disabled
+    is_save_disabled: MainHelper.is_save_disabled
     save: () ->
       # Variables to disable saving button
       $scope.worker.saving_process = true
@@ -95,10 +101,10 @@ angular.module("app").controller "workers_editor_ctrl",  ($scope, Restangular, $
 
       # Sending saving request to server
       if $scope.method == 'new'
-        Restangular.one('workers').customPOST(json).then () ->
+        workers.customPOST(json).then () ->
           $state.go('admin.workers.list')
       else
-        Restangular.one('workers', $state.params.id).customPUT(json).then () ->
+        workers.one($state.params.id).customPUT(json).then () ->
           $state.go('admin.workers.list')
 
     set_job: () ->

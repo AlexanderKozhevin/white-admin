@@ -1,5 +1,7 @@
-angular.module("app").controller "landing_ctrl",  ($scope, $timeout, Analytics) ->
+angular.module("app").controller "LandingCtrl",  ($scope, $timeout, Analytics, genius) ->
 
+
+  console.log genius(2)
 
   Analytics.trackPage('/profile');
   $timeout () ->

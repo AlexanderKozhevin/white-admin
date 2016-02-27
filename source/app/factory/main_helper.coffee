@@ -1,4 +1,4 @@
-angular.module('app').factory 'main_helper',  ($window) ->
+angular.module('app').factory 'MainHelper',  ($window) ->
 
   result = {}
 

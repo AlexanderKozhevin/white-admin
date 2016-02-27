@@ -1,4 +1,6 @@
-angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangular, $filter, $websocket, chart_helper, $interval) ->
+angular.module("app").controller "StatisticsCtrl",  ($scope, $timeout, Restangular, $filter, $websocket, ChartConfig, $interval) ->
+
+  stat = Restangular.one('stat')
 
   $scope.socket_data =
     cpu: 43
@@ -32,9 +34,9 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
 
 
   $scope.charts_options =
-    main: chart_helper.options_main
-    profiles: chart_helper.options_profiles
-    cpu: chart_helper.options_cpu
+    main: ChartConfig.options_main
+    profiles: ChartConfig.options_profiles
+    cpu: ChartConfig.options_cpu
 
 
   $scope.date_range =
@@ -46,7 +48,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
   $scope.request =
     cpu: () ->
       $scope.charts_data.cpu = undefined
-      Restangular.one('stat', 'cpu_data').get().then (data) ->
+      stat.one('cpu_data').get().then (data) ->
         labels = _.map(data, (obj) -> return $filter('date')(new Date(obj.label), 'HH:mm'))
         values = _.map(data, (obj) -> return {value: obj.value, meta: 'Load %'})
         labels.pop()
@@ -58,7 +60,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
 
     ext: () ->
       $scope.charts_data.profiles = undefined
-      Restangular.one('stat', 'external_views').get().then (data) ->
+      stat.one('external_views').get().then (data) ->
         labels = _.map(data, (obj) -> return $filter('date')(new Date(obj.label), 'd/M'))
         values = _.map(data, (obj) -> return {value: obj.value, meta: 'Views'})
         labels.pop()
@@ -70,7 +72,7 @@ angular.module("app").controller "statistics_ctrl",  ($scope, $timeout, Restangu
 
     main: () ->
       $scope.charts_data.main = undefined
-      Restangular.one('stat', 'mainsite').get({from: $scope.date_range.from, to: $scope.date_range.to}).then (data) ->
+      stat.one('mainsite').get({from: $scope.date_range.from, to: $scope.date_range.to}).then (data) ->
         labels = _.map(data, (obj) -> return $filter('date')(new Date(obj.label), 'd/M'))
         values = _.map(data, (obj) -> return {value: obj.value, meta: 'Views'})
         temp = []

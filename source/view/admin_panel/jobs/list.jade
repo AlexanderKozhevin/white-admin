@@ -33,7 +33,7 @@ div.block-listing
           th(md-column  md-numeric="true") {{'simple.params' | translate}}
           th(md-column md-numeric="true" md:order:by="createdAt") {{item.createdAt | date}}
       tbody(md-body)
-        tr.animate-listing(ng-repeat="item in jobs" md-row  md-select="item")
+        tr.animate-listing(ng-repeat="item in jobs track by $index" md-row  md-select="item")
           td.cursor(ui-sref="admin.jobs.editor({method: 'edit', id: item.id})" md-cell) 
             img(ng-src="{{item.avatar_url}}" alt="&")
           td.cursor(ui-sref="admin.jobs.editor({method: 'edit', id: item.id})" md-cell) {{item.name}}

@@ -1,7 +1,10 @@
-angular.module("app").controller "jobs_editor_ctrl",  ($scope, $timeout, FileReader, Upload, $mdDialog, $state, $mdToast, Restangular, $q, $translate) ->
+angular.module("app").controller "JobsEditorCtrl",  ($scope, $timeout, FileReader, Upload, $mdDialog, $state, $mdToast, Restangular, $q, $translate) ->
 
   # Selected parameters from list
   $scope.selected = []
+
+  templates = Restangular.one('templates')
+
 
   #
   # Put routine actions into object - for easier navigation
@@ -12,7 +15,7 @@ angular.module("app").controller "jobs_editor_ctrl",  ($scope, $timeout, FileRea
       $scope.progress = $q.defer()
 
       # Request template data from server
-      Restangular.one('templates', $state.params.id).get().then (data) ->
+      templates.one($state.params.id).get().then (data) ->
         $scope.job.name = data.name
 
         # Restore avatar
@@ -63,12 +66,11 @@ angular.module("app").controller "jobs_editor_ctrl",  ($scope, $timeout, FileRea
         for i in json.params
           i.id = md5(i.name)
 
-        # Restangular methods for sending request to server
         if $scope.method == 'new'
-          Restangular.one('templates').customPOST(json).then (data) ->
+          templates.customPOST(json).then (data) ->
             $state.go('admin.jobs.list')
         else
-          Restangular.one('templates').customPUT(json, $state.params.id).then (data) ->
+          templates.customPUT(json, $state.params.id).then (data) ->
             $state.go('admin.jobs.list')
 
     show_dialog: (item) ->

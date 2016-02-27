@@ -1,4 +1,8 @@
-angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, Restangular, main_helper, $mdToast, clipboard, $mdDialog, $mdSidenav, $translate) ->
+angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Restangular, MainHelper, $mdToast, clipboard, $mdDialog, $mdSidenav, $translate) ->
+
+  templates = Restangular.one('templates')
+  workers = Restangular.all('workers')
+
 
   $scope.selected = []
   $scope.jobs =
@@ -63,15 +67,17 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
     else
       job_id = undefined
 
-    params = main_helper.counter_params($scope.search.value, job_id, $scope.ext_search.params)
-    Restangular.one('workers', 'count').get(params).then (max_data) ->
+    params = MainHelper.counter_params($scope.search.value, job_id, $scope.ext_search.params)
+    # Restangular.one('workers', 'count').get(params).then (max_data) ->
+
+    workers.one('count').get(params).then (max_data) ->
       if max_data
         $scope.request_params.max = max_data
       else
         $scope.request_params.max = 0
 
-      params = main_helper.configure_params_workers($scope.request_params, $scope.search.value, $scope.jobs.selected.id, $scope.ext_search.params)
-      Restangular.all('workers','find').getList(params).then (data) ->
+      params = MainHelper.configure_params_workers($scope.request_params, $scope.search.value, $scope.jobs.selected.id, $scope.ext_search.params)
+      workers.all('find').getList(params).then (data) ->
         $scope.workers = data
         for i in $scope.workers
           i.job_name = _.find($scope.jobs.list, {id: i.job}).name
@@ -113,7 +119,7 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
   $scope.actions =
     side_nav: (item) ->
       user_job = _.find($scope.jobs.list, {id: item.job})
-      $scope.worker_preview.set(main_helper.worker_data(item, user_job))
+      $scope.worker_preview.set(MainHelper.worker_data(item, user_job))
       $mdSidenav('left').toggle()
     set_job: () ->
       $scope.ext_search.params = [];
@@ -148,7 +154,9 @@ angular.module("app").controller "workers_list_ctrl",  ($scope, $timeout , $q, R
       $scope.selected = []
 
 
-  Restangular.one('templates').get().then (data) ->
+
+
+  templates.get().then (data) ->
     data.unshift({name: "All"})
     $scope.jobs =
       list: data

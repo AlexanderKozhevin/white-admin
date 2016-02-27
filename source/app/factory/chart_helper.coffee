@@ -1,4 +1,4 @@
-angular.module('app').factory 'chart_helper',  () ->
+angular.module('app').factory 'ChartConfig',  () ->
 
   result = {}
 

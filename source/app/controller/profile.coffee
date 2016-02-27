@@ -1,4 +1,8 @@
-angular.module("app").controller "profile_ctrl",  ($scope, $state, Restangular, $window, Analytics) ->
+angular.module("app").controller "ProfileCtrl",  ($scope, $state, Restangular, $window, Analytics) ->
+
+
+  templates = Restangular.one('templates')
+  workers = Restangular.one('workers')
 
 
   Analytics.trackPage('/profile');
@@ -6,8 +10,8 @@ angular.module("app").controller "profile_ctrl",  ($scope, $state, Restangular, 
   if !$state.params.id
     $state.go('main')
   else
-    Restangular.one('workers', $state.params.id).get().then (data) ->
-      Restangular.one('templates', data.job).get().then (job) ->
+    workers.one($state.params.id).get().then (data) ->
+      templates.one(data.job).get().then (job) ->
         $scope.user = {
           name: data.name
           avatar: data.avatar

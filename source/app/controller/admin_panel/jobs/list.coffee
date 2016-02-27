@@ -1,6 +1,9 @@
-angular.module("app").controller "jobs_list_ctrl",  ($scope, $timeout , $q, Restangular, main_helper, $mdToast) ->
+angular.module("app").controller "JobsListCtrl",  ($scope, $timeout , $q, Restangular, MainHelper, $mdToast) ->
 
   $scope.selected = []
+
+  templates = Restangular.one('templates')
+
 
   $scope.request_params =
     limit: 3
@@ -14,12 +17,11 @@ angular.module("app").controller "jobs_list_ctrl",  ($scope, $timeout , $q, Rest
     params.query = $scope.search.value if $scope.search.value
     $scope.progress = $q.defer()
     # Get number of maximum possible results
-    Restangular.one('templates', 'count').get(params).then (max_data) ->
-
+    templates.one('count').get(params).then (max_data) ->
       $scope.request_params.max = max_data
-      params = main_helper.configure_params_jobs($scope.request_params, $scope.search.value)
+      params = MainHelper.configure_params_jobs($scope.request_params, $scope.search.value)
 
-      Restangular.all('templates','find').getList(params).then (data) ->
+      templates.all('find').getList(params).then (data) ->
         console.log data
         $scope.jobs = data
         $scope.progress.resolve()

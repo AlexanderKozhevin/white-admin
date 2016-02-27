@@ -32,7 +32,7 @@ div.block-editor
       
         include snippets/standard_params
         
-        tr(ng-repeat="item in job.params" md-row md-select="item")
+        tr(ng-repeat="item in job.params track by $index" md-row md-select="item")
           td(md-cell)
             md-input-container.input_container-simplified(md-no-float)
               input(ng-model="item.name" aria-label="job title")
