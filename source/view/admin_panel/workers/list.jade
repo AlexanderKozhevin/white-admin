@@ -24,7 +24,7 @@ div.listing(ng-cloak)
     div.md-toolbar-tools(layout="row" layout-align="start center" )
       md-button.md-icon-button()
         md-icon.material-icons search
-      input.element-input--transparent(ng-model="search.value" aria-label="search value" placeholder="Search" type="text"  ng-keyup="search.keypress($event)" flex)
+      input.element-input--transparent(ng-model="search.value" aria-label="search value" placeholder="{{'simple.search' | translate}}" type="text"  ng-keyup="search.keypress($event)" flex)
       md-button.md-icon-button.close_button(aria-label="user menu" ng-click="search.close()")
         md-icon.material-icons close    
 

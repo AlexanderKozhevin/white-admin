@@ -1,42 +1,48 @@
-.block-worker_quick_view{
-  .element-photo{
-    width: 200px!important;
-    height: 200px!important;
-    min-height: 200px;
-    min-width: 200px;
+.worker-view{
+
+
+  .user__photo{
+    width: 100%!important;
+    min-height: 250px;
+    max-height: 250px;
     background-size: 100% auto;
-    margin: $primary-padding;
     background-position: center center;
     background-repeat: no-repeat;
   }
-  .md-subheader{background-color: transparent;}
-  .element-item{
-    text-align: left;
-    padding-left: $primary-padding;
-    padding-right: $primary-padding;
-    // padding-top: $primary-padding;
-    // padding-bottom: $primary-padding;
-    margin-top: $primary-padding;
-    margin-bottom: $primary-padding;
 
+  .user__name{
+    margin-top: $primary-margin;
+    margin-bottom: $primary-margin;
+  }
+
+  .user-item{
     width: 100%;
-  }
-  [role="type label"]{
-    margin-bottom: $primary-padding/2;
-  }
-  .element-value{
-    md-input-container{width: 100%;}
-  }
-  [role="file type"]{ div{padding: $primary-padding 0px}}
-  [role="gallery viewer"] {
-    width: 200px!important;
-    height: 200px!important;
-    min-height: 200px;
-    min-width: 200px;
-    background-size: 100% auto;
-    margin: $primary-padding;
-    background-position: center center;
-    background-repeat: no-repeat;
+    padding: $primary-padding;
 
+    &__value{
+      margin-bottom: $primary-padding;
+    }
   }
+
+
+
+  .file{min-height: $type-min-height;}
+
+
+  .gallery{
+    width: 100%;
+
+    &__controls{
+      width: 100%;
+    }
+    &__viewer{
+      width: 100%!important;
+      height: 250px;
+      background-size: 100% auto;
+      margin: $primary-padding;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+  }
+
 }

@@ -1,27 +1,28 @@
-md-sidenav.md-sidenav-right.md-whiteframe-z2.block-worker_quick_view(layout="column" md-component-id="left" )
-  md-toolbar.md-background
+md-sidenav.md-sidenav-right.md-whiteframe-z2.worker-view(layout="column" md-component-id="left" )
+  md-toolbar
     div.md-toolbar-tools(layout="row" layout-align="center center")
       div.md-title {{'workers.quick' | translate}}
-  md-content(layout="column" layout-align="start center")
-    div.element-photo(ng-style="{'background-image': 'url(' + worker_preview.data.avatar + ')'}")
-    div.md-title() {{worker_preview.data.name}}
-    div.element-item(ng-repeat="item in worker_preview.data.params") 
-      div.md-subheader(role="type label") {{item.name}}
-      div.element-value(ng-switch="item.type")
+  md-content.user(layout="column" layout-align="start center")
+    div.user__photo(ng-style="{'background-image': 'url(' + worker_preview.data.avatar + ')'}")
+    div.md-title.user__name {{worker_preview.data.name}}
+    div.user-item(ng-repeat="item in worker_preview.data.params") 
+      div.md-subheader {{item.name}}
+      div.user-item__value(ng-switch="item.type" layout="row")
       
         
         include types_list
         
 
         // File Type
-        div.cursor(ng-switch-when="file" role="file type")
-          div(ng-click="item.actions.open(item.value.url)") {{item.value.name}}
+        div.file.cursor(ng-switch-when="file" role="file type" layout="row" layout-align="start center" ng-click="item.actions.open(item.value.url)")
+          md-icon.material-icons attach_file
+          div {{item.value.name}}
           
     
         // Gallery Type
-        div(ng-switch-when="gallery" role="gallery type" layout="column" layout-align="start center")
-          div(role="gallery viewer" ng-style="{'background-image': 'url(' + item.current + ')'}")
-          div(layout="row" layout-align="center center")
+        div.gallery(ng-switch-when="gallery" role="gallery type" layout="column" layout-align="start center")
+          div.gallery__viewer( ng-style="{'background-image': 'url(' + item.current + ')'}")
+          div.gallery__controls(layout="row" layout-align="center center")
             md-button.md-icon-button(ng-click="item.prev(item)" ng-disabled="item.index == 0")
               md-icon keyboard_arrow_left
             md-button.md-icon-button(ng-click="item.next(item)" ng-disabled="item.index == item.max-1")

@@ -6,6 +6,10 @@
     &-menu{
       text-align: right;
       &__controls{opacity: 0;}
+
+      @media #{$screen-xs, $screen-sm} {
+        &__controls{opacity: 1;}
+      }
     }
 
     &:hover  .worker-menu__controls{opacity: 1;}
