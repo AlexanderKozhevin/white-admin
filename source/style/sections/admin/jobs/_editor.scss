@@ -1,23 +1,20 @@
-.block-editor{
+.editor{
 
 
-  .element-logo{
-    margin-left: $primary-padding;
-    
-    &:hover{border: 1px solid grey;}
+  .toolbar{
+    &__avatar{
+      margin-left: $primary-padding;
+      border: 1px solid $clr-grey;
+      @include transition(all 0.2s linear);
+
+      &:hover{border: 1px solid $clr-teal;}
+    }
   }
 
-  .element-saving{
-    .md-button{margin: $primary-padding/2;}
-  }
 
 
-  //
-  // Shame!
-  //
-  table.md-table.md-row-select tbody.md-body > tr.md-row{
-    transition: none;
-    @include animate-listing();
+  .saving__button{
+    margin: $primary-padding/2;
   }
 
 

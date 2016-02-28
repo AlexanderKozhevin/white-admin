@@ -1,12 +1,12 @@
-div.block-editor
+div.editor
 
   md-toolbar.md-table-toolbar.md-default.ng-animate-disabled(layout="row" layout-align="start center" ng-hide="selected.length>0")
-    div.md-toolbar-tools
-      md-input-container.input_container-simplified(md-no-float)
+    div.md-toolbar-tools.toolbar
+      md-input-container.element-container--simplified(md-no-float)
         input(ng-model="job.name" aria-label="job title" placeholder="{{'jobs.title' | translate}}" type="text" )
       md-button.md-icon-button(aria-label="add a photo" ngf-select="actions.upload($files)" ng-if="!job.avatar.url && !job.avatar.data_url")
         md-icon.material-icons add_a_photo
-      img.avatar.cursor.element-logo(ng-src="{{actions.get_image()}}" alt="job item" ngf-select="actions.upload($files)" ng-if="job.avatar.data_url || job.avatar.url")
+      img.avatar.cursor.element-avatar.toolbar__avatar(ng-src="{{actions.get_image()}}" alt="job item" ngf-select="actions.upload($files)" ng-if="job.avatar.data_url || job.avatar.url")
       span(flex)
       md-button.md-icon-button(aria-label="add parameter" ng-click="actions.add()")
         md-icon.material-icons add
@@ -15,7 +15,7 @@ div.block-editor
   md-toolbar.md-table-toolbar.md-primary(ng-show='selected.length')
     div.md-toolbar-tools
       span {{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} {{'simple.selected' | translate}}
-      span(flex='')
+      span(flex)
       md-button.md-icon-button(ng-click="actions.remove()")
         md-icon delete
 
@@ -34,7 +34,7 @@ div.block-editor
         
         tr(ng-repeat="item in job.params track by $index" md-row md-select="item")
           td(md-cell)
-            md-input-container.input_container-simplified(md-no-float)
+            md-input-container.element-container--simplified(md-no-float)
               input(ng-model="item.name" aria-label="job title")
           td(md-cell) 
             md-select.by_pages(ng-model="item.type" aria-label="item type" )
@@ -47,8 +47,8 @@ div.block-editor
 
 
   md-divider
-  div.element-saving(layout="row")
+  div.saving(layout="row")
     span(flex)
-    md-button.md-raised.md-accent(ng-click="actions.save()" ng-disabled="job.name.length<3 || upload_promise || saving_process") 
+    md-button.md-raised.md-accent.saving__button(ng-click="actions.save()" ng-disabled="job.name.length<3 || upload_promise || saving_process") 
       span(ng-show="method=='new'") {{'simple.create' | translate}}
       span(ng-show="method=='edit'") {{'simple.save' | translate}}

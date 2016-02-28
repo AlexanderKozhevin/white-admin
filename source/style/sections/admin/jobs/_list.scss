@@ -1,18 +1,9 @@
-.block-listing{
-  [md-body] tr td:nth-child(2){
+.listing{
+
+  .job__photo{
     text-align: center;
-    width: 90px;
+    width: 3*$primary-margin;
     padding: $primary-padding/2 0px!important;
-
-    & img{@extend .avatar;}
-
   }
 
-  //
-  // Shame!
-  //
-  table.md-table.md-row-select tbody.md-body > tr.md-row{
-    transition: none;
-    @include animate-listing();
-  }
 }
