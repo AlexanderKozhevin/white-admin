@@ -1,11 +1,11 @@
 section.page-landing(layout="row" layout-fill ng-cloak)
-  div.block-left.md-whiteframe-z1(flex="60" flex-xs="100" layout="column" layout-align="center center")
+  div.info.md-whiteframe-z1(flex="60" flex-xs="100" layout="column" layout-align="center center")
   
-    div.element-text(layout="column")
-      div.md-display-1 HR Hackers
-      div We making  so people could find each other. Designers, Developers, Entrepreneurs, Creative Thinkers. We got a cool schemes and huge databases, and thousands of personal contacts.
-      div(ui-sref="login") Dashboard
-  div.block-right.md-display-1(hide-xs layout="column" layout-align="space-around end" flex)
+    div.text(layout="column")
+      div.md-display-1.text__label HR Hackers
+      div.text__about We making  so people could find each other. Designers, Developers, Entrepreneurs, Creative Thinkers. We got a cool schemes and huge databases, and thousands of personal contacts.
+      div.text__login(ui-sref="login") Dashboard
+  div.tiles.md-display-1(hide-xs layout="column" layout-align="space-around end" flex)
     div.animate-listing(ng-repeat="item in titles") {{item}}
     
     
