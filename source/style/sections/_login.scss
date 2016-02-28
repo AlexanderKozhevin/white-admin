@@ -1,16 +1,28 @@
 .page-login{
 
-    background-color: $grey-background;
-    height: 100vh;
+  background-color: $clr-grey-50;
+  height: 100vh;
 
-    md-card{
-      margin-top: -50px;
-      @media #{$screen-xs} {margin-top: 0px;}
+  .card{
+    margin-top: -50px;
+    @media #{$screen-xs} {margin-top: 0px;}
+  }
+
+
+
+  .controls{
+    height: 60px;
+
+    &__text{
+      text-align: center;
+      color: rgba($clr-grey,0.7);
+      cursor: pointer;
     }
 
-    .block-controls{
-      height: 60px;
-      div{text-align: center; color: rgba(grey,0.7);cursor: pointer;}
-      .md-button{position: absolute;margin-left: -$primary-margin/2;}
+    &__button{
+      position: absolute;
+      margin-left: -$primary-margin/2;
     }
+  }
+
 }

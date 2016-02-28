@@ -30,6 +30,7 @@ simple:
   all: "Все"
   search: "Поиск"
   date: "Введите дату"
+  password: "Забыл пароль"
 
 
 errors:

@@ -28,7 +28,10 @@
     color: rgba($clr-grey, 0.1);
     padding-right: $primary-margin;
 
-    div:hover{@include transition(all 0.2s linear);color: rgba($clr-grey, 0.5);}
+    &__item:hover{
+      @include transition(all 0.2s linear);
+      color: rgba($clr-grey, 0.5);
+    }
   }
 
 }

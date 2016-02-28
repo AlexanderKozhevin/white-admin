@@ -30,6 +30,7 @@ simple:
   find: "Find"
   all: "All"
   date: "Enter date"
+  password: "Forgot password"
 
 errors:
   double: "Duplicating labels!"
