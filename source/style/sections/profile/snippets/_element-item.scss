@@ -1,41 +1,25 @@
-.element-item{
+.fields-item{
   min-height: 50px;
   padding-bottom: $primary-padding;
-  .element-label{width: $primary-padding + $user_avatar-size; }
-}
-.element-photo{
-  width: 150px;
-  height: 94px;
-  border: 1px solid rgba(grey, 0.5);
-  border-radius: 1px;
-  box-sizing: border-box;
-  margin-bottom: $primary-padding;
-  background-size: 100% auto;
-  @include transition(all 0.2s linear);
-  @media #{$screen-xs} {width: 100px; height: 63px;}
+
+  &__label{
+    width: $primary-padding + $user_avatar-size;
+  }
 }
 
 
-.element-datepicker{
-  // Shame !
-  margin-left: -15px;
+
+.file{
+  min-height: $type-min-height;
+  // SHAME!
+  &__icon{margin-left: -6px;}
 }
 
-.element-gallery{
+.date{
+  // SHAME!
+  margin-left: -16px;
+}
+
+.gallery{
   width: 100%;
-}
-
-md-progress-linear{
-  margin-top: $primary-margin;
-}
-
-
-.element-select{
-  margin: 0px!important;
-}
-
-
-.element-checkbox{
-  width: 20px;
-  height: 20px;
 }

@@ -30,7 +30,6 @@ angular.module("app").controller "ProfileCtrl",  ($scope, $state, Restangular, $
               $scope.user.params[index].values = i.values
             if i.type == 'date'
               $scope.user.params[index].value = new Date($scope.user.params[index].value)
-        console.log $scope.user
     ,(error) ->
       $state.go('main')
 
