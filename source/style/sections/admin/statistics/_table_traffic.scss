@@ -1,19 +1,19 @@
-.block-traffic{
+.box-traffic{
 
 
-  .block-container{
+  .container{
     width: 100%;
     height: 100%;
     overflow: auto;
   }
-  [role="list"]{
+
+  .container-list{
     width: 100%;
-  }
 
-  [role="listitem"]:nth-child(2n+0){
-    background-color: $grey-background;
+    &__item:nth-child(2n+0){
+      background-color: $clr-grey-50;
+    }
   }
-
 
   // Shame !
   .md-subheader .md-subheader-inner{

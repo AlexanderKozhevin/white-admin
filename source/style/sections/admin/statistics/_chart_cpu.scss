@@ -1,43 +1,42 @@
-.block-cpu{
+.box-cpu{
   width: 100%;
   height: 100%;
 
 
-  .block-left{
-    width: 230px;
+  .circle{
+    width: $cpu-circle-width;
     padding-left: 20px;
 
-
-
-    & [role="caption"]{
+    &__label{
       margin-top: $primary-margin;
-      font-weight: 500;
+      font-weight: 400;
     }
-
   }
 
-
-  .block-right{
-
+  .box-chart{
     height: 100%;
-    chartist{margin-left: -20px; }
+    
+    &__chart{
+      margin-left: -20px;
+    }
 
-    [role="hide-sm label"]{
+    &__label{
       padding: 2*$primary-padding;
       padding-bottom: 0px;
     }
-
-    .cpu_chart-grid{
-      stroke: rgba(grey, 0.2);
-      stroke-width: 0.5px;
-    }
   }
-
-
 
 }
 
 
+//
+// Special classes for javascript chart config
+//
+
+.cpu_chart-grid{
+  stroke: rgba(grey, 0.2);
+  stroke-width: 0.5px;
+}
 .cpu_chart-ct-grid{
   stroke-width: 0.2;
   stroke: rgba(grey, 0.7);
@@ -49,5 +48,3 @@
   stroke-width: 2px;
   stroke-opacity: 0.5;
 }
-
-.cpu_chart-ct-point{}

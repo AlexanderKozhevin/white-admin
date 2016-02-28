@@ -1,21 +1,18 @@
 .page-statistics{
 
 
-  @import "statistics/main_chart";
-  @import "statistics/cpu_chart";
-  @import "statistics/memory";
-  @import "statistics/traffic";
-  @import "statistics/ext_chart";
+  @import "statistics/chart_main";
+  @import "statistics/chart_cpu";
+  @import "statistics/chart_profiles";
+  @import "statistics/table_traffic";
+  @import "statistics/circle_memory";
 
-  .block-cards_box{
+
+  .cards-box{
     width: $primary-width;
     margin-top: $primary-margin / 2;
 
     & > * {background-color: white;}
   }
-
-
-
-
 
 }

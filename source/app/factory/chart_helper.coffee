@@ -34,7 +34,7 @@ angular.module('app').factory 'ChartConfig',  () ->
     }
     plugins: [
       Chartist.plugins.tooltip({
-        class: "element-tooltip",
+        class: "element-chart_tooltip",
         pointClass: 'main_chart-ct-point'
       })
 

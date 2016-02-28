@@ -1,0 +1,12 @@
+.element-chart_tooltip{
+  background-color: white!important;
+  border: 1px solid rgba($clr-grey, 0.2);
+  font-family: Roboto!important;
+  font-weight: 400!important;
+  text-align: center;
+  .chartist-tooltip-meta{opacity: 0.6!important;}
+  .chartist-tooltip-value{color: $clr-teal!important;}
+  &:before{
+    display: none;
+  }
+}

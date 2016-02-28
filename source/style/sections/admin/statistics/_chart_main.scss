@@ -1,32 +1,24 @@
-md-content[role="main chart"]{
+.box-main{
   margin-top: $primary-margin;
   width: $primary-width;
   height: 430px;
-}
 
-md-content [role="title"]{
-  padding: 2*$primary-padding;
-}
-.element-date_range{
-  .md-datepicker-button{display: none!important;}
-  & > * {margin-left: $primary-padding;}
-}
+  .header{
+    padding: 2*$primary-padding;
+  }
 
+  .header__range{
+    & > * {margin-left: $primary-padding;}
 
-
-.element-tooltip{
-  background-color: white;
-  border: 1px solid rgba(grey, 0.2);
-  font-family: Roboto;
-  font-weight: 400;
-  text-align: center;
-  .chartist-tooltip-meta{opacity: 0.6;}
-  .chartist-tooltip-value{color: $clr-teal;}
-  &:before{
-    display: none;
+    // SHAME!
+    .md-datepicker-button{display: none!important;}
   }
 }
 
+
+//
+// Special classes for javascript chart config
+//
 
 $colors: (
   $clr-red,
