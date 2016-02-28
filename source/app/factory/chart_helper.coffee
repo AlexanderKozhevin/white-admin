@@ -43,7 +43,6 @@ angular.module('app').factory 'ChartConfig',  () ->
 
   result.options_profiles = {
     height: "200px"
-    width: "100%",
     lineSmooth: Chartist.Interpolation.cardinal({
       tension: 1
     })

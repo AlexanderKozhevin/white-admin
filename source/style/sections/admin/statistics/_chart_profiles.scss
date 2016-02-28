@@ -9,9 +9,13 @@
   }
 
 }
-.profiles-chart{
-}
 
+
+.profiles-chart{
+  &__chart{
+    min-width: 300px;
+  }
+}
 
 //
 // Special classes for javascript chart config
