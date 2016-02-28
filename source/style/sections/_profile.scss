@@ -1,8 +1,5 @@
 .page-profile{
 
-
-  @import "snippets/element-item";
-
   height: 100%;
   min-height: 100vh;
   overflow: auto;
@@ -39,6 +36,37 @@
       margin-top: $primary-padding;
     }
   }
+
+
+
+  .fields-item{
+    min-height: 50px;
+    padding-bottom: $primary-padding;
+
+    &__label{
+      width: $primary-padding + $user_avatar-size;
+    }
+  }
+
+
+  //
+  // Types extra styles
+  //
+  .file{
+    min-height: $type-min-height;
+    // SHAME!
+    &__icon{margin-left: -6px;}
+  }
+
+  .date{
+    // SHAME!
+    margin-left: -16px;
+  }
+
+  .gallery{
+    width: 100%;
+  }
+
 
 
 }

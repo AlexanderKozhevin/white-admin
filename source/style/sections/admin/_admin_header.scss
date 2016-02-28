@@ -1,22 +1,43 @@
-.block-admin_header{
-
-  // Our logo in the header
-  .element-logo{width: $avatar-size; height: $avatar-size;}
 
 
-  .element-add_item{position: fixed;right: 3*$primary-margin;top: $primary-margin;}
-  @media #{$screen-xs} {
-    .element-add_item{right: $primary-margin!important;top: auto!important;bottom: $primary-margin!important;}
+.admin{
+
+  &__logo{
+    width: $avatar-size;
+    height: $avatar-size;
+  }
+
+
+  .admin__new{
+    position: fixed;
+    right: 3*$primary-margin;
+    top: $primary-margin;
+
+    @media #{$screen-xs} {
+      right: $primary-margin!important;
+      top: auto!important;
+      bottom: $primary-margin!important;
+    }
   }
 
 
   //
   // !Shame! - sometimes we have to overload library styles
   //
-  .element-tabs_box, md-tabs-wrapper, md-tabs-canvas, md-pagination-wrapper{height: 100%!important;}
-  .md-tab{padding: 20px 60px!important;}
-  @media #{$screen-xs} {
-    .md-tab{padding: 20px 20px!important;}
+  &__tabs,
+  md-tabs-wrapper,
+  md-tabs-canvas,
+  md-pagination-wrapper{
+    height: 100%!important;
   }
+
+  .md-tab{
+    padding: 20px 60px!important;
+
+    @media #{$screen-xs} {
+      padding: 20px 20px!important;
+    }
+  }
+
 
 }

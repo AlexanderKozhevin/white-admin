@@ -1,8 +1,11 @@
 header
-  md-toolbar.block-admin_header
+
+  md-toolbar.admin
+    md-button.md-fab.md-accent.md-hue-2.admin__new(aria-label="Add item button" ng-click="new_item.broadcast()" ng-show="new_item.show")
+      md-icon.material-icons add
     div.md-toolbar-tools(layout="row")
-      md-icon.material-icons.element-logo(md-svg-src="/images/logo.svg" aria-label="logo" )
-      div.element-tabs_box(flex)
+      md-icon.material-icons.admin__logo(md-svg-src="/images/logo.svg" aria-label="logo" )
+      div.admin__tabs(flex)
         md-tabs.md-primary(md-align-tabs="bottom"  layout-fill md-center-tabs md-selected="root_tab_index")
           md-tab(label="{{'menu.workers' | translate}}" ui-sref="admin.workers.list" )
           md-tab(label="{{'menu.jobs' | translate}}" ui-sref="admin.jobs.list" )
@@ -33,10 +36,6 @@ header
               span {{'toolbar_menu.exit' | translate}}
       
       
-      //- md-button.md-icon-button(aria-label="user menu")
-      //-   md-icon.material-icons more_vert
-      md-button.md-fab.md-accent.md-hue-2.element-add_item(aria-label="Add item button" ng-click="new_item.broadcast()" ng-show="new_item.show")
-        md-icon.material-icons add
 
 include workers/snippets/worker_quick_view
 section(ui-view="admin") 
