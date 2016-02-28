@@ -3,10 +3,13 @@
   height: 100%;
 
   &__label{
-    height: $md-2-line-height!important;
+    min-height: $md-2-line-height!important;
+    line-height: $md-2-line-height!important;
     padding: 0px $primary-padding!important;
   }
 
+}
+.profiles-chart{
 }
 
 

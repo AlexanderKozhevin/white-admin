@@ -50,13 +50,12 @@ section.page-statistics(layout="column" layout-align="start center" )
     md-grid-tile.md-whiteframe-z1(md-rowspan="1" md-colspan="2"  md-colspan-xs="1")
       div.profiles(layout="column" )
       
-        div.profiles__label(role="label" layout="row" layout-align="start center")
-          div.md-subheader {{'stat.views' | translate}}
+        div.profiles__label.md-subheader(flex) {{'stat.views' | translate}}
           
         div.element-loading(layout="row" layout-align="center center" ng-hide="charts_data.profiles")
           md-progress-circular(md-mode="indeterminate"  md-diameter="60")
           
-        div(role="chart" flex ng-show="charts_data.profiles")
+        div.profiles-chart(ng-show="charts_data.profiles" layout="column" layout-fill)
           chartist(class="ct-chart" chartist-data="charts_data.profiles" chartist-chart-type="Line" chartist-chart-options="charts_options.profiles"  ng-show="charts_data.profiles")
           
     
