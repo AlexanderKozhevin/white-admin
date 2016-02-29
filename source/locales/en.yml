@@ -32,6 +32,8 @@ simple:
   date: "Enter date"
   password: "Forgot password"
   bids: "Bids"
+  bads: "Removed"
+  pending: "Pending"
 
 errors:
   double: "Duplicating labels!"

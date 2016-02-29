@@ -32,6 +32,8 @@ simple:
   date: "Введите дату"
   password: "Забыл пароль"
   bids: "Заявки"
+  bads: "Удаленные"
+  pending: "На модерации"
 
 
 errors:

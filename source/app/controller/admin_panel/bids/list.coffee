@@ -1,9 +1,8 @@
 angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restangular, MainHelper, $mdToast, clipboard, $mdDialog, $mdSidenav, $translate) ->
 
-  console.log 'bids'
 
   templates = Restangular.one('templates')
-  workers = Restangular.all('workers')
+  workers = Restangular.all('bids')
 
   $scope.selected = []
   $scope.jobs =
@@ -61,15 +60,22 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
   $scope.request_page = () ->
 
     $scope.progress = $q.defer()
-
+    $scope.workers = []
     selected_job = $scope.jobs.list.indexOf($scope.jobs.selected)
+    status = undefined
     if selected_job != 0
-      job_id = $scope.jobs.selected.id
+      if selected_job != 1
+        job_id = $scope.jobs.selected.id
+      else
+        job_id = undefined
+        status = 'bad'
+
     else
       job_id = undefined
+      status = 'pending'
 
-    params = MainHelper.counter_params($scope.search.value, job_id, $scope.ext_search.params)
-    # Restangular.one('workers', 'count').get(params).then (max_data) ->
+
+    params = MainHelper.counter_params_bids($scope.search.value, job_id, $scope.ext_search.params, status)
 
     workers.one('count').get(params).then (max_data) ->
       if max_data
@@ -77,9 +83,11 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
       else
         $scope.request_params.max = 0
 
-      params = MainHelper.configure_params_workers($scope.request_params, $scope.search.value, $scope.jobs.selected.id, $scope.ext_search.params)
+      params = MainHelper.configure_params_bids($scope.request_params, $scope.search.value, $scope.jobs.selected.id, $scope.ext_search.params, status)
+      console.log params
       workers.all('find').getList(params).then (data) ->
         $scope.workers = data
+        console.log $scope.workers
         for i in $scope.workers
           i.job_name = _.find($scope.jobs.list, {id: i.job}).name
         $scope.progress.resolve()
@@ -140,26 +148,17 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
             .position("bottom right")
             .hideDelay(3000)
         );
-    remove: () ->
-      for i in $scope.selected
-        _.remove($scope.workers, i)
-        # Uncomment this line to send 'DELETE' request to server to remove record
-        i.remove()
-      $translate('workers.removed').then (translation) ->
-        $mdToast.show(
-          $mdToast.simple()
-            .textContent(translation)
-            .position("bottom right")
-            .hideDelay(3000)
-        );
-      $scope.selected = []
-
+    remove: (item) ->
+      _.remove($scope.workers, item)
 
 
 
   templates.get().then (data) ->
-    $translate('simple.all').then (translation) ->
-      data.unshift({name: translation})
+    $translate(['simple.pending', 'simple.bads']).then (translation) ->
+
+      data.unshift({name: translation['simple.bads']})
+      data.unshift({name: translation['simple.pending']})
+
       $scope.jobs =
         list: data
         selected: data[0]

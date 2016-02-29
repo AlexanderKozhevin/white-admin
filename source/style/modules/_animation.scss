@@ -114,3 +114,17 @@
   opacity: 0;
   @include transform(translate3d(100px, 0, 0));
 }
+
+
+
+
+
+@keyframes my_fade_animation {
+  from { opacity:1; }
+  to { opacity:0; }
+}
+
+@-webkit-keyframes my_fade_animation {
+  from { opacity:1; }
+  to { opacity:0; }
+}

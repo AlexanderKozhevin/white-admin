@@ -1,4 +1,4 @@
-section.page-bids(layout="column" layout-align="start center" )
+section.page-bids(layout="column" layout-align="start center")
   md-content.md-whiteframe-z1.container
 
     div.listing(ng-cloak)
@@ -32,17 +32,9 @@ section.page-bids(layout="column" layout-align="start center" )
           md-button.md-icon-button.close_button(aria-label="user menu" ng-click="search.close()")
             md-icon.material-icons close    
 
-      
-      md-toolbar.md-table-toolbar.md-primary(ng-show='selected.length')
-        div.md-toolbar-tools
-          span {{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} {{'simple.selected' | translate}}
-          span(flex='')
-          md-button.md-icon-button(ng-click="actions.remove()")
-            md-icon delete
-          
-          
+  
       md-table-container
-        table(md-table md-progress="progress.promise" md-row-select="true" ng-model="selected")
+        table(md-table md-progress="progress.promise"  ng-model="selected")
           thead(md-head md-order="request_params.sort" md-on-reorder="request_page")
             tr(md-row )
               th(md-column)
@@ -51,13 +43,16 @@ section.page-bids(layout="column" layout-align="start center" )
               th(md-column md-numeric="true" md:order:by="createdAt") {{'simple.created' | translate}}
               th(md-column)
           tbody(md-body)
-            tr.animate-listing.worker(ng-repeat="item in workers  track by $index" md-row  md-select="item")
+            tr.animate-listing.worker(ng-repeat="item in workers  track by $index" md-row  ng-show="!item.hider")
               td.worker__photo.cursor(md-cell) 
                 img.element-avatar(ng-src="{{item.avatar}}" alt="&" ng-click="actions.side_nav(item)")
               td.cursor.cursor(md-cell ng-click="actions.side_nav(item)") {{item.name}}
               td.cursor(md-cell ng-click="actions.side_nav(item)") {{item.job_name}}
               td.cursor(md-cell ng-click="actions.side_nav(item)") {{item.createdAt | date}}
               td.worker-menu(md-cell)
-                
+                md-button.md-icon-button(aria-label="judge" )
+                  md-icon.material-icons check
+                md-button.md-icon-button(aria-label="judge" ng-click="item.hider = true")
+                  md-icon.material-icons delete
 
       data-md-table-pagination(md-limit="request_params.limit" md-page="request_params.index_page" md-label="{page: 'страница:', rowsPerPage: 'кол-во на стр.', of: 'из'}" md-total="{{request_params.max}}" md-on-paginate="request_page" md-options="[1,2,3]")
