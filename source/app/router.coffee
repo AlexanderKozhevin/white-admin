@@ -1,13 +1,7 @@
 angular.module('app').config ($stateProvider, $urlRouterProvider, $locationProvider) ->
 
   $locationProvider.html5Mode({enabled: true, requireBase: false})
-  $urlRouterProvider.otherwise("/");
-
-  $stateProvider.state 'main',
-    url: '/'
-    abstract: false,
-    views:
-      root_layout: {templateUrl: 'landing.html', controller: 'LandingCtrl'}
+  $urlRouterProvider.otherwise("/login");
 
   $stateProvider.state 'login',
     url: '/login'
@@ -15,18 +9,18 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $locationProvi
     views:
       root_layout: {templateUrl: 'login.html', controller: 'LoginCtrl'}
 
-  $stateProvider.state 'profile',
-    url: '/profile/:id'
-    abstract: false,
-    views:
-      root_layout: {templateUrl: 'profile.html', controller: 'ProfileCtrl'}
-
-
   $stateProvider.state 'admin',
     url: '/admin'
     abstract: true,
     views:
       root_layout: {templateUrl: 'admin_panel/main.html', controller: 'AdminPanelCtrl'}
+
+  $stateProvider.state 'admin.bids',
+    url: '/bids'
+    abstract: false,
+    views:
+      admin: {templateUrl: 'admin_panel/bids/list.html', controller: 'BidsListCtrl'}
+
 
 
   $stateProvider.state 'admin.statistics',

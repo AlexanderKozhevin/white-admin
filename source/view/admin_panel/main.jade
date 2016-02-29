@@ -8,10 +8,10 @@ header
       div.admin__tabs(flex)
         md-tabs.md-primary(md-align-tabs="bottom"  layout-fill md-center-tabs md-selected="root_tab_index")
           md-tab(label="{{'menu.workers' | translate}}" ui-sref="admin.workers.list" )
+          md-tab(label="{{'simple.bids' | translate}}" ui-sref="admin.bids" )
           md-tab(label="{{'menu.jobs' | translate}}" ui-sref="admin.jobs.list" )
           md-tab(label="{{'menu.stat' | translate}}" ui-sref="admin.statistics" )
-      
-
+          
       md-menu
         md-button.md-icon-button(aria-label="user menu" ng-click="toolbar_menu.open($mdOpenMenu, $event)")
           md-icon.material-icons more_vert

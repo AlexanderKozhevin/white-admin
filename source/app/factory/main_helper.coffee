@@ -45,10 +45,12 @@ angular.module('app').factory 'MainHelper',  ($window) ->
     index = 0
     if state.indexOf('workers') != -1
       index = 0
-    if state.indexOf('jobs') != -1
+    if state.indexOf('bids') != -1
       index = 1
-    if state.indexOf('stat') != -1
+    if state.indexOf('jobs') != -1
       index = 2
+    if state.indexOf('stat') != -1
+      index = 3
     return index
 
   result.is_new = (state) ->

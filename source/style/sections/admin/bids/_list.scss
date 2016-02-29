@@ -1,0 +1,23 @@
+.listing{
+
+
+  .worker{
+    &-menu{
+      text-align: right;
+      &__controls{opacity: 0;}
+
+      @media #{$screen-xs, $screen-sm} {
+        &__controls{opacity: 1;}
+      }
+    }
+
+    &:hover  .worker-menu__controls{opacity: 1;}
+
+    &__photo{
+      text-align: center;
+      width: 3*$primary-margin;
+      padding: $primary-padding/2 0px!important;
+    }
+  }
+
+}

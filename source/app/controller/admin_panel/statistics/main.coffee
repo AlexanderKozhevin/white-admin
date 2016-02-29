@@ -15,7 +15,6 @@ angular.module("app").controller "StatisticsCtrl",  ($scope, $timeout, Restangul
   # , 1000
 
 
-  io.sails.url = 'http://vnedesign.ru';
 
   io.socket.on 'message',  (data)->
     $scope.socket_data.cpu =  Math.round(data.cpu*100)

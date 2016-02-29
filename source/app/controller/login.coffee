@@ -10,7 +10,7 @@ angular.module("app").controller "LoginCtrl",  ($scope, $http, $state, $translat
     if event.keyCode == 13
       $scope.login()
   $scope.login = () ->
-    $http.get('http://vnedesign.ru/api/auth/login', {params: $scope.credentials}).success (data) ->
+    $http.get('http://app.vnedesign.ru/api/auth/login', {params: $scope.credentials}).success (data) ->
       if data == 'good'
         localStorageService.set('auth', true)
         $state.go('admin.workers.list')

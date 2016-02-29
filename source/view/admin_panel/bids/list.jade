@@ -1,0 +1,63 @@
+section.page-bids(layout="column" layout-align="start center" )
+  md-content.md-whiteframe-z1.container
+
+    div.listing(ng-cloak)
+    
+      md-toolbar.md-table-toolbar.md-default(layout="row" layout-align="start center" ng-hide="selected.length>0 || search.show")
+      
+        div.md-toolbar-tools
+          md-select(ng-model="jobs.selected" aria-label="selected job" ng-change="actions.set_job()")
+            md-option(ng-repeat="item in jobs.list" ng-value="item") {{item.name}}
+          span(flex)
+          md-button.md-icon-button(ng-click="search.open()")
+            md-icon search
+            
+          md-menu(md-position-mode="target-right target" )
+            md-button.md-icon-button(aria-label="worker submenu" ng-click="actions.menu.open($mdOpenMenu, $event)" )
+              md-icon.material-icons more_vert
+            md-menu-content(width="1")
+              md-menu-item(aria-label="extended search")
+              
+                // Disable button if job not selected or 'All'
+                md-button(ng-disabled="!jobs.selected.$$mdSelectId || jobs.selected.$$mdSelectId==1" ng-click="ext_search.open()")
+                  md-icon.material-icons search
+                  span {{'simple.extsearch' | translate}}
+
+
+      md-toolbar.md-table-toolbar.md-default(ng-show="search.show && !selected.length" )
+        div.md-toolbar-tools(layout="row" layout-align="start center" )
+          md-button.md-icon-button()
+            md-icon.material-icons search
+          input.element-input--transparent(ng-model="search.value" aria-label="search value" placeholder="{{'simple.search' | translate}}" type="text"  ng-keyup="search.keypress($event)" flex)
+          md-button.md-icon-button.close_button(aria-label="user menu" ng-click="search.close()")
+            md-icon.material-icons close    
+
+      
+      md-toolbar.md-table-toolbar.md-primary(ng-show='selected.length')
+        div.md-toolbar-tools
+          span {{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} {{'simple.selected' | translate}}
+          span(flex='')
+          md-button.md-icon-button(ng-click="actions.remove()")
+            md-icon delete
+          
+          
+      md-table-container
+        table(md-table md-progress="progress.promise" md-row-select="true" ng-model="selected")
+          thead(md-head md-order="request_params.sort" md-on-reorder="request_page")
+            tr(md-row )
+              th(md-column)
+              th(md-column md:order:by="name") {{'simple.name' | translate}}
+              th(md-column  md-numeric="true") {{'simple.job' | translate}}
+              th(md-column md-numeric="true" md:order:by="createdAt") {{'simple.created' | translate}}
+              th(md-column)
+          tbody(md-body)
+            tr.animate-listing.worker(ng-repeat="item in workers  track by $index" md-row  md-select="item")
+              td.worker__photo.cursor(md-cell) 
+                img.element-avatar(ng-src="{{item.avatar}}" alt="&" ng-click="actions.side_nav(item)")
+              td.cursor.cursor(md-cell ng-click="actions.side_nav(item)") {{item.name}}
+              td.cursor(md-cell ng-click="actions.side_nav(item)") {{item.job_name}}
+              td.cursor(md-cell ng-click="actions.side_nav(item)") {{item.createdAt | date}}
+              td.worker-menu(md-cell)
+                
+
+      data-md-table-pagination(md-limit="request_params.limit" md-page="request_params.index_page" md-label="{page: 'страница:', rowsPerPage: 'кол-во на стр.', of: 'из'}" md-total="{{request_params.max}}" md-on-paginate="request_page" md-options="[1,2,3]")

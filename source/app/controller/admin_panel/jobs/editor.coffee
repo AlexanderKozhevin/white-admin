@@ -99,7 +99,7 @@ angular.module("app").controller "JobsEditorCtrl",  ($scope, $timeout, FileReade
     upload: (files) ->
       if files && files.length
         $scope.file =  files[0];
-        path = 'http://vnedesign.ru/api/templates/uploadAvatar'
+        path = 'http://app.vnedesign.ru/api/templates/uploadAvatar'
         appload = Upload.upload({
           url: path,
           file: $scope.file,

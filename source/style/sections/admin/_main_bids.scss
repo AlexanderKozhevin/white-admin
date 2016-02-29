@@ -1,0 +1,11 @@
+.page-bids{
+
+  @import 'bids/list';
+  padding-bottom: 100px;
+
+  .container{
+      margin-top: $primary-margin;
+      @include transition(width 0.2s linear);
+      width: $primary-width;
+  }
+}

@@ -1,11 +1,10 @@
-angular.module("app").controller "ProfileCtrl",  ($scope, $state, Restangular, $window, Analytics) ->
+angular.module("app").controller "ProfileCtrl",  ($scope, $state, Restangular, $window) ->
 
 
   templates = Restangular.one('templates')
   workers = Restangular.one('workers')
 
 
-  Analytics.trackPage('/profile');
 
   if !$state.params.id
     $state.go('main')

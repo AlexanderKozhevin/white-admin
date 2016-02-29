@@ -31,6 +31,7 @@ simple:
   all: "All"
   date: "Enter date"
   password: "Forgot password"
+  bids: "Bids"
 
 errors:
   double: "Duplicating labels!"
