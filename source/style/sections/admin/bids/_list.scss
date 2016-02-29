@@ -1,6 +1,7 @@
-.listing{
+.listing_bids{
 
   .worker{
+
     &-menu{
       text-align: right;
       &__controls{opacity: 0;}
@@ -17,6 +18,20 @@
       width: 3*$primary-margin;
       padding: $primary-padding/2 0px!important;
     }
+  }
+
+  //
+  // Shame!
+  //
+
+  // There are some library issues)
+  .worker:hover{
+    background-color: #eeeeee !important;
+  }
+
+  table.md-table.md-row-select tbody.md-body > tr.md-row{
+    transition: none;
+    @include animate-listing();
   }
 
 }

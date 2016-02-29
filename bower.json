@@ -46,7 +46,6 @@
     "ng-file-upload": "~10.1.9",
     "angular-chartist.js": "~3.3.12",
     "chartist-plugin-tooltip": "git@github.com:Globegitter/chartist-plugin-tooltip.git#master",
-    "angular-material-data-table": "~0.9.5",
     "bourbon": "~4.2.6",
     "js-md5": "md5#~0.3.0",
     "angular-clipboard": "~1.2.1",
@@ -55,6 +54,7 @@
     "material-color": "~2.2.0",
     "sails.io.js": "~0.13.5",
     "angular-google-analytics": "~1.1.6",
-    "angular-local-storage": "~0.2.5"
+    "angular-local-storage": "~0.2.5",
+    "angular-material-data-table": "~0.9.11"
   }
 }

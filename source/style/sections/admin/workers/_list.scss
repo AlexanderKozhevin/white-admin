@@ -21,4 +21,13 @@
     }
   }
 
+  //
+  // Shame!
+  //
+
+  table.md-table.md-row-select tbody.md-body > tr.md-row{
+    transition: none;
+    @include animate-listing();
+  }
+
 }
