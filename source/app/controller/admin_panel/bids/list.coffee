@@ -152,7 +152,8 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
         data.save()
       _.remove($scope.workers, {id: item.id})
     approve: (item) ->
-      Restangular.one('bids', 'approve').get({id: item.id})
+      Restangular.one('bids', 'approve').get({id: item.id}).then () ->
+        $scope.request_params.max--
       _.remove($scope.workers, {id: item.id})
 
 
@@ -160,7 +161,7 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
 
 
 
-
+  $scope.progress = $q.defer()
   templates.get().then (data) ->
     $translate(['simple.pending', 'simple.bads']).then (translation) ->
 
@@ -170,4 +171,5 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
       $scope.jobs =
         list: data
         selected: data[0]
+      $scope.progress.resolve()
       $scope.request_page()

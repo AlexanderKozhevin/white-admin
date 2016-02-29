@@ -154,11 +154,12 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
 
 
 
-
+  $scope.progress = $q.defer()
   templates.get().then (data) ->
     $translate('simple.all').then (translation) ->
       data.unshift({name: translation})
       $scope.jobs =
         list: data
         selected: data[0]
+      $scope.progress.resolve()
       $scope.request_page()
