@@ -84,10 +84,8 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
         $scope.request_params.max = 0
 
       params = MainHelper.configure_params_bids($scope.request_params, $scope.search.value, $scope.jobs.selected.id, $scope.ext_search.params, status)
-      console.log params
       workers.all('find').getList(params).then (data) ->
         $scope.workers = data
-        console.log $scope.workers
         for i in $scope.workers
           i.job_name = _.find($scope.jobs.list, {id: i.job}).name
         $scope.progress.resolve()
@@ -148,8 +146,18 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
             .position("bottom right")
             .hideDelay(3000)
         );
-    remove: (item) ->
-      _.remove($scope.workers, item)
+    reject: (item) ->
+      Restangular.one('bids', item.id).get().then (data) ->
+        data.status = 'bad'
+        data.save()
+      _.remove($scope.workers, {id: item.id})
+    approve: (item) ->
+      Restangular.one('bids', 'approve').get({id: item.id})
+      _.remove($scope.workers, {id: item.id})
+
+
+
+
 
 
 
