@@ -1,4 +1,6 @@
-angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Restangular, MainHelper, $mdToast, clipboard, $mdDialog, $mdSidenav, $translate) ->
+angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Restangular, MainHelper, $mdToast, clipboard, $mdDialog, $mdSidenav, $translate, $mixpanel) ->
+
+  $mixpanel.track('my event');
 
   templates = Restangular.one('templates')
   workers = Restangular.all('workers')

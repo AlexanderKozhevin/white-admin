@@ -2,7 +2,7 @@ angular.module("app").controller "JobsListCtrl",  ($scope, $timeout , $q, Restan
 
   $scope.selected = []
 
-  templates = Restangular.one('templates')
+  templates = Restangular.one('jobs')
 
 
   $scope.request_params =
@@ -22,7 +22,6 @@ angular.module("app").controller "JobsListCtrl",  ($scope, $timeout , $q, Restan
       params = MainHelper.configure_params_jobs($scope.request_params, $scope.search.value)
 
       templates.all('find').getList(params).then (data) ->
-        console.log data
         $scope.jobs = data
         $scope.progress.resolve()
 

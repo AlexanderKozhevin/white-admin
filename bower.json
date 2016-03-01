@@ -42,7 +42,6 @@
     "lodash": "~3.10.1",
     "flag-icon-css": "~0.8.5",
     "angular-translate-loader-static-files": "~2.8.1",
-    "angular-google-chart": "0.1.0-beta.1",
     "ng-file-upload": "~10.1.9",
     "angular-chartist.js": "~3.3.12",
     "chartist-plugin-tooltip": "git@github.com:Globegitter/chartist-plugin-tooltip.git#master",
@@ -52,9 +51,9 @@
     "angular-fileupload": "angular-filereader#~1.0.4",
     "chartist": "~0.9.5",
     "material-color": "~2.2.0",
-    "sails.io.js": "~0.13.5",
     "angular-google-analytics": "~1.1.6",
     "angular-local-storage": "~0.2.5",
-    "angular-material-data-table": "~0.9.11"
+    "angular-material-data-table": "~0.9.11",
+    "angular-mixpanel": "~1.1.2"
   }
 }

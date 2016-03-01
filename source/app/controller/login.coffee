@@ -1,8 +1,8 @@
 angular.module("app").controller "LoginCtrl",  ($scope, $http, $state, $translate, $mdToast, localStorageService) ->
 
   $scope.credentials = {
-    login: ""
-    pwd: ""
+    email: ""
+    pass: ""
   }
 
 
@@ -11,7 +11,8 @@ angular.module("app").controller "LoginCtrl",  ($scope, $http, $state, $translat
       $scope.login()
   $scope.login = () ->
     $http.get('http://app.vnedesign.ru/api/auth/login', {params: $scope.credentials}).success (data) ->
-      if data == 'good'
+      console.log data
+      if data == 'success'
         localStorageService.set('auth', true)
         $state.go('admin.workers.list')
       else

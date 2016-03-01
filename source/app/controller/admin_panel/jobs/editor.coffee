@@ -3,7 +3,7 @@ angular.module("app").controller "JobsEditorCtrl",  ($scope, $timeout, FileReade
   # Selected parameters from list
   $scope.selected = []
 
-  templates = Restangular.one('templates')
+  templates = Restangular.one('jobs')
 
 
   #
@@ -99,7 +99,7 @@ angular.module("app").controller "JobsEditorCtrl",  ($scope, $timeout, FileReade
     upload: (files) ->
       if files && files.length
         $scope.file =  files[0];
-        path = 'http://app.vnedesign.ru/api/templates/uploadAvatar'
+        path = 'http://app.vnedesign.ru/api/jobs/uploadFile'
         appload = Upload.upload({
           url: path,
           file: $scope.file,
@@ -113,7 +113,7 @@ angular.module("app").controller "JobsEditorCtrl",  ($scope, $timeout, FileReade
 
         # Upload promise
         appload.then (resp) ->
-          $scope.job.avatar.url = resp.data
+          $scope.job.avatar.url = 'http://s3.amazonaws.com/polymath-storage/' + resp.data.files[0].fd
           $scope.upload_promise = false
 
         # Filereader helps to show image right after selection - before image has uploaded to server

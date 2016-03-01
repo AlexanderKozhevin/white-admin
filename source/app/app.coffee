@@ -1,11 +1,13 @@
 app = angular.module('app', ['ui.router', 'ngSanitize',  'ngRoute', 'ngAnimate',
   'ngMaterial',  'restangular', 'templates', 'pascalprecht.translate', 'ngLocale',
-  'ngCookies', 'ngMessages', 'tmh.dynamicLocale', 'ngWebSocket', 'googlechart', 'md.data.table', 'ngFileUpload', 'filereader',
-  'angular-clipboard',  'angular-chartist', 'LocalStorageModule'
+  'ngCookies', 'ngMessages', 'tmh.dynamicLocale', 'md.data.table', 'ngFileUpload', 'filereader',
+  'angular-clipboard',  'angular-chartist', 'LocalStorageModule', 'analytics.mixpanel'
   ])
 
 
-io.sails.url = 'http://app.vnedesign.ru';
+
+app.config ($mixpanelProvider) ->
+  $mixpanelProvider.apiKey('04f58322b64281927253b4ea2043853f');
 
 app.config ($mdThemingProvider) ->
   $mdThemingProvider.theme('default').primaryPalette('teal')

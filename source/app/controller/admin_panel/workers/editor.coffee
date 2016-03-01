@@ -115,16 +115,20 @@ angular.module("app").controller "WorkersEditorCtrl",  ($scope, Restangular, $st
         $scope.worker.avatar.loading = true
         FileReader.readAsDataURL(file, $scope).then (data_url) ->
           $scope.worker.avatar.data_url = data_url
-          path = 'http://app.vnedesign.ru/api/templates/uploadAvatar'
+          path = 'http://app.vnedesign.ru/api/templates/uploadFile'
           appload = Upload.upload({
             url: path,
-            file: file,
+            file: file
             fileFormDataName: "file",
             withCredentials: true,
             method: 'POST'
           })
           appload.then (resp) ->
+            console.log resp
             $scope.worker.avatar.loading = false
             $scope.worker.avatar.url = resp.data
           ,(resp) ->
-            console.log 'upload error'
+            console.log resp
+          ,(evt) ->
+            value = parseInt(100.0 * evt.loaded / evt.total)
+            console.log value

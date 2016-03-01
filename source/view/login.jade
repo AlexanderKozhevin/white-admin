@@ -4,10 +4,10 @@ section.page-login(layout="column" layout-align="center center")
     md-card-content(layout="column")
       md-input-container.md-icon-float.md-block()
         md-icon.md-primary(aria-label="Menu" class="material-icons") email
-        input(ng-model="credentials.login"  placeholder="e-mail" type="text")
+        input(ng-model="credentials.email"  placeholder="e-mail" type="text")
       md-input-container.md-icon-float.md-block()
         md-icon.md-primary(aria-label="Menu" class="material-icons") lock_open
-        input(ng-model="credentials.pwd"  placeholder="password" type="password" ng-keypress="keypress($event)")
+        input(ng-model="credentials.pass"  placeholder="password" type="password" ng-keypress="keypress($event)")
       div.controls(layout="row" layout-align="start center")
         div.md-body-1.controls__text(flex) {{'simple.password' | translate}}
         md-button.md-fab.md-primary.controls__button(aria-label='add'  ng-click="login()")
