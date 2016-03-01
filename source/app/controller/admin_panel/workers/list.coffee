@@ -37,12 +37,11 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
     open: () ->
 
       # Include allowed types only
-      this.params = []
+      $scope.ext_search.params = []
 
       # As far as we need only data - use 'angular.copy' - it prevents object inheritance properties
       for i in angular.copy($scope.jobs.selected.params)
         if this.allowed_types.indexOf(i.type) != -1
-
           # Check if we compare this type
           if this.compare_types.indexOf(i.type) != -1
             i.compare = true
@@ -68,8 +67,8 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
       job_id = undefined
 
     params = MainHelper.counter_params($scope.search.value, job_id, $scope.ext_search.params)
+    console.log params
     # Restangular.one('workers', 'count').get(params).then (max_data) ->
-
     workers.one('count').get(params).then (max_data) ->
       if max_data
         $scope.request_params.max = max_data
@@ -119,7 +118,7 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
   $scope.actions =
     side_nav: (item) ->
       user_job = _.find($scope.jobs.list, {id: item.job})
-      $scope.worker_preview.set(MainHelper.worker_data(item, user_job))
+      $scope.worker_preview.set(MainHelper.worker_data(angular.copy(item), angular.copy(user_job)))
       $mdSidenav('left').toggle()
     set_job: () ->
       $scope.ext_search.params = [];

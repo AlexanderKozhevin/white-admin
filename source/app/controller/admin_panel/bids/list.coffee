@@ -1,7 +1,7 @@
 angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restangular, MainHelper, $mdToast, clipboard, $mdDialog, $mdSidenav, $translate) ->
 
 
-  templates = Restangular.one('templates')
+  templates = Restangular.one('jobs')
   workers = Restangular.all('bids')
 
   $scope.selected = []

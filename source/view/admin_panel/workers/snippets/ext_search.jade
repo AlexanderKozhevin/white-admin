@@ -8,41 +8,41 @@ md-dialog.extsearch()
     
   md-dialog-content
     md-list.list
-      md-list-item.md-2-line(ng-repeat="item in ext_search.params" )
+      md-list-item.md-2-line(ng-repeat="item_ext in ext_search.params" )
         div.md-list-item-text.list-item(layout="row" layout-align="start center" )
         
           // Label Column
-          div.md-subheader.list-item__name() {{item.name}}
+          div.md-subheader.list-item__name() {{item_ext.name}}
           
           // Compare Column
-          md-button.md-title.md-icon-button.md-title(ng-click="ext_search.toggle_compare(item)" ng-if="item.compare") {{item.compare_value.value}}
-          md-button.md-title.md-icon-button(ng-if="!item.compare" aria-label="no compare")
+          md-button.md-title.md-icon-button.md-title(ng-click="ext_search.toggle_compare(item_ext)" ng-if="item_ext.compare") {{item_ext.compare_value.value}}
+          md-button.md-title.md-icon-button(ng-if="!item_ext.compare" aria-label="no compare")
           
           // Input Column
-          div(flex layout="row" ng-switch="item.type")
+          div(flex layout="row" ng-switch="item_ext.type")
           
             // String type
             md-input-container.input_container-simplified(ng-switch-when="string" flex)
-              input(ng-model="item.value" aria-label="string query" type="text") 
+              input(ng-model="item_ext.value" aria-label="string query" type="text") 
 
             // Number type
             md-input-container.input_container-simplified(ng-switch-when="number" flex)
-              input(ng-model="item.value" aria-label="number query" type="number") 
+              input(ng-model="item_ext.value" aria-label="number query" type="number") 
 
             // Text type
             md-input-container.md-block.input_container-simplified(ng-switch-when="text" flex)
-              textarea(ng-model="item.value" columns="45" rows="5" aria-label="text query")
+              textarea(ng-model="item_ext.value" columns="45" rows="5" aria-label="text query")
 
             // Date type
-            md-datepicker(ng-model="item.value" md-placeholder="Enter date" ng-switch-when="date" flex)
+            md-datepicker(ng-model="item_ext.value" md-placeholder="Enter date" ng-switch-when="date" flex)
 
             // Select type
             md-select(ng-model="item.value" aria-label="select query" ng-switch-when="select" flex)
-              md-option(ng-repeat="one in item.values" ng-value="one") {{one}}
+              md-option(ng-repeat="part in item.values" ng-value="part") {{part}}
 
             // Multiple - select type
-            md-select(ng-model="item.value" aria-label="multi select query" multiple ng-switch-when="multiple select" flex)
-              md-option(ng-repeat="one in item.values" ng-value="one") {{one}}
+            md-select(ng-model="item_ext.value" aria-label="multi select query" multiple ng-switch-when="multiple select" flex)
+              md-option(ng-repeat="part in item_ext.values" ng-value="part") {{part}}
 
 
         

@@ -41,6 +41,8 @@ angular.module('app').factory 'MainHelper',  ($window) ->
 
       json.params.push(parameter)
     return json
+
+
   result.select_active_tab = (state) ->
     index = 0
     if state.indexOf('workers') != -1
@@ -81,6 +83,7 @@ angular.module('app').factory 'MainHelper',  ($window) ->
 
     if is_ext
       json.where = {}
+      json.where.job = job
       for i in ext_search_params
         if i.value
 
@@ -197,6 +200,7 @@ angular.module('app').factory 'MainHelper',  ($window) ->
     if is_ext
       json.querybig = {}
       json.querybig.where = {}
+      json.querybig.where.job = selected_job
       for i in ext_search_params
         if i.value
 
