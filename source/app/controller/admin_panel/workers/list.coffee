@@ -1,8 +1,7 @@
 angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Restangular, MainHelper, $mdToast, clipboard, $mdDialog, $mdSidenav, $translate, $mixpanel) ->
 
-  $mixpanel.track('my event');
 
-  templates = Restangular.one('templates')
+  templates = Restangular.one('jobs')
   workers = Restangular.all('workers')
 
   $scope.selected = []
