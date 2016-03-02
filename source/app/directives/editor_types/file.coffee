@@ -39,7 +39,7 @@ angular.module("app").directive "editorFile", (Upload, $window) ->
 
             scope.prepare()
 
-            path = 'http://app.vnedesign.ru/api/templates/uploadAvatar'
+            path = 'http://app.vnedesign.ru/api/jobs/uploadFile'
             appload = Upload.upload({
               url: path,
               file: file,
@@ -48,14 +48,13 @@ angular.module("app").directive "editorFile", (Upload, $window) ->
               method: 'POST'
             })
             appload.then (resp) ->
-              scope.file.url = resp.data
+              scope.file.url = 'http://s3.amazonaws.com/polymath-storage/' + resp.data.files[0].fd
               scope.loading = false
               scope.prepare()
             ,(resp) ->
               console.log 'upload error'
             ,(evt) ->
               value = parseInt(100.0 * evt.loaded / evt.total)
-              scope.loading = value
 
 
 

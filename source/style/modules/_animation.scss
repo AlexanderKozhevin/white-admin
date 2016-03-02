@@ -85,6 +85,26 @@
   }
 }
 
+
+
+@include keyframes(avatar-uploading) {
+  0% {
+
+    border: 1px solid rgba($clr-grey, 0.5);
+
+  }
+  50% {
+
+    border: 1px solid rgba($clr-teal, 0.5);
+
+  }
+  1000% {
+
+    border: 1px solid rgba($clr-grey, 0.5);
+
+  }
+}
+
 //
 // Animate top-layer view - "login", "landing", "admin panel"
 //

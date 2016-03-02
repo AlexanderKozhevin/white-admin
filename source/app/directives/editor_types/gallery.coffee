@@ -53,7 +53,7 @@ angular.module("app").directive "editorGallery", ($timeout, FileReader, Upload, 
               })
               file_object = _.last(scope.photos)
               scope.prepare()
-              path = 'http://app.vnedesign.ru/api/templates/uploadAvatar'
+              path = 'http://app.vnedesign.ru/api/jobs/uploadFile'
               appload = Upload.upload({
                 url: path,
                 file: file,
@@ -62,7 +62,7 @@ angular.module("app").directive "editorGallery", ($timeout, FileReader, Upload, 
                 method: 'POST'
               })
               appload.then (resp) ->
-                file_object.url = resp.data
+                file_object.url = 'http://s3.amazonaws.com/polymath-storage/' + resp.data.files[0].fd
                 file_object.progress = undefined
                 scope.prepare()
               ,(resp) ->

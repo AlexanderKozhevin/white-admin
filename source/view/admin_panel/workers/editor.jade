@@ -4,11 +4,12 @@ div.editor
     div.md-toolbar-tools
       div(ng-click="show_seleced()") {{'simple.editor' | translate}}
       span(flex)
+      md-progress-circular.md-hue-2(md-mode="indeterminate" md-diameter="40px" ng-show="worker.saving_process")
       md-button(ng-disabled="actions.is_save_disabled(worker)" ng-click="actions.save()") {{'simple.save' | translate}}
       
       
   div.basic(layout="row" layout-align="start center")
-    div.cursor.element-user-avatar.basic-avatar(layout="column" layout-align="center center"  ng-style="{'background-image': 'url('+get_img()+')' }" ngf-select="actions.upload_avatar($files)" ngf-multiple="false" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB")
+    div.cursor.element-user-avatar.basic-avatar(layout="column" layout-align="center center" ng-class="{'basic-avatar--glow': worker.avatar.loading}"  ng-style="{'background-image': 'url('+get_img()+')' }" ngf-select="actions.upload_avatar($files)" ngf-multiple="false" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="3MB")
       span.basic-avatar__text.md-subheader(ng-hide="worker.avatar.url || worker.avatar.data_url" ) {{'workers.select' | translate}}
       
     div.basic-info(layout="column" layout-align="space-around start" flex)

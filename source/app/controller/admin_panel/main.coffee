@@ -1,4 +1,4 @@
-angular.module("app").controller "AdminPanelCtrl",  ($scope, $rootScope, $state, MainHelper, $timeout, tmhDynamicLocale, $translate) ->
+angular.module("app").controller "AdminPanelCtrl",  ($scope, $rootScope, $state, MainHelper, $timeout, tmhDynamicLocale, $translate, localStorageService) ->
 
 
 
@@ -12,7 +12,9 @@ angular.module("app").controller "AdminPanelCtrl",  ($scope, $rootScope, $state,
     set: (value) ->
       this.show = value
 
-
+  $scope.exit = () ->
+    localStorageService.set('auth', false)
+    $state.go('login')
 
   $scope.toolbar_menu =
     element: null

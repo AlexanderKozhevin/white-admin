@@ -1,59 +1,62 @@
 section.page-statistics(layout="column" layout-align="start center" )
 
   md-content.md-whiteframe-z1.box-main(layout="column" layout-fill)
-    div.header(layout="row" layout-align="space-between center")
-    
-      div.md-subheader {{'stat.site' | translate}}
-      
-      div.header__range
-        md-datepicker(ng-model="date_range.from" md-placeholder="Date from" ng-change="request.main()" md-max-date="date_range.to")
-        md-datepicker(ng-model="date_range.to" md-placeholder="Date to" ng-change="request.main()" md-min-date="date_range.from" md-max-date="date_range.today")
-        
-    chartist(flex class="ct-chart" chartist-data="charts_data.main" chartist-chart-type="Line" chartist-chart-options="charts_options.main" chartist-events="events" ng-show="charts_data.main")
-    
-    div.element-loading(layout="row" layout-align="center center" ng-hide="charts_data.main")
-      md-progress-circular(md-mode="indeterminate" md-diameter="60")
+    h1 stat
 
-
-  md-grid-list.cards-box( md-cols="3" md-cols-md="3"  md-cols-gt-md="3"  md-row-height="290px" md-row-height-gt-sm="1:1" md-gutter="15px" role="cards box" md-cols-sm="2" md-cols-xs="1"  ng-cloak)
-    md-grid-tile.md-whiteframe-z1(md-rowspan="1" md-colspan="2"  md-colspan-xs="1")
-      div.box-cpu(layout="row" layout-align="space-between center" )
-        
-        div.circle(layout="column" layout-align="start center" hide-xs)
-          component-data-ring(ng-model="socket_data.cpu")
-          div.md-subhead.circle__label {{'stat.cpu' | translate}}
-          
-        div.box-chart(flex layout="column" )
-          div.md-subheader.box-chart__label(hide-gt-xs role="hide-sm label") {{'stat.cpu' | translate}}
-          chartist.box-chart__chart(class="ct-chart" chartist-data="charts_data.cpu" chartist-chart-type="Line" chartist-chart-options="charts_options.cpu" )
-          div.element-loading(layout="row" layout-align="center center" ng-hide="charts_data.cpu")
-            md-progress-circular(md-mode="indeterminate"  md-diameter="60")
-
-        
-    md-grid-tile.onef.md-whiteframe-z1(md-rowspan="1" md-colspan="1"  )
-      div.box-memory(layout="column" layout-align="center center")
-        component-data-ring(ng-model="socket_data.ram")
-        div.box-memory__label.md-subhead() {{'stat.ram' | translate}}
-        
-        
-    md-grid-tile.md-whiteframe-z1.box-traffic(md-rowspan="1" md-colspan="1"  )
-      div.container(layout="column" layout-align="start center")
-        md-list.container-list
-          md-subheader.md-no-sticky {{'stat.traffic' | translate}}
-          md-list-item.md-2-line.container-list__item(ng-repeat="item in traffic")
-            div.md-list-item-text(layout="row")
-              span(flex) {{item.label}}
-              span {{item.value}}
-          
-  
-    md-grid-tile.md-whiteframe-z1(md-rowspan="1" md-colspan="2"  md-colspan-xs="1")
-      div.profiles(layout="column" )
-      
-        div.profiles__label.md-subheader() {{'stat.views' | translate}}
-        div.element-loading(layout="row" layout-align="center center" ng-hide="charts_data.profiles")
-          md-progress-circular(md-mode="indeterminate"  md-diameter="60")
-          
-        div.profiles-chart(ng-show="charts_data.profiles" layout="column")
-          chartist.profiles-chart__chart(class="ct-chart" chartist-data="charts_data.profiles" chartist-chart-type="Line" chartist-chart-options="charts_options.profiles"  ng-show="charts_data.profiles")
-          
-    
+  //- md-content.md-whiteframe-z1.box-main(layout="column" layout-fill)
+  //-   div.header(layout="row" layout-align="space-between center")
+  //-   
+  //-     div.md-subheader {{'stat.site' | translate}}
+  //-     
+  //-     div.header__range
+  //-       md-datepicker(ng-model="date_range.from" md-placeholder="Date from" ng-change="request.main()" md-max-date="date_range.to")
+  //-       md-datepicker(ng-model="date_range.to" md-placeholder="Date to" ng-change="request.main()" md-min-date="date_range.from" md-max-date="date_range.today")
+  //-       
+  //-   chartist(flex class="ct-chart" chartist-data="charts_data.main" chartist-chart-type="Line" chartist-chart-options="charts_options.main" chartist-events="events" ng-show="charts_data.main")
+  //-   
+  //-   div.element-loading(layout="row" layout-align="center center" ng-hide="charts_data.main")
+  //-     md-progress-circular(md-mode="indeterminate" md-diameter="60")
+  //- 
+  //- 
+  //- md-grid-list.cards-box( md-cols="3" md-cols-md="3"  md-cols-gt-md="3"  md-row-height="290px" md-row-height-gt-sm="1:1" md-gutter="15px" role="cards box" md-cols-sm="2" md-cols-xs="1"  ng-cloak)
+  //-   md-grid-tile.md-whiteframe-z1(md-rowspan="1" md-colspan="2"  md-colspan-xs="1")
+  //-     div.box-cpu(layout="row" layout-align="space-between center" )
+  //-       
+  //-       div.circle(layout="column" layout-align="start center" hide-xs)
+  //-         component-data-ring(ng-model="socket_data.cpu")
+  //-         div.md-subhead.circle__label {{'stat.cpu' | translate}}
+  //-         
+  //-       div.box-chart(flex layout="column" )
+  //-         div.md-subheader.box-chart__label(hide-gt-xs role="hide-sm label") {{'stat.cpu' | translate}}
+  //-         chartist.box-chart__chart(class="ct-chart" chartist-data="charts_data.cpu" chartist-chart-type="Line" chartist-chart-options="charts_options.cpu" )
+  //-         div.element-loading(layout="row" layout-align="center center" ng-hide="charts_data.cpu")
+  //-           md-progress-circular(md-mode="indeterminate"  md-diameter="60")
+  //- 
+  //-       
+  //-   md-grid-tile.onef.md-whiteframe-z1(md-rowspan="1" md-colspan="1"  )
+  //-     div.box-memory(layout="column" layout-align="center center")
+  //-       component-data-ring(ng-model="socket_data.ram")
+  //-       div.box-memory__label.md-subhead() {{'stat.ram' | translate}}
+  //-       
+  //-       
+  //-   md-grid-tile.md-whiteframe-z1.box-traffic(md-rowspan="1" md-colspan="1"  )
+  //-     div.container(layout="column" layout-align="start center")
+  //-       md-list.container-list
+  //-         md-subheader.md-no-sticky {{'stat.traffic' | translate}}
+  //-         md-list-item.md-2-line.container-list__item(ng-repeat="item in traffic")
+  //-           div.md-list-item-text(layout="row")
+  //-             span(flex) {{item.label}}
+  //-             span {{item.value}}
+  //-         
+  //- 
+  //-   md-grid-tile.md-whiteframe-z1(md-rowspan="1" md-colspan="2"  md-colspan-xs="1")
+  //-     div.profiles(layout="column" )
+  //-     
+  //-       div.profiles__label.md-subheader() {{'stat.views' | translate}}
+  //-       div.element-loading(layout="row" layout-align="center center" ng-hide="charts_data.profiles")
+  //-         md-progress-circular(md-mode="indeterminate"  md-diameter="60")
+  //-         
+  //-       div.profiles-chart(ng-show="charts_data.profiles" layout="column")
+  //-         chartist.profiles-chart__chart(class="ct-chart" chartist-data="charts_data.profiles" chartist-chart-type="Line" chartist-chart-options="charts_options.profiles"  ng-show="charts_data.profiles")
+  //-         
+  //-   

@@ -1,6 +1,10 @@
 .editor{
   .basic-avatar{
 
+    &--glow{
+      @include animation(avatar-uploading 1s linear infinite);
+    }
+
     &:hover{
       background-color: rgba($clr-grey, 0.15);
     }
@@ -9,6 +13,8 @@
       background-color: transparent;
       text-align: center;
     }
+
+
   }
 
   .basic-info{

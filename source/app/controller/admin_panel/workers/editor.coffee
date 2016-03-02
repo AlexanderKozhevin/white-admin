@@ -3,7 +3,7 @@ angular.module("app").controller "WorkersEditorCtrl",  ($scope, Restangular, $st
   $scope.method = $state.params.method
 
   workers = Restangular.one('workers')
-  templates = Restangular.one('templates')
+  templates = Restangular.one('jobs')
 
 
 
@@ -115,7 +115,7 @@ angular.module("app").controller "WorkersEditorCtrl",  ($scope, Restangular, $st
         $scope.worker.avatar.loading = true
         FileReader.readAsDataURL(file, $scope).then (data_url) ->
           $scope.worker.avatar.data_url = data_url
-          path = 'http://app.vnedesign.ru/api/templates/uploadFile'
+          path = 'http://app.vnedesign.ru/api/jobs/uploadFile'
           appload = Upload.upload({
             url: path,
             file: file
@@ -126,9 +126,8 @@ angular.module("app").controller "WorkersEditorCtrl",  ($scope, Restangular, $st
           appload.then (resp) ->
             console.log resp
             $scope.worker.avatar.loading = false
-            $scope.worker.avatar.url = resp.data
+            $scope.worker.avatar.url = 'http://s3.amazonaws.com/polymath-storage/' + resp.data.files[0].fd
           ,(resp) ->
             console.log resp
           ,(evt) ->
             value = parseInt(100.0 * evt.loaded / evt.total)
-            console.log value
