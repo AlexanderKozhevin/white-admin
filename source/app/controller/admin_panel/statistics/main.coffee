@@ -7,6 +7,10 @@ angular.module("app").controller "StatisticsCtrl",  ($scope, $timeout, Restangul
     dat.setDate(dat.getDate() - days);
     return dat;
 
+  $scope.blocks =
+    workers: 0
+    jobs: 0
+    bids: 0
 
   $scope.charts_options =
     main: ChartConfig.options_main
@@ -20,6 +24,9 @@ angular.module("app").controller "StatisticsCtrl",  ($scope, $timeout, Restangul
     to:  new Date()
 
   $scope.request =
+    block: () ->
+      Restangular.one('stat', 'general').get().then (data) ->
+        $scope.blocks = data
     main: () ->
       $scope.charts_data.main = false
       $scope.charts_data.no_data = false
@@ -45,6 +52,7 @@ angular.module("app").controller "StatisticsCtrl",  ($scope, $timeout, Restangul
 
 
   $scope.request.main()
+  $scope.request.block()
   # stat = Restangular.one('stat')
   #
   # $scope.socket_data =

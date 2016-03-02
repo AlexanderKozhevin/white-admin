@@ -2,10 +2,7 @@
 
 
   @import "statistics/chart_main";
-  @import "statistics/chart_cpu";
-  @import "statistics/chart_profiles";
-  @import "statistics/table_traffic";
-  @import "statistics/circle_memory";
+
 
 
   .cards-box{
@@ -13,6 +10,14 @@
     margin-top: $primary-margin / 2;
 
     & > * {background-color: white;}
+
+    .container{
+      width: 100%;
+      height: 100%;
+
+      &__value{font-weight: 300;}
+      &__label{margin-top: $primary-margin; font-weight: 300;}
+    }
   }
 
 }

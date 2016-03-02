@@ -16,21 +16,24 @@ section.page-statistics(layout="column" layout-align="start center" )
     div.element-loading(layout="row" layout-align="center center" ng-hide="charts_data.main || charts_data.no_data")
       md-progress-circular(md-mode="indeterminate" md-diameter="60")
   
-  //- 
-  //- md-grid-list.cards-box( md-cols="3" md-cols-md="3"  md-cols-gt-md="3"  md-row-height="290px" md-row-height-gt-sm="1:1" md-gutter="15px" role="cards box" md-cols-sm="2" md-cols-xs="1"  ng-cloak)
-  //-   md-grid-tile.md-whiteframe-z1(md-rowspan="1" md-colspan="2"  md-colspan-xs="1")
-  //-     div.box-cpu(layout="row" layout-align="space-between center" )
-  //-       
-  //-       div.circle(layout="column" layout-align="start center" hide-xs)
-  //-         component-data-ring(ng-model="socket_data.cpu")
-  //-         div.md-subhead.circle__label {{'stat.cpu' | translate}}
-  //-         
-  //-       div.box-chart(flex layout="column" )
-  //-         div.md-subheader.box-chart__label(hide-gt-xs role="hide-sm label") {{'stat.cpu' | translate}}
-  //-         chartist.box-chart__chart(class="ct-chart" chartist-data="charts_data.cpu" chartist-chart-type="Line" chartist-chart-options="charts_options.cpu" )
-  //-         div.element-loading(layout="row" layout-align="center center" ng-hide="charts_data.cpu")
-  //-           md-progress-circular(md-mode="indeterminate"  md-diameter="60")
-  //- 
+  
+  md-grid-list.cards-box( md-cols="3" md-cols-md="3"  md-cols-gt-md="3"  md-row-height="290px" md-row-height-gt-sm="1:1" md-gutter="15px" role="cards box" md-cols-sm="2" md-cols-xs="1"  ng-cloak)
+    md-grid-tile.md-whiteframe-z1(md-rowspan="1" md-colspan="1"  md-colspan-xs="1")
+      div.container( layout="column" layout-align="center center")
+        div.container__value.md-display-2 {{blocks.workers}}
+        div.container__label.md-title {{'menu.workers' | translate}}
+
+    md-grid-tile.md-whiteframe-z1(md-rowspan="1" md-colspan="1"  md-colspan-xs="1")
+      div.container( layout="column" layout-align="center center")
+        div.container__value.md-display-2 {{blocks.jobs}}
+        div.container__label.md-title {{'menu.jobs' | translate}}
+  
+    md-grid-tile.md-whiteframe-z1(md-rowspan="1" md-colspan="1"  md-colspan-xs="1")
+      div.container( layout="column" layout-align="center center")
+        div.container__value.md-display-2 {{blocks.jobs}}
+        div.container__label.md-title {{'simple.bids' | translate}}
+      
+          
   //-       
   //-   md-grid-tile.onef.md-whiteframe-z1(md-rowspan="1" md-colspan="1"  )
   //-     div.box-memory(layout="column" layout-align="center center")
