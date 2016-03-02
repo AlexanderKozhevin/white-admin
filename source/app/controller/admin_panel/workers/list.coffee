@@ -67,7 +67,6 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
       job_id = undefined
 
     params = MainHelper.counter_params($scope.search.value, job_id, $scope.ext_search.params)
-    console.log params
     # Restangular.one('workers', 'count').get(params).then (max_data) ->
     workers.one('count').get(params).then (max_data) ->
       if max_data

@@ -1,22 +1,21 @@
 section.page-statistics(layout="column" layout-align="start center" )
 
-  md-content.md-whiteframe-z1.box-main(layout="column" layout-fill)
-    h1 stat
 
-  //- md-content.md-whiteframe-z1.box-main(layout="column" layout-fill)
-  //-   div.header(layout="row" layout-align="space-between center")
-  //-   
-  //-     div.md-subheader {{'stat.site' | translate}}
-  //-     
-  //-     div.header__range
-  //-       md-datepicker(ng-model="date_range.from" md-placeholder="Date from" ng-change="request.main()" md-max-date="date_range.to")
-  //-       md-datepicker(ng-model="date_range.to" md-placeholder="Date to" ng-change="request.main()" md-min-date="date_range.from" md-max-date="date_range.today")
-  //-       
-  //-   chartist(flex class="ct-chart" chartist-data="charts_data.main" chartist-chart-type="Line" chartist-chart-options="charts_options.main" chartist-events="events" ng-show="charts_data.main")
-  //-   
-  //-   div.element-loading(layout="row" layout-align="center center" ng-hide="charts_data.main")
-  //-     md-progress-circular(md-mode="indeterminate" md-diameter="60")
-  //- 
+  md-content.md-whiteframe-z1.box-main(layout="column" layout-fill)
+    div.header(layout="row" layout-align="space-between center")
+    
+      div.md-subheader {{'stat.site' | translate}}
+      
+      div.header__range
+        md-datepicker(ng-model="date_range.from" md-placeholder="Date from" ng-change="request.main()" md-max-date="date_range.to")
+        md-datepicker(ng-model="date_range.to" md-placeholder="Date to" ng-change="request.main()" md-min-date="date_range.from" md-max-date="date_range.today")
+        
+    chartist(flex class="ct-chart" chartist-data="charts_data.main" chartist-chart-type="Line" chartist-chart-options="charts_options.main" chartist-events="events" ng-show="charts_data.main")
+    
+    div.box-main__nodata.md-title(ng-show="charts_data.no_data" layout="row" layout-align="center center") {{'simple.nodata' | translate}}
+    div.element-loading(layout="row" layout-align="center center" ng-hide="charts_data.main || charts_data.no_data")
+      md-progress-circular(md-mode="indeterminate" md-diameter="60")
+  
   //- 
   //- md-grid-list.cards-box( md-cols="3" md-cols-md="3"  md-cols-gt-md="3"  md-row-height="290px" md-row-height-gt-sm="1:1" md-gutter="15px" role="cards box" md-cols-sm="2" md-cols-xs="1"  ng-cloak)
   //-   md-grid-tile.md-whiteframe-z1(md-rowspan="1" md-colspan="2"  md-colspan-xs="1")

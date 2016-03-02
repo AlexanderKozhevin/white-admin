@@ -34,6 +34,7 @@ simple:
   bids: "Заявки"
   bads: "Удаленные"
   pending: "На модерации"
+  nodata: "Нет данных"
 
 
 errors:

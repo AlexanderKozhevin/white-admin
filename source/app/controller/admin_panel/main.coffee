@@ -1,4 +1,4 @@
-angular.module("app").controller "AdminPanelCtrl",  ($scope, $rootScope, $state, MainHelper, $timeout, tmhDynamicLocale, $translate, localStorageService) ->
+angular.module("app").controller "AdminPanelCtrl",  ($scope, $rootScope, $state, Restangular, MainHelper, $timeout, tmhDynamicLocale, $translate, localStorageService) ->
 
 
 
@@ -13,6 +13,7 @@ angular.module("app").controller "AdminPanelCtrl",  ($scope, $rootScope, $state,
       this.show = value
 
   $scope.exit = () ->
+    Restangular.one('auth', 'logout').customPOST()
     localStorageService.set('auth', false)
     $state.go('login')
 

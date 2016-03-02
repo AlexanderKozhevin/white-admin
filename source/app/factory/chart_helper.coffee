@@ -6,7 +6,7 @@ angular.module('app').factory 'ChartConfig',  () ->
     height: "350px"
     width: "900px"
     lineSmooth: Chartist.Interpolation.cardinal({
-      tension: 1
+      tension: 0
     })
     showPoint: false,
     low: 0

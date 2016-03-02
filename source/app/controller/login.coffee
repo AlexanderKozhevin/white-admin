@@ -1,4 +1,4 @@
-angular.module("app").controller "LoginCtrl",  ($scope, $http, $state, $translate, $mdToast, localStorageService) ->
+angular.module("app").controller "LoginCtrl",  ($scope, $http, $state, $translate, $mdToast, localStorageService, Restangular) ->
 
   $scope.credentials = {
     email: ""
@@ -10,9 +10,8 @@ angular.module("app").controller "LoginCtrl",  ($scope, $http, $state, $translat
     if event.keyCode == 13
       $scope.login()
   $scope.login = () ->
-    $http.get('http://app.vnedesign.ru/api/auth/login', {params: $scope.credentials}).success (data) ->
-      console.log data
-      if data == 'success'
+    Restangular.one('auth', 'login').customPOST($scope.credentials).then (data) ->
+      if data.status == 'success'
         localStorageService.set('auth', true)
         $state.go('admin.workers.list')
       else

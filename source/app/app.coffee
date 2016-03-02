@@ -47,18 +47,18 @@ angular.element(document).ready () ->
   angular.bootstrap(document, ["app"]);
 
 
-
-app.run (localStorageService, $http, $rootScope, $state) ->
-  localStorageService.get('auth');
-  $http.get('http://app.vnedesign.ru/api/auth/is_logged').success (data) ->
-    if data.status == 'success'
-      localStorageService.set('auth', true)
-    else
-      localStorageService.set('auth', false)
-      $state.go('login')
-
-
-  $rootScope.$on '$stateChangeStart', (event, toState, toParams, fromState, fromParams) ->
-    if !localStorageService.get('auth')
-      if (toState.name != 'login')
-        event.preventDefault();
+#
+# app.run (localStorageService, $http, $rootScope, $state, Restangular) ->
+#   localStorageService.get('auth');
+#   Restangular.one('auth', 'is_logged').customPOST().then (data) ->
+#     if data.status == 'success'
+#       localStorageService.set('auth', true)
+#     else
+#       localStorageService.set('auth', false)
+#       $state.go('login')
+#
+#
+#   $rootScope.$on '$stateChangeStart', (event, toState, toParams, fromState, fromParams) ->
+#     if !localStorageService.get('auth')
+#       if (toState.name != 'login')
+#         event.preventDefault();

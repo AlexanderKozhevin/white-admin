@@ -2,6 +2,49 @@ angular.module("app").controller "StatisticsCtrl",  ($scope, $timeout, Restangul
 
   console.log 'stat'
 
+  Date.prototype.subDays = (days) ->
+    dat = new Date(this.valueOf())
+    dat.setDate(dat.getDate() - days);
+    return dat;
+
+
+  $scope.charts_options =
+    main: ChartConfig.options_main
+
+  $scope.charts_data =
+    main: undefined
+    no_data: false
+
+  $scope.date_range =
+    from: (new Date()).subDays(14)
+    to:  new Date()
+
+  $scope.request =
+    main: () ->
+      $scope.charts_data.main = false
+      $scope.charts_data.no_data = false
+      from = $filter('date')($scope.date_range.from, 'yyyy-M-d')
+      to = $filter('date')($scope.date_range.to, 'yyyy-M-d')
+      Restangular.one('stat', 'period').get({from: from, to: to}).then (data) ->
+        if data.data.series.length
+          series = _.map(data.data.series, (obj) -> return $filter('date')(obj, 'd/M'))
+          values = []
+
+          for i in data.data.series
+            values.push data.data.values.landing[i]
+
+          series.pop()
+          $scope.charts_data.main =
+            labels: series
+            series: [
+              values
+            ]
+
+        else
+          $scope.charts_data.no_data = true
+
+
+  $scope.request.main()
   # stat = Restangular.one('stat')
   #
   # $scope.socket_data =
@@ -34,10 +77,7 @@ angular.module("app").controller "StatisticsCtrl",  ($scope, $timeout, Restangul
   #   profiles: undefined
   #
   #
-  # $scope.charts_options =
-  #   main: ChartConfig.options_main
-  #   profiles: ChartConfig.options_profiles
-  #   cpu: ChartConfig.options_cpu
+
   #
   #
   # $scope.date_range =
@@ -100,24 +140,22 @@ angular.module("app").controller "StatisticsCtrl",  ($scope, $timeout, Restangul
   # ]
   #
   #
-  # $scope.events =
-  #   created: (data) ->
-  #     console.log data
-  #   draw: (data) ->
-  #     if data.type == 'point'
-  #       circle_width = 4
-  #       if $scope.charts_data.main
-  #         if $scope.charts_data.main.series[0].length > 25
-  #           circle_width = 2
-  #         point = new Chartist.Svg('circle', {
-  #           cx: [data.x],
-  #           cy: [data.y],
-  #           r: [circle_width],
-  #           'ct:value': data.value.y,
-  #           'ct:meta': data.meta,
-  #           class: 'main_chart-ct-point',
-  #           }, 'ct-area');
-  #         data.element.replace(point);
+  $scope.events =
+    draw: (data) ->
+      if data.type == 'point'
+        circle_width = 4
+        if $scope.charts_data.main
+          if $scope.charts_data.main.series[0].length > 25
+            circle_width = 2
+          point = new Chartist.Svg('circle', {
+            cx: [data.x],
+            cy: [data.y],
+            r: [circle_width],
+            'ct:value': data.value.y,
+            'ct:meta': data.meta,
+            class: 'main_chart-ct-point',
+            }, 'ct-area');
+          data.element.replace(point);
   #
   #
   # $scope.request.main()
