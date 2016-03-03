@@ -15,6 +15,8 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
     max: 1
     sort: 'name'
 
+
+
   $scope.ext_search =
     params: []
     allowed_types: ['string', 'text', 'number', 'date', 'select', 'multiple select']

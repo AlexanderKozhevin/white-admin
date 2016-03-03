@@ -29,6 +29,7 @@ angular.module("app").controller "AdminPanelCtrl",  ($scope, $rootScope, $state,
       this.element = ev
       $mdOpenMenu(ev);
     set_language: (language) ->
+      $scope.table_label.set()
       switch language
         when 'ru'
           tmhDynamicLocale.set('ru-ru')
@@ -36,10 +37,22 @@ angular.module("app").controller "AdminPanelCtrl",  ($scope, $rootScope, $state,
         when 'en'
           tmhDynamicLocale.set('en-us')
           $translate.use('en');
+      $state.reload()
 
-
-
-
+  $scope.table_label =
+    data: null
+    set: () ->
+      switch $translate.proposedLanguage()
+        when 'en'
+          $scope.table_label.data =
+            page: "page"
+            rowsPerPage: "rows per pagee"
+            of: "of"
+        when 'ru'
+          $scope.table_label.data =
+            page: "страница "
+            rowsPerPage: "кол-во на стр."
+            of: "из"
 
 
 
@@ -70,3 +83,6 @@ angular.module("app").controller "AdminPanelCtrl",  ($scope, $rootScope, $state,
   $rootScope.$on '$stateChangeStart', (event, toState) ->
     $scope.active_state = toState.name
     $scope.new_item.set(MainHelper.is_new(toState.name))
+
+
+  $scope.table_label.set()
