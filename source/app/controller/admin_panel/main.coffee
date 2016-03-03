@@ -39,6 +39,14 @@ angular.module("app").controller "AdminPanelCtrl",  ($scope, $rootScope, $state,
           $translate.use('en');
       $state.reload()
 
+
+  $scope.menu_tabs = [
+    {key: 'menu.workers', link: 'admin.workers.list'},
+    {key: 'simple.bids', link: 'admin.bids'},
+    {key: 'menu.jobs', link: 'admin.jobs.list'},
+    {key: 'menu.stat', link: 'admin.statistics'}
+  ]
+
   $scope.table_label =
     data: null
     set: () ->
