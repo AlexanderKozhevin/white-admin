@@ -35,6 +35,7 @@ simple:
   bads: "Удаленные"
   pending: "На модерации"
   nodata: "Нет данных"
+  pass: "пароль"
 
 
 errors:

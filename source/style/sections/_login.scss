@@ -3,9 +3,23 @@
   background-color: $clr-grey-50;
   height: 100vh;
 
+
+
   .card{
     margin-top: -50px;
+    width: 400px;
+    max-height: 100%;
     @media #{$screen-xs} {margin-top: 0px;}
+
+    &-background{
+      height: 200px;
+      background-color: $clr-teal;
+
+      &__logo{
+        font-size: 50px;
+        width: 50px;
+      }
+    }
   }
 
 

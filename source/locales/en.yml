@@ -35,6 +35,7 @@ simple:
   bads: "Removed"
   pending: "Pending"
   nodata: "No data"
+  pass: "password"
 
 errors:
   double: "Duplicating labels!"
