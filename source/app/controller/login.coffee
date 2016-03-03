@@ -6,6 +6,11 @@ angular.module("app").controller "LoginCtrl",  ($scope, $http, $state, $translat
   }
 
 
+  # If we are already logged in 
+  if localStorageService.get('auth')
+    $state.go('admin.workers.list')
+
+
   $scope.keypress = (event) ->
     if event.keyCode == 13
       $scope.login()
