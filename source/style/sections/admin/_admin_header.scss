@@ -2,6 +2,8 @@
 
 .admin{
 
+  z-index: 10;
+
   &__logo{
     width: $avatar-size;
     height: $avatar-size;
