@@ -10,7 +10,7 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
     selected: null
 
   $scope.request_params =
-    limit: 3
+    limit: 5
     index_page: 1
     max: 1
     sort: 'name'

@@ -54,4 +54,4 @@ section.page-bids(layout="column" layout-align="start center")
                   md-icon.material-icons check
                 md-button.md-icon-button(aria-label="judge" ng-click="actions.reject(item)" ng-hide="jobs.selected.$$mdSelectId==2")
                   md-icon.material-icons delete
-      data-md-table-pagination(md-limit="request_params.limit" md-page="request_params.index_page" md-label="{page: 'страница:', rowsPerPage: 'кол-во на стр.', of: 'из'}" md-total="{{request_params.max}}" md-on-paginate="request_page" md-options="[1,2,3]")
+      data-md-table-pagination(md-limit="request_params.limit" md-page="request_params.index_page" md-label="{page: 'страница:', rowsPerPage: 'кол-во на стр.', of: 'из'}" md-total="{{request_params.max}}" md-on-paginate="request_page" md-options="[5,10,20]")

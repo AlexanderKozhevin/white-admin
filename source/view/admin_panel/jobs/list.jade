@@ -40,4 +40,4 @@ div.listing
           td( md-cell) {{item.params.length}}
           td( md-cell) {{item.createdAt | date}}
 
-  data-md-table-pagination(md-limit="request_params.limit" md-page="request_params.index_page" md-label="{page: 'страница:', rowsPerPage: 'кол-во на стр.', of: 'из'}" md-total="{{request_params.max}}" md-on-paginate="request_page" md-options="[1,2,3]")
+  data-md-table-pagination(md-limit="request_params.limit" md-page="request_params.index_page" md-label="{page: 'страница:', rowsPerPage: 'кол-во на стр.', of: 'из'}" md-total="{{request_params.max}}" md-on-paginate="request_page" md-options="[5,10,20]")
