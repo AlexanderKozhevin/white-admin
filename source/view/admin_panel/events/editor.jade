@@ -9,24 +9,25 @@ div.editor
   
   div.data(layout="column" layout-align="start center")
     md-input-container.md-block.element-container--simplified.data__string(flex md-no-float)
-      input(ng-model="value" aria-label="number param" type="text" placeholder="{{'simple.label' | translate}}")  
+      input(ng-model="event.name" aria-label="number param" type="text" placeholder="{{'simple.label' | translate}}")  
     md-input-container.md-block.element-container--simplified.data__string(flex md-no-float)
-      input(ng-model="value" aria-label="number param" type="text" placeholder="{{'simple.city' | translate}}") 
+      input(ng-model="event.city" aria-label="number param" type="text" placeholder="{{'simple.city' | translate}}") 
     md-input-container.element-container--simplified.data__string(flex md-no-float)
-      input(ng-model="value" aria-label="number param" type="text" placeholder="{{'simple.timing' | translate}}") 
+      input(ng-model="event.time" aria-label="number param" type="text" placeholder="{{'simple.timing' | translate}}") 
     md-input-container.md-block.md-block.element-container--simplified.data__text(flex md-no-float)
-      textarea(ng-model="value" columns="45" rows="5" aria-label="text type" placeholder="{{'simple.about' | translate}}")
+      textarea(ng-model="event.about" columns="45" rows="5" aria-label="text type" placeholder="{{'simple.about' | translate}}")
       
     md-content.md-padding.autocomplete.data__chips(layout="column")
-      md-contact-chips(ng-model="selected" md-contacts="querySearch($query)" md-contact-name="name" md-contact-image="avatar_url" md-require-match="true" md-highlight-flags="i" filter-selected="true" placeholder="{{'menu.jobs' | translate}}")
+      md-contact-chips(ng-model="event.jobs" md-contacts="querySearch($query)" md-contact-name="name" md-contact-image="avatar_url" md-require-match="true" md-highlight-flags="i" filter-selected="true" placeholder="{{'menu.jobs' | translate}}")
       //- md-list.fixedRows
       //-   md-subheader.md-no-sticky {{'menu.jobs' | translate}}
       //-   md-list-item.md-2-line.contact-item(ng-repeat="contact in jobs" )
       //-     img(ng-src="{{contact.avatar_url}}")
       //-     div.md-list-item-text.compact {{contact.name}}
   md-divider
-  div.saving(layout="row")
+  div.saving(layout="row" layout-align="end center")
     span(flex)
-    md-button.md-raised.md-accent.saving__button(ng-click="actions.save()" ng-disabled="job.name.length<3 || upload_promise || saving_process") Сохранить
-      //- span(ng-show="method=='new'") {{'simple.create' | translate}}
-      //- span(ng-show="method=='edit'") {{'simple.save' | translate}}
+    md-progress-circular.md-accent.md-hue-2(md-mode="indeterminate" md-diameter="40px" ng-show="saving_process")
+    md-button.md-raised.md-accent.saving__button(ng-click="save()" aria-label="save" ng-disabled="saving_process")
+      span(ng-show="method=='new'") {{'simple.create' | translate}}
+      span(ng-show="method=='edit'") {{'simple.save' | translate}}

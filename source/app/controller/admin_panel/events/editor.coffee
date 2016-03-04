@@ -1,13 +1,35 @@
 angular.module("app").controller "EventsEditorCtrl",  ($scope, $timeout, FileReader, Upload, $mdDialog, $state, $mdToast, Restangular, $q, $translate) ->
 
-  # Selected parameters from list
-  $scope.selected = []
+  $scope.method = $state.params.method
+
+  $scope.saving_process = false
 
   templates = Restangular.one('jobs')
-  templates.get().then (data) ->
-    $scope.jobs = data
+  events = Restangular.one('events')
 
 
+  $scope.init = () ->
+    if $scope.method == 'edit'
+      if $state.params.id
+        events.one($state.params.id).get().then (data) ->
+          console.log data
+      else
+        $state.go('admin.events.list')
+
+
+  $scope.event =
+    name: ""
+    city: ""
+    time: ""
+    about: ""
+    jobs: []
+
+  $scope.save = () ->
+    data = angular.copy($scope.event)
+    data.jobs = _.map(data.jobs, (obj) -> return obj.id)
+    $scope.saving_process = true
+    events.customPOST(data).then () ->
+      $state.go('admin.events.list')
 
   $scope.querySearch = (query) ->
 
@@ -23,3 +45,10 @@ angular.module("app").controller "EventsEditorCtrl",  ($scope, $timeout, FileRea
       return result
     else
       return result
+
+
+
+
+  templates.get().then (data) ->
+    $scope.init()
+    $scope.jobs = data
