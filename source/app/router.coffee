@@ -22,13 +22,30 @@ angular.module('app').config ($stateProvider, $urlRouterProvider, $locationProvi
       admin: {templateUrl: 'admin_panel/bids/list.html', controller: 'BidsListCtrl'}
 
 
-
   $stateProvider.state 'admin.statistics',
     url: '/stat'
     abstract: false,
     views:
       admin: {templateUrl: 'admin_panel/statistics/main.html', controller: 'StatisticsCtrl'}
 
+
+  $stateProvider.state 'admin.events',
+    url: '/events'
+    abstract: true,
+    views:
+      admin: {templateUrl: 'admin_panel/events/main.html', controller: 'EventsCtrl'}
+
+  $stateProvider.state 'admin.events.list',
+    url: '/list'
+    abstract: false,
+    views:
+      events: {templateUrl: 'admin_panel/events/list.html', controller: 'EventsListCtrl'}
+
+  $stateProvider.state 'admin.events.editor',
+    url: '/editor?method&id'
+    abstract: false,
+    views:
+      events: {templateUrl: 'admin_panel/events/editor.html', controller: 'EventsEditorCtrl'}
 
   $stateProvider.state 'admin.jobs',
     url: '/jobs'

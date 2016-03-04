@@ -1,0 +1,43 @@
+div.listing
+  
+  md-toolbar.md-table-toolbar.md-default(layout="row" layout-align="start center" ng-hide="selected.length>0 || search.show")
+    div.md-toolbar-tools
+      div(ng-click="show_seleced()") {{'menu.jobs' | translate}}
+      span(flex)
+      md-button.md-icon-button(ng-click="search.open()")
+        md-icon search
+
+  md-toolbar.md-table-toolbar.md-default(ng-show="search.show && !selected.length" )
+    div.md-toolbar-tools(layout="row" layout-align="start center" )
+      md-button.md-icon-button()
+        md-icon.material-icons search
+      input.element-input--transparent(ng-model="search.value" aria-label="search value" placeholder="Search" type="text"  ng-keyup="search.keypress($event)" flex)
+      md-button.md-icon-button.close_button(aria-label="user menu" ng-click="search.close()")
+        md-icon.material-icons close    
+
+  
+  md-toolbar.md-table-toolbar.md-primary(ng-show='selected.length')
+    div.md-toolbar-tools
+      span {{selected.length}} {{selected.length > 1 ? 'items' : 'item'}} selected
+      span(flex='')
+      md-button.md-icon-button(ng-click="actions.remove()")
+        md-icon delete
+      
+      
+  md-table-container
+    table(md-table md-progress="progress.promise" md-row-select="true" ng-model="selected")
+      thead(md-head md-order="request_params.sort" md-on-reorder="request_page")
+        tr(md-row )
+          th(md-column)
+          th(md-column md:order:by="name") {{'simple.name' | translate}}
+          th(md-column  md-numeric="true") {{'simple.params' | translate}}
+          th(md-column md-numeric="true" md:order:by="createdAt") {{'simple.created' | translate}}
+      tbody(md-body)
+        tr.job.animate-listing(ng-repeat="item in jobs track by $index" md-row  md-select="item")
+          td.job__photo.cursor(ui-sref="admin.jobs.editor({method: 'edit', id: item.id})" md-cell) 
+            img.element-avatar(ng-src="{{item.avatar_url}}" alt="&")
+          td.cursor(ui-sref="admin.jobs.editor({method: 'edit', id: item.id})" md-cell) {{item.name}}
+          td( md-cell) {{item.params.length}}
+          td( md-cell) {{item.createdAt | date}}
+
+  data-md-table-pagination(md-limit="request_params.limit" md-page="request_params.index_page" md-label="{page: 'страница:', rowsPerPage: 'кол-во на стр.', of: 'из'}" md-total="{{request_params.max}}" md-on-paginate="request_page" md-options="[5,10,20]")

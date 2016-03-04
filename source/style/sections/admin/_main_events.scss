@@ -1,0 +1,18 @@
+.page-events{
+
+  @import 'events/list';
+  @import 'events/editor';
+
+  padding-bottom: 200px;
+
+  .container{
+      width: 100%;
+      margin-top: $primary-margin;
+      @include transition(width 0.2s linear);
+
+      &--state1{width: $primary-width;}
+      &--state2{width: $medium-width;}
+  }
+
+
+}

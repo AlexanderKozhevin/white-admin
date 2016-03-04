@@ -44,18 +44,18 @@ app.config ($translateProvider, tmhDynamicLocaleProvider) ->
 angular.element(document).ready () ->
   angular.bootstrap(document, ["app"]);
 
-
-app.run (localStorageService, $http, $rootScope, $state, Restangular) ->
-  Restangular.one('auth', 'is_logged').customPOST().then (data) ->
-    if data.status == 'success'
-      $state.go('admin.workers.list')
-      localStorageService.set('auth', true)
-    else
-      localStorageService.set('auth', false)
-      $state.go('login')
-
-
-  $rootScope.$on '$stateChangeStart', (event, toState, toParams, fromState, fromParams) ->
-    if !localStorageService.get('auth')
-      if (toState.name != 'login')
-        event.preventDefault();
+# 
+# app.run (localStorageService, $http, $rootScope, $state, Restangular) ->
+#   Restangular.one('auth', 'is_logged').customPOST().then (data) ->
+#     if data.status == 'success'
+#       $state.go('admin.workers.list')
+#       localStorageService.set('auth', true)
+#     else
+#       localStorageService.set('auth', false)
+#       $state.go('login')
+#
+#
+#   $rootScope.$on '$stateChangeStart', (event, toState, toParams, fromState, fromParams) ->
+#     if !localStorageService.get('auth')
+#       if (toState.name != 'login')
+#         event.preventDefault();

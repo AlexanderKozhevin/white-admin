@@ -1,0 +1,32 @@
+div.editor
+
+
+  md-toolbar.md-table-toolbar.md-default.ng-animate-disabled(layout="row" layout-align="start center" ng-hide="selected.length>0")
+    div.md-toolbar-tools.toolbar(layout="row" layout-align="center center")
+      div.md-title {{'simple.event_edit' | translate}}
+
+  md-divider
+  
+  div.data(layout="column" layout-align="start center")
+    md-input-container.md-block.element-container--simplified.data__string(flex md-no-float)
+      input(ng-model="value" aria-label="number param" type="text" placeholder="{{'simple.label' | translate}}")  
+    md-input-container.md-block.element-container--simplified.data__string(flex md-no-float)
+      input(ng-model="value" aria-label="number param" type="text" placeholder="{{'simple.city' | translate}}") 
+    md-input-container.element-container--simplified.data__string(flex md-no-float)
+      input(ng-model="value" aria-label="number param" type="text" placeholder="{{'simple.timing' | translate}}") 
+    md-input-container.md-block.md-block.element-container--simplified.data__text(flex md-no-float)
+      textarea(ng-model="value" columns="45" rows="5" aria-label="text type" placeholder="{{'simple.about' | translate}}")
+      
+    md-content.md-padding.autocomplete.data__chips(layout="column")
+      md-contact-chips(ng-model="selected" md-contacts="querySearch($query)" md-contact-name="name" md-contact-image="avatar_url" md-require-match="true" md-highlight-flags="i" filter-selected="true" placeholder="{{'menu.jobs' | translate}}")
+      //- md-list.fixedRows
+      //-   md-subheader.md-no-sticky {{'menu.jobs' | translate}}
+      //-   md-list-item.md-2-line.contact-item(ng-repeat="contact in jobs" )
+      //-     img(ng-src="{{contact.avatar_url}}")
+      //-     div.md-list-item-text.compact {{contact.name}}
+  md-divider
+  div.saving(layout="row")
+    span(flex)
+    md-button.md-raised.md-accent.saving__button(ng-click="actions.save()" ng-disabled="job.name.length<3 || upload_promise || saving_process") Сохранить
+      //- span(ng-show="method=='new'") {{'simple.create' | translate}}
+      //- span(ng-show="method=='edit'") {{'simple.save' | translate}}

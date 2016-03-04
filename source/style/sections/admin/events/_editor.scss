@@ -1,0 +1,40 @@
+.editor{
+
+
+  .toolbar{
+  }
+
+  .data{
+    padding: $primary-margin;
+    &__string{
+      width: 70%;
+      margin-top: $primary-padding!important;
+      margin-bottom: $primary-padding!important;
+      @media #{$screen-xs} {width: 100%;}
+    }
+    &__text{
+      width: 70%;
+      margin-top: $primary-padding!important;
+      margin-bottom: $primary-padding!important;
+      @media #{$screen-xs} {width: 100%;}
+      textarea{
+        min-height: 100px;
+      }
+    }
+    &__chips{
+      width: 70%;
+      padding-left: 0!important;
+      padding-right: 0!important;
+      @media #{$screen-xs} {width: 100%;}
+
+    }
+  }
+
+
+
+  .saving__button{
+    margin: $primary-padding/2;
+  }
+
+
+}

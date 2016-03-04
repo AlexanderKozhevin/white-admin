@@ -36,6 +36,12 @@ simple:
   pending: "Pending"
   nodata: "No data"
   pass: "password"
+  events: "Events"
+  event_edit: "Event editor"
+  label: "Event name"
+  city: "City"
+  timing: "Event date&time"
+  about: "About"
 
 errors:
   double: "Duplicating labels!"
