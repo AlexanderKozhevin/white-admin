@@ -16,9 +16,12 @@ angular.module("app").controller "EventsListCtrl",  ($scope, $timeout , $q, Rest
     params = {}
     params.query = $scope.search.value if $scope.search.value
     $scope.progress = $q.defer()
+
     # Get number of maximum possible results
     templates.one('count').get(params).then (max_data) ->
+
       $scope.request_params.max = max_data
+      
       if !max_data
         $scope.request_params.max = 0
       params = MainHelper.configure_params_jobs($scope.request_params, $scope.search.value)

@@ -12,7 +12,14 @@ angular.module("app").controller "EventsEditorCtrl",  ($scope, $timeout, FileRea
     if $scope.method == 'edit'
       if $state.params.id
         events.one($state.params.id).get().then (data) ->
-          console.log data
+
+          event_jobs = data.jobs
+          delete data.jobs
+          $scope.event = data
+          $scope.event.jobs = []
+          for i in event_jobs
+            element = _.find($scope.jobs, {id: i})
+            $scope.event.jobs.push element
       else
         $state.go('admin.events.list')
 
@@ -28,8 +35,12 @@ angular.module("app").controller "EventsEditorCtrl",  ($scope, $timeout, FileRea
     data = angular.copy($scope.event)
     data.jobs = _.map(data.jobs, (obj) -> return obj.id)
     $scope.saving_process = true
-    events.customPOST(data).then () ->
-      $state.go('admin.events.list')
+    if $scope.method == 'new'
+      events.customPOST(data).then () ->
+        $state.go('admin.events.list')
+    else
+      events.one($state.params.id).customPUT(data).then () ->
+        $state.go('admin.events.list')
 
   $scope.querySearch = (query) ->
 
