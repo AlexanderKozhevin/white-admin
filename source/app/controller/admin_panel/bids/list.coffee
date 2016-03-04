@@ -3,10 +3,15 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
 
   templates = Restangular.one('jobs')
   workers = Restangular.all('bids')
+  events = Restangular.all('events')
 
   $scope.selected = []
   $scope.jobs =
     list:[]
+    selected: null
+
+  $scope.events =
+    list: []
     selected: null
 
   $scope.request_params =
@@ -159,17 +164,22 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
 
 
 
-
-
   $scope.progress = $q.defer()
-  templates.get().then (data) ->
-    $translate(['simple.pending', 'simple.bads']).then (translation) ->
+  init_data = [templates.getList(), events.getList()]
+  $q.all(init_data).then (data) ->
 
-      data.unshift({name: translation['simple.bads']})
-      data.unshift({name: translation['simple.pending']})
+
+    $translate(['simple.all', 'simple.bads']).then (translation) ->
+
+      data[1].unshift({name: translation['simple.all']})
+      $scope.events.list = data[1]
+      $scope.events.selected = $scope.events.list[0]
+
+      data[0].unshift({name: translation['simple.bads']})
+      data[0].unshift({name: translation['simple.all']})
 
       $scope.jobs =
-        list: data
-        selected: data[0]
+        list: data[0]
+        selected: data[0][0]
       $scope.progress.resolve()
       $scope.request_page()

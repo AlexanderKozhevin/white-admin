@@ -1,5 +1,15 @@
 .listing_bids{
 
+  .toolbar{
+    min-height: 90px;
+    &__select{
+      margin-right: $primary-margin;
+
+      // SHAME!
+      // .md-select-icon{display: none;}
+    }
+  }
+
   .worker{
 
     &-menu{
