@@ -3,8 +3,17 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
 
   templates = Restangular.one('jobs')
   workers = Restangular.all('workers')
+  events = Restangular.all('events')
+
+
+
+  $scope.events =
+    list: []
+    selected: null
 
   $scope.selected = []
+
+
   $scope.jobs =
     list:[]
     selected: null
@@ -61,27 +70,15 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
   $scope.request_page = () ->
 
     $scope.progress = $q.defer()
+    $scope.workers = []
 
-    selected_job = $scope.jobs.list.indexOf($scope.jobs.selected)
-    if selected_job != 0
-      job_id = $scope.jobs.selected.id
-    else
-      job_id = undefined
+    params = MainHelper.query_params($scope.jobs.selected, $scope.events.selected,  $scope.search.value, $scope.ext_search.params)
 
-    params = MainHelper.counter_params($scope.search.value, job_id, $scope.ext_search.params)
-    # Restangular.one('workers', 'count').get(params).then (max_data) ->
-    workers.one('count').get(params).then (max_data) ->
-      if max_data
-        $scope.request_params.max = max_data
-      else
-        $scope.request_params.max = 0
+    workers.one('query').get({query: params, pagination: $scope.request_params}).then (data) ->
+      $scope.request_params.max = data.max_data
+      $scope.workers = data.data
+      $scope.progress.resolve()
 
-      params = MainHelper.configure_params_workers($scope.request_params, $scope.search.value, $scope.jobs.selected.id, $scope.ext_search.params)
-      workers.all('find').getList(params).then (data) ->
-        $scope.workers = data
-        for i in $scope.workers
-          i.job_name = _.find($scope.jobs.list, {id: i.job}).name
-        $scope.progress.resolve()
 
 
   #
@@ -121,6 +118,18 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
       user_job = _.find($scope.jobs.list, {id: item.job})
       $scope.worker_preview.set(MainHelper.worker_data(angular.copy(item), angular.copy(user_job)))
       $mdSidenav('left').toggle()
+    set_event: () ->
+      $scope.jobs.list = []
+      allowed = $scope.events.selected.jobs
+      for i in $scope.jobs_collection
+        if !i.id
+          $scope.jobs.list.push i
+        else
+          if allowed.indexOf(i.id) != -1
+            $scope.jobs.list.push i
+      $scope.jobs.selected = $scope.jobs.list[0]
+      $scope.request_page()
+
     set_job: () ->
       $scope.ext_search.params = [];
       $scope.request_page();
@@ -156,11 +165,22 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
 
 
   $scope.progress = $q.defer()
-  templates.get().then (data) ->
+  request_data = [templates.getList(), events.getList()]
+  $q.all(request_data).then (data) ->
     $translate('simple.all').then (translation) ->
-      data.unshift({name: translation})
+
+      data[1].unshift({name: translation})
+      $scope.events.list = data[1]
+      $scope.events.selected = $scope.events.list[0]
+
+      data[0].unshift({name: translation})
       $scope.jobs =
-        list: data
-        selected: data[0]
+        list: data[0]
+        selected: data[0][0]
+
+      $scope.jobs_collection = angular.copy($scope.jobs.list)
+      temp = angular.copy($scope.jobs.list)
+      temp.shift()
+
       $scope.progress.resolve()
       $scope.request_page()

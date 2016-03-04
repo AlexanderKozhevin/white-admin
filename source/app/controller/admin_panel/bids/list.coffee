@@ -66,13 +66,14 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
 
     $scope.progress = $q.defer()
     $scope.workers = []
-    selected_job = $scope.jobs.list.indexOf($scope.jobs.selected)
 
-    params = MainHelper.bids_params($scope.jobs.selected, $scope.events.selected,  $scope.search.value, $scope.ext_search.params)
+    params = MainHelper.query_params($scope.jobs.selected, $scope.events.selected,  $scope.search.value, $scope.ext_search.params)
 
     workers.one('query').get({query: params, pagination: $scope.request_params}).then (data) ->
       $scope.request_params.max = data.max_data
       $scope.workers = data.data
+      $scope.progress.resolve()
+
 
 
     #
@@ -152,6 +153,7 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
       user_job = _.find($scope.jobs.list, {id: item.job})
       $scope.worker_preview.set(MainHelper.worker_data(item, user_job))
       $mdSidenav('left').toggle()
+    
     set_job: () ->
       $scope.ext_search.params = [];
       $scope.request_page();
@@ -186,7 +188,6 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
   $scope.progress = $q.defer()
   init_data = [templates.getList(), events.getList()]
   $q.all(init_data).then (data) ->
-
 
     $translate(['simple.all']).then (translation) ->
 

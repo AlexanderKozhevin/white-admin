@@ -44,7 +44,7 @@ app.config ($translateProvider, tmhDynamicLocaleProvider) ->
 angular.element(document).ready () ->
   angular.bootstrap(document, ["app"]);
 
-# 
+#
 # app.run (localStorageService, $http, $rootScope, $state, Restangular) ->
 #   Restangular.one('auth', 'is_logged').customPOST().then (data) ->
 #     if data.status == 'success'
