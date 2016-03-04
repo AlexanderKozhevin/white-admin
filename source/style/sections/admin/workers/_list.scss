@@ -5,9 +5,11 @@
 
   .toolbar{
     min-height: 3*$primary-margin;
+
     &__select{
       margin-right: $primary-margin;
     }
+
   }
 
   .worker{

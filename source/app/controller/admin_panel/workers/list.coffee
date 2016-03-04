@@ -121,15 +121,18 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
     set_event: () ->
       $scope.jobs.list = []
       allowed = $scope.events.selected.jobs
-      for i in $scope.jobs_collection
-        if !i.id
-          $scope.jobs.list.push i
-        else
-          if allowed.indexOf(i.id) != -1
+      if allowed
+        for i in $scope.jobs_collection
+          if !i.id
             $scope.jobs.list.push i
-      $scope.jobs.selected = $scope.jobs.list[0]
+          else
+            if allowed.indexOf(i.id) != -1
+              $scope.jobs.list.push i
+        $scope.jobs.selected = $scope.jobs.list[0]
+      else
+        $scope.jobs.list = $scope.jobs_collection
+        $scope.jobs.selected = $scope.jobs.list[0]
       $scope.request_page()
-
     set_job: () ->
       $scope.ext_search.params = [];
       $scope.request_page();

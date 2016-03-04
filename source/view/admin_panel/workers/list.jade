@@ -1,7 +1,7 @@
 div.listing(ng-cloak)
   
   md-toolbar.md-table-toolbar.md-default(layout="row" layout-align="start center" ng-hide="selected.length>0 || search.show")
-    div.md-toolbar-tools
+    div.md-toolbar-tools.toolbar
       md-input-container
         label.md-caption {{'simple.job' | translate}}
         md-select.toolbar__select(ng-model="jobs.selected" aria-label="selected job" ng-change="actions.set_job()" )
