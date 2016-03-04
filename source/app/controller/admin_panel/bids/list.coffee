@@ -67,33 +67,52 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
     $scope.progress = $q.defer()
     $scope.workers = []
     selected_job = $scope.jobs.list.indexOf($scope.jobs.selected)
-    status = undefined
-    if selected_job != 0
-      if selected_job != 1
-        job_id = $scope.jobs.selected.id
-      else
-        job_id = undefined
-        status = 'bad'
 
-    else
-      job_id = undefined
-      status = 'pending'
+    params = MainHelper.bids_params($scope.jobs.selected, $scope.events.selected,  $scope.search.value, $scope.ext_search.params)
+
+    workers.one('query').get({query: params, pagination: $scope.request_params}).then (data) ->
+      $scope.request_params.max = data.max_data
+      $scope.workers = data.data
 
 
-    params = MainHelper.counter_params_bids($scope.search.value, job_id, $scope.ext_search.params, status)
+    #
+    # json.limit = pagination.limit
+    # json.index_page = pagination.index_page
+    #
+    # if pagination.sort[0] == '-'
+    #   json.sort = pagination.sort.substr(1) + ' desc'
+    # else
+    #   json.sort = pagination.sort + ' asc'
 
-    workers.one('count').get(params).then (max_data) ->
-      if max_data
-        $scope.request_params.max = max_data
-      else
-        $scope.request_params.max = 0
 
-      params = MainHelper.configure_params_bids($scope.request_params, $scope.search.value, $scope.jobs.selected.id, $scope.ext_search.params, status)
-      workers.all('find').getList(params).then (data) ->
-        $scope.workers = data
-        for i in $scope.workers
-          i.job_name = _.find($scope.jobs.list, {id: i.job}).name
-        $scope.progress.resolve()
+    # console.log params
+    #
+
+    #
+    #   if data.max_data
+    #     $scope.request_params.max = max_data
+    #   else
+    #     $scope.request_params.max = 0
+    #   $scope.workers = data.data
+    #
+    #   for i in $scope.workers
+    #     i.job_name = _.find($scope.jobs.list, {id: i.job}).name
+    #
+    #   $scope.progress.resolve()
+
+
+    # workers.one('count').get(params).then (max_data) ->
+    #   if max_data
+    #     $scope.request_params.max = max_data
+    #   else
+    #     $scope.request_params.max = 0
+    #
+    #   params = MainHelper.configure_params_bids($scope.request_params, $scope.search.value, $scope.jobs.selected.id, $scope.ext_search.params, status)
+    #   workers.all('find').getList(params).then (data) ->
+    #     $scope.workers = data
+    #     for i in $scope.workers
+    #       i.job_name = _.find($scope.jobs.list, {id: i.job}).name
+    #     $scope.progress.resolve()
 
 
   #
@@ -169,13 +188,12 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
   $q.all(init_data).then (data) ->
 
 
-    $translate(['simple.all', 'simple.bads']).then (translation) ->
+    $translate(['simple.all']).then (translation) ->
 
       data[1].unshift({name: translation['simple.all']})
       $scope.events.list = data[1]
       $scope.events.selected = $scope.events.list[0]
 
-      data[0].unshift({name: translation['simple.bads']})
       data[0].unshift({name: translation['simple.all']})
 
       $scope.jobs =

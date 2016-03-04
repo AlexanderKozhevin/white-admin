@@ -51,8 +51,10 @@ angular.module('app').factory 'MainHelper',  ($window) ->
       index = 1
     if state.indexOf('jobs') != -1
       index = 2
-    if state.indexOf('stat') != -1
+    if state.indexOf('events') != -1
       index = 3
+    if state.indexOf('stat') != -1
+      index = 4
     return index
 
   result.is_new = (state) ->
@@ -221,6 +223,46 @@ angular.module('app').factory 'MainHelper',  ($window) ->
         json.id = selected_job
     return json
 
+
+  result.bids_params = (job, event, query, ext_query) ->
+
+
+    json = {
+      where: {}
+    }
+    json.where.job = job.id if job.id
+    json.where.event = event.id if event.id
+
+    if query
+
+      json = {
+        where: {
+          "name": {'contains': query}
+        }
+      }
+
+    if ext_query.length
+      json  = {
+        where: {
+          job: job.id
+        }
+      }
+      for i in ext_query
+        if i.value
+
+          if !i.compare
+            json.where['values.'+i.id]  = i.value
+          else
+
+            if i.compare_value.value == '='
+              json.where['values.'+i.id]  = i.value
+            else
+              json.where['values.'+i.id] = {}
+              json.where['values.'+i.id][i.compare_value.value] = i.value
+
+
+
+    return json
 
   result.counter_params_bids = (name_query, selected_job, ext_search_params, status) ->
     json = {}
