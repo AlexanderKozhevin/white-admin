@@ -42,6 +42,7 @@ simple:
   city: "City"
   timing: "Event date&time"
   about: "About"
+  event_remove: "Events removed"
 
 errors:
   double: "Duplicating labels!"

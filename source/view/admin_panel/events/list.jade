@@ -2,7 +2,7 @@ div.listing
   
   md-toolbar.md-table-toolbar.md-default(layout="row" layout-align="start center" ng-hide="selected.length>0 || search.show")
     div.md-toolbar-tools
-      div(ng-click="show_seleced()") {{'menu.jobs' | translate}}
+      div(ng-click="show_seleced()") {{'simple.events' | translate}}
       span(flex)
       md-button.md-icon-button(ng-click="search.open()")
         md-icon search
@@ -28,16 +28,13 @@ div.listing
     table(md-table md-progress="progress.promise" md-row-select="true" ng-model="selected")
       thead(md-head md-order="request_params.sort" md-on-reorder="request_page")
         tr(md-row )
-          th(md-column)
           th(md-column md:order:by="name") {{'simple.name' | translate}}
-          th(md-column  md-numeric="true") {{'simple.params' | translate}}
+          th(md-column  md-numeric="true") {{'simple.city' | translate}}
           th(md-column md-numeric="true" md:order:by="createdAt") {{'simple.created' | translate}}
       tbody(md-body)
-        tr.job.animate-listing(ng-repeat="item in jobs track by $index" md-row  md-select="item")
-          td.job__photo.cursor(ui-sref="admin.jobs.editor({method: 'edit', id: item.id})" md-cell) 
-            img.element-avatar(ng-src="{{item.avatar_url}}" alt="&")
-          td.cursor(ui-sref="admin.jobs.editor({method: 'edit', id: item.id})" md-cell) {{item.name}}
-          td( md-cell) {{item.params.length}}
-          td( md-cell) {{item.createdAt | date}}
+        tr.job.animate-listing(ng-repeat="item in events track by $index" md-row  md-select="item")
+          td.cursor(ui-sref="admin.events.editor({method: 'edit', id: item.id})" md-cell) {{item.name}}
+          td.cursor(ui-sref="admin.events.editor({method: 'edit', id: item.id})" md-cell) {{item.city}}
+          td.cursor(ui-sref="admin.events.editor({method: 'edit', id: item.id})" md-cell) {{item.createdAt | date}}
 
   data-md-table-pagination(md-limit="request_params.limit" md-page="request_params.index_page" md-label="{page: 'страница:', rowsPerPage: 'кол-во на стр.', of: 'из'}" md-total="{{request_params.max}}" md-on-paginate="request_page" md-options="[5,10,20]")

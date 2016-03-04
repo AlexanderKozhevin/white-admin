@@ -1,8 +1,8 @@
-angular.module("app").controller "EventsListCtrl",  ($scope, $timeout , $q, Restangular, MainHelper, $mdToast) ->
+angular.module("app").controller "EventsListCtrl",  ($scope, $timeout , $q, Restangular, MainHelper, $mdToast, $translate) ->
 
   $scope.selected = []
 
-  templates = Restangular.one('jobs')
+  templates = Restangular.all('events')
 
 
   $scope.request_params =
@@ -19,10 +19,12 @@ angular.module("app").controller "EventsListCtrl",  ($scope, $timeout , $q, Rest
     # Get number of maximum possible results
     templates.one('count').get(params).then (max_data) ->
       $scope.request_params.max = max_data
+      if !max_data
+        $scope.request_params.max = 0
       params = MainHelper.configure_params_jobs($scope.request_params, $scope.search.value)
 
       templates.all('find').getList(params).then (data) ->
-        $scope.jobs = data
+        $scope.events = data
         $scope.progress.resolve()
 
 
@@ -58,17 +60,16 @@ angular.module("app").controller "EventsListCtrl",  ($scope, $timeout , $q, Rest
   $scope.actions =
     remove: () ->
       for i in $scope.selected
-        _.remove($scope.jobs, i)
-        # Uncomment this line to send 'DELETE' request to server to remove record
-        # i.remove()
-      $translate('simple.rec_removed').then (translation) ->
-      $mdToast.show(
-        $mdToast.simple()
-          .textContent(translation)
-          .position("bottom right")
-          .hideDelay(3000)
-      );
-      $scope.selected = []
+        _.remove($scope.events, i)
+        Restangular.one('events', i.id).customDELETE()
+      $translate('simple.event_remove').then (translation) ->
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent(translation)
+            .position("bottom right")
+            .hideDelay(3000)
+        );
+        $scope.selected = []
 
 
   $scope.request_page()

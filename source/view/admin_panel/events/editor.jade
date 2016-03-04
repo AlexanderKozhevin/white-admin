@@ -19,11 +19,6 @@ div.editor
       
     md-content.md-padding.autocomplete.data__chips(layout="column")
       md-contact-chips(ng-model="event.jobs" md-contacts="querySearch($query)" md-contact-name="name" md-contact-image="avatar_url" md-require-match="true" md-highlight-flags="i" filter-selected="true" placeholder="{{'menu.jobs' | translate}}")
-      //- md-list.fixedRows
-      //-   md-subheader.md-no-sticky {{'menu.jobs' | translate}}
-      //-   md-list-item.md-2-line.contact-item(ng-repeat="contact in jobs" )
-      //-     img(ng-src="{{contact.avatar_url}}")
-      //-     div.md-list-item-text.compact {{contact.name}}
   md-divider
   div.saving(layout="row" layout-align="end center")
     span(flex)
