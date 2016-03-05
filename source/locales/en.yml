@@ -19,6 +19,7 @@ simple:
   params: "Parameters"
   public: "Public"
   rec_removed: "Records removed"
+  event_link: "Link to event is copied"
   remove: "Remove"
   save: "Save"
   selected: "Selected"

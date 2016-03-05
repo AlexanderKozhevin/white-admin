@@ -1,4 +1,4 @@
-angular.module("app").controller "EventsListCtrl",  ($scope, $timeout , $q, Restangular, MainHelper, $mdToast, $translate) ->
+angular.module("app").controller "EventsListCtrl",  ($scope, $timeout , $q, Restangular, MainHelper, $mdToast, $translate, clipboard) ->
 
   $scope.selected = []
 
@@ -21,7 +21,7 @@ angular.module("app").controller "EventsListCtrl",  ($scope, $timeout , $q, Rest
     templates.one('count').get(params).then (max_data) ->
 
       $scope.request_params.max = max_data
-      
+
       if !max_data
         $scope.request_params.max = 0
       params = MainHelper.configure_params_jobs($scope.request_params, $scope.search.value)
@@ -61,6 +61,15 @@ angular.module("app").controller "EventsListCtrl",  ($scope, $timeout , $q, Rest
   # Object containing all methods to manage list elements
   #
   $scope.actions =
+    link: (item) ->
+      clipboard.copyText('http://vnedesign.ru/edit?event=' + item);
+      $translate('simple.event_link').then (translation) ->
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent(translation)
+            .position("bottom right")
+            .hideDelay(3000)
+        );
     remove: () ->
       for i in $scope.selected
         _.remove($scope.events, i)

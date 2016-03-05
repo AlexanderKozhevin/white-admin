@@ -31,10 +31,14 @@ div.listing
           th(md-column md:order:by="name") {{'simple.name' | translate}}
           th(md-column  md-numeric="true") {{'simple.city' | translate}}
           th(md-column md-numeric="true" md:order:by="createdAt") {{'simple.created' | translate}}
+          th(md-column)
       tbody(md-body)
-        tr.job.animate-listing(ng-repeat="item in events track by $index" md-row  md-select="item")
+        tr.event.animate-listing(ng-repeat="item in events track by $index" md-row  md-select="item")
           td.cursor(ui-sref="admin.events.editor({method: 'edit', id: item.id})" md-cell) {{item.name}}
           td.cursor(ui-sref="admin.events.editor({method: 'edit', id: item.id})" md-cell) {{item.city}}
           td.cursor(ui-sref="admin.events.editor({method: 'edit', id: item.id})" md-cell) {{item.createdAt | date}}
-
+          td.event-menu(md-cell)
+            div.event-menu__controls
+              md-button.worker-menu__controls.md-icon-button(aria-label="worker menu" ng-click="actions.link(item.id)")
+                md-icon.material-icons link
   data-md-table-pagination(md-limit="request_params.limit" md-page="request_params.index_page" md-label="{page: 'страница:', rowsPerPage: 'кол-во на стр.', of: 'из'}" md-total="{{request_params.max}}" md-on-paginate="request_page" md-options="[5,10,20]")

@@ -1,9 +1,19 @@
 .listing{
 
-  .job__photo{
-    text-align: center;
-    width: 3*$primary-margin;
-    padding: $primary-padding/2 0px!important;
+  .event{
+    &-menu{
+      text-align: right;
+      &__controls{opacity: 0;}
+
+      @media #{$screen-xs, $screen-sm} {
+        &__controls{opacity: 1;}
+      }
+    }
+
+    &:hover  .event-menu__controls{opacity: 1;}
+
   }
+
+
 
 }
