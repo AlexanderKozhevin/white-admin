@@ -21,6 +21,13 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
     max: 1
     sort: 'name'
 
+  $scope.is_any_event = () ->
+    index = $scope.events.list.indexOf($scope.events.selected)
+    if index < 1
+      return true
+    else
+      return false
+
   $scope.ext_search =
     params: []
     allowed_types: ['string', 'text', 'number', 'date', 'select', 'multiple select']
@@ -178,8 +185,6 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
         selected: data[0][0]
 
       $scope.jobs_collection = angular.copy($scope.jobs.list)
-      temp = angular.copy($scope.jobs.list)
-      temp.shift()
 
       $scope.progress.resolve()
       $scope.request_page()

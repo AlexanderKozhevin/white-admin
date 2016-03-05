@@ -24,6 +24,11 @@ div.listing(ng-cloak)
             md-button(ng-disabled="!jobs.selected.$$mdSelectId || jobs.selected.$$mdSelectId==1" ng-click="ext_search.open()")
               md-icon.material-icons search
               span {{'simple.extsearch' | translate}}
+              
+          md-menu-item(aria-label="export")
+            md-button(ng-disabled="is_any_event()")
+              md-icon.material-icons import_export
+              span {{'simple.export' | translate}}
 
 
   md-toolbar.md-table-toolbar.md-default(ng-show="search.show && !selected.length" )

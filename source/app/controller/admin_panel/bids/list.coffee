@@ -67,53 +67,14 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
     $scope.progress = $q.defer()
     $scope.workers = []
 
-    params = MainHelper.query_params($scope.jobs.selected, $scope.events.selected,  $scope.search.value, $scope.ext_search.params)
+    $timeout () ->
+      params = MainHelper.query_params($scope.jobs.selected, $scope.events.selected,  $scope.search.value, $scope.ext_search.params)
 
-    workers.one('query').get({query: params, pagination: $scope.request_params}).then (data) ->
-      $scope.request_params.max = data.max_data
-      $scope.workers = data.data
-      $scope.progress.resolve()
-
-
-
-    #
-    # json.limit = pagination.limit
-    # json.index_page = pagination.index_page
-    #
-    # if pagination.sort[0] == '-'
-    #   json.sort = pagination.sort.substr(1) + ' desc'
-    # else
-    #   json.sort = pagination.sort + ' asc'
-
-
-    # console.log params
-    #
-
-    #
-    #   if data.max_data
-    #     $scope.request_params.max = max_data
-    #   else
-    #     $scope.request_params.max = 0
-    #   $scope.workers = data.data
-    #
-    #   for i in $scope.workers
-    #     i.job_name = _.find($scope.jobs.list, {id: i.job}).name
-    #
-    #   $scope.progress.resolve()
-
-
-    # workers.one('count').get(params).then (max_data) ->
-    #   if max_data
-    #     $scope.request_params.max = max_data
-    #   else
-    #     $scope.request_params.max = 0
-    #
-    #   params = MainHelper.configure_params_bids($scope.request_params, $scope.search.value, $scope.jobs.selected.id, $scope.ext_search.params, status)
-    #   workers.all('find').getList(params).then (data) ->
-    #     $scope.workers = data
-    #     for i in $scope.workers
-    #       i.job_name = _.find($scope.jobs.list, {id: i.job}).name
-    #     $scope.progress.resolve()
+      workers.one('query').get({query: params, pagination: $scope.request_params}).then (data) ->
+        $scope.request_params.max = data.max_data
+        $scope.workers = data.data
+        $scope.progress.resolve()
+      , 50
 
 
   #
@@ -153,7 +114,21 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
       user_job = _.find($scope.jobs.list, {id: item.job})
       $scope.worker_preview.set(MainHelper.worker_data(item, user_job))
       $mdSidenav('left').toggle()
-    
+    set_event: () ->
+      $scope.jobs.list = []
+      allowed = $scope.events.selected.jobs
+      if allowed
+        for i in $scope.jobs_collection
+          if !i.id
+            $scope.jobs.list.push i
+          else
+            if allowed.indexOf(i.id) != -1
+              $scope.jobs.list.push i
+        $scope.jobs.selected = $scope.jobs.list[0]
+      else
+        $scope.jobs.list = $scope.jobs_collection
+        $scope.jobs.selected = $scope.jobs.list[0]
+      $scope.request_page()
     set_job: () ->
       $scope.ext_search.params = [];
       $scope.request_page();
@@ -200,5 +175,8 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
       $scope.jobs =
         list: data[0]
         selected: data[0][0]
+
+      $scope.jobs_collection = angular.copy($scope.jobs.list)
+
       $scope.progress.resolve()
       $scope.request_page()

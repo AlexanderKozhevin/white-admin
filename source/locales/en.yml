@@ -43,6 +43,7 @@ simple:
   timing: "Event date&time"
   about: "About"
   event_remove: "Events removed"
+  export: "List export"
 
 errors:
   double: "Duplicating labels!"
