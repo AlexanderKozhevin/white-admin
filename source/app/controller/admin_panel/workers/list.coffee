@@ -5,14 +5,11 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
   workers = Restangular.all('workers')
   events = Restangular.all('events')
 
-
-
   $scope.events =
     list: []
     selected: null
 
   $scope.selected = []
-
 
   $scope.jobs =
     list:[]
@@ -23,8 +20,6 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
     index_page: 1
     max: 1
     sort: 'name'
-
-
 
   $scope.ext_search =
     params: []
@@ -71,13 +66,14 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
 
     $scope.progress = $q.defer()
     $scope.workers = []
-
     params = MainHelper.query_params($scope.jobs.selected, $scope.events.selected,  $scope.search.value, $scope.ext_search.params)
 
-    workers.one('query').get({query: params, pagination: $scope.request_params}).then (data) ->
-      $scope.request_params.max = data.max_data
-      $scope.workers = data.data
-      $scope.progress.resolve()
+    $timeout () ->
+      workers.one('query').get({query: params, pagination: $scope.request_params}).then (data) ->
+        $scope.request_params.max = data.max_data
+        $scope.workers = data.data
+        $scope.progress.resolve()
+    , 50
 
 
 
