@@ -26,7 +26,7 @@ div.listing(ng-cloak)
               span {{'simple.extsearch' | translate}}
               
           md-menu-item(aria-label="export")
-            md-button(ng-disabled="is_any_event()")
+            md-button(ng-disabled="is_any_event()" ng-click="actions.export()")
               md-icon.material-icons import_export
               span {{'simple.export' | translate}}
 

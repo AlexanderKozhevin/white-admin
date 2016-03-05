@@ -73,6 +73,8 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
       workers.one('query').get({query: params, pagination: $scope.request_params}).then (data) ->
         $scope.request_params.max = data.max_data
         $scope.workers = data.data
+        for i in $scope.workers
+          i.job_name = _.find($scope.jobs.list, {id: i.job}).name
         $scope.progress.resolve()
       , 50
 

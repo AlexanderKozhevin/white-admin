@@ -79,6 +79,8 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
       workers.one('query').get({query: params, pagination: $scope.request_params}).then (data) ->
         $scope.request_params.max = data.max_data
         $scope.workers = data.data
+        for i in $scope.workers
+          i.job_name = _.find($scope.jobs.list, {id: i.job}).name
         $scope.progress.resolve()
     , 50
 
@@ -117,6 +119,20 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
   # Object containing all methods to manage list elements
   #
   $scope.actions =
+    export: () ->
+      str = 'http://vnedesign.ru/list?event=' + $scope.events.selected.id
+
+      if $scope.jobs.selected.id
+        str += '&job=' + $scope.jobs.selected.id
+
+      clipboard.copyText(str);
+      $translate('simple.list').then (translation) ->
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent(translation)
+            .position("bottom right")
+            .hideDelay(3000)
+        );
     side_nav: (item) ->
       user_job = _.find($scope.jobs.list, {id: item.job})
       $scope.worker_preview.set(MainHelper.worker_data(angular.copy(item), angular.copy(user_job)))

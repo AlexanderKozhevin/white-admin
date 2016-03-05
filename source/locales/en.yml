@@ -45,6 +45,7 @@ simple:
   about: "About"
   event_remove: "Events removed"
   export: "List export"
+  list: "List link copied"
 
 errors:
   double: "Duplicating labels!"
