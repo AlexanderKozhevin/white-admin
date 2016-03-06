@@ -21,6 +21,13 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
     max: 1
     sort: 'name'
 
+
+  $scope.any_job_selected = () ->
+    if $scope.jobs.selected.id
+      return false
+    else
+      return true
+
   $scope.is_any_event = () ->
     index = $scope.events.list.indexOf($scope.events.selected)
     if index < 1

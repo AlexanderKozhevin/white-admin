@@ -20,6 +20,12 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
     max: 1
     sort: 'name'
 
+  $scope.any_job_selected = () ->
+    if $scope.jobs.selected.id
+      return false
+    else
+      return true    
+
   $scope.ext_search =
     params: []
     allowed_types: ['string', 'text', 'number', 'date', 'select', 'multiple select']

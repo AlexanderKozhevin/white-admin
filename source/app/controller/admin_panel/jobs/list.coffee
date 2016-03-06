@@ -59,8 +59,7 @@ angular.module("app").controller "JobsListCtrl",  ($scope, $timeout , $q, Restan
     remove: () ->
       for i in $scope.selected
         _.remove($scope.jobs, i)
-        # Uncomment this line to send 'DELETE' request to server to remove record
-        # i.remove()
+        Restangular.one('jobs', i.id).customDELETE()
       $translate('simple.rec_removed').then (translation) ->
       $mdToast.show(
         $mdToast.simple()
