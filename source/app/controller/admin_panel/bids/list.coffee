@@ -21,10 +21,13 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
     sort: 'name'
 
   $scope.any_job_selected = () ->
-    if $scope.jobs.selected.id
-      return false
+    if $scope.jobs.selected
+      if $scope.jobs.selected.id
+        return false
+      else
+        return true
     else
-      return true    
+      return true
 
   $scope.ext_search =
     params: []
@@ -156,10 +159,9 @@ angular.module("app").controller "BidsListCtrl",  ($scope, $timeout , $q, Restan
             .hideDelay(3000)
         );
     reject: (item) ->
-      Restangular.one('bids', item.id).get().then (data) ->
-        data.status = 'bad'
-        data.save()
+      Restangular.one('bids', item.id).customDELETE()
       _.remove($scope.workers, {id: item.id})
+      
     approve: (item) ->
       Restangular.one('bids', 'approve').get({id: item.id}).then () ->
         $scope.request_params.max--

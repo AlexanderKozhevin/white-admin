@@ -50,7 +50,7 @@ angular.module("app").controller "JobsEditorCtrl",  ($scope, $timeout, FileReade
       if _.uniq(json.params, 'name').length != json.params.length
 
         # Show notification if there are one or more duplicates
-        $translate('simple.link_copy').then (translation) ->
+        $translate('errors.double').then (translation) ->
           $mdToast.show(
             $mdToast.simple()
               .textContent(translation)

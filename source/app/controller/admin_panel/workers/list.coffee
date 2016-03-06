@@ -23,8 +23,11 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
 
 
   $scope.any_job_selected = () ->
-    if $scope.jobs.selected.id
-      return false
+    if $scope.jobs.selected
+      if $scope.jobs.selected.id
+        return false
+      else
+        return true
     else
       return true
 
