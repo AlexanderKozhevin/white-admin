@@ -1,4 +1,4 @@
-angular.module("app").controller "JobsListCtrl",  ($scope, $timeout , $q, Restangular, MainHelper, $mdToast) ->
+angular.module("app").controller "JobsListCtrl",  ($scope, $timeout , $q, Restangular, MainHelper, $mdToast, $translate) ->
 
   $scope.selected = []
 
@@ -61,13 +61,13 @@ angular.module("app").controller "JobsListCtrl",  ($scope, $timeout , $q, Restan
         _.remove($scope.jobs, i)
         Restangular.one('jobs', i.id).customDELETE()
       $translate('simple.rec_removed').then (translation) ->
-      $mdToast.show(
-        $mdToast.simple()
-          .textContent(translation)
-          .position("bottom right")
-          .hideDelay(3000)
-      );
-      $scope.selected = []
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent(translation)
+            .position("bottom right")
+            .hideDelay(3000)
+        );
+        $scope.selected = []
 
 
   $scope.request_page()

@@ -183,8 +183,7 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
     remove: () ->
       for i in $scope.selected
         _.remove($scope.workers, i)
-        # Uncomment this line to send 'DELETE' request to server to remove record
-        i.remove()
+        Restangular.one('workers', i.id).customDELETE()
       $translate('workers.removed').then (translation) ->
         $mdToast.show(
           $mdToast.simple()
@@ -192,7 +191,7 @@ angular.module("app").controller "WorkersListCtrl",  ($scope, $timeout , $q, Res
             .position("bottom right")
             .hideDelay(3000)
         );
-      $scope.selected = []
+        $scope.selected = []
 
 
 
