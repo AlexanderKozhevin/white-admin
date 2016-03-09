@@ -8,6 +8,15 @@
 
     &__select{
       margin-right: $primary-margin;
+      max-width: 200px;
+      overflow: hidden;
+      white-space:nowrap!important;
+      text-overflow: ellipsis!important;
+
+      //!!! SHAME !!!
+      .md-select-value *:first-child{
+        width: calc(100% - 24px);
+      }
     }
 
   }
@@ -28,6 +37,12 @@
       text-align: center;
       width: 3*$primary-margin;
       padding: $primary-padding/2 0px!important;
+      img{
+        background-image: url(/images/social.png);
+        background-size: 100% 100%;
+        background-position: center center;
+        border: none!important;
+      }
     }
   }
 

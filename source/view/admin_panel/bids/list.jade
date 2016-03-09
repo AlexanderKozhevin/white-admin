@@ -52,7 +52,7 @@ section.page-bids(layout="column" layout-align="start center")
           tbody(md-body)
             tr.animate-listing.worker(ng-repeat="item in workers  track by $index" md-row  ng-show="!item.hider")
               td.worker__photo.cursor(md-cell) 
-                img.element-avatar(ng-src="{{item.avatar}}" alt="&" ng-click="actions.side_nav(item)")
+                img.element-avatar(ng-src="{{item.avatar}}" alt="" ng-click="actions.side_nav(item)")
               td.cursor.cursor(md-cell ng-click="actions.side_nav(item)") {{item.name}}
               td.cursor(md-cell ng-click="actions.side_nav(item)") {{item.job_name}}
               td.cursor(md-cell ng-click="actions.side_nav(item)") {{item.createdAt | date}}

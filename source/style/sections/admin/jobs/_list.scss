@@ -4,6 +4,12 @@
     text-align: center;
     width: 3*$primary-margin;
     padding: $primary-padding/2 0px!important;
+    img{
+      background-image: url(/images/application.png);
+      background-size: 100% 100%;
+      background-position: center center;
+      border: none!important;
+    }
   }
 
 }

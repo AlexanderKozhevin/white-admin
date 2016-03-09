@@ -10,6 +10,7 @@ angular.module("app").controller "EventsEditorCtrl",  ($scope, $timeout, FileRea
 
   $scope.init = () ->
     if $scope.method == 'edit'
+      $scope.restoring = true
       if $state.params.id
         events.one($state.params.id).get().then (data) ->
 
@@ -20,6 +21,7 @@ angular.module("app").controller "EventsEditorCtrl",  ($scope, $timeout, FileRea
           for i in event_jobs
             element = _.find($scope.jobs, {id: i})
             $scope.event.jobs.push element
+          $scope.restoring = false
       else
         $state.go('admin.events.list')
 

@@ -1,6 +1,11 @@
 .editor{
 
 
+  .toolbar{
+    &__loading{
+      margin-left: $primary-margin;
+    }
+  }
 
   .data{
     padding: $primary-margin;
