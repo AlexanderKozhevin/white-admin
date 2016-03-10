@@ -1,3 +1,4 @@
+include workers/snippets/worker_quick_view
 header
 
   md-toolbar.admin(ng-cloak)
@@ -10,7 +11,7 @@ header
           md-tab(label="{{'menu.workers' | translate}}" ui-sref="admin.workers.list")
           md-tab(label="{{'simple.bids' | translate}}" ui-sref="admin.bids")
           md-tab(label="{{'menu.jobs' | translate}}" ui-sref="admin.jobs.list")
-          md-tab(label="{{'simple.events' | translate}}" ui-sref="admin.events.list")
+          md-tab(label="{{'simple.vacancy' | translate}}" ui-sref="admin.events.list")
           md-tab(label="{{'menu.stat' | translate}}" ui-sref="admin.statistics")
               
       md-menu
@@ -38,5 +39,5 @@ header
       
       
 
-include workers/snippets/worker_quick_view
+
 section(ui-view="admin") 

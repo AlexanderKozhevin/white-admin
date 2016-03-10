@@ -6,6 +6,7 @@ menu:
   stat: "Статистика"
 
 simple:
+  vacancy: "Вакансии"
   name: "Имя"
   params: "Параметры"
   type: "тип"
@@ -20,6 +21,7 @@ simple:
   create: "Создать"
   public: "Публичный"
   editor: "Редактор портфолио"
+  vac_editor: "Редактор вакансии"
   selected: "Выбрано"
   new_param: "Новый параметр"
   rec_removed: "Записи удалены"

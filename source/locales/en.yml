@@ -6,6 +6,7 @@ menu:
   stat: "Statistics"
 
 simple:
+  vacancy: "Vacancy"
   create: "Create"
   created: "Created At"
   editor: "Worker editor"
@@ -20,6 +21,7 @@ simple:
   public: "Public"
   rec_removed: "Records removed"
   event_link: "Link to event is copied"
+  vac_editor: "Vacancy editor"
   remove: "Remove"
   save: "Save"
   selected: "Selected"
