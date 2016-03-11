@@ -31,8 +31,12 @@
 
   .value{
     &__label{
-      height: $avatar-size;
-      line-height: $avatar-size;
+      min-height: $avatar-size;
+      height: auto;
+      &.md-subheader{display: flex!important;}
+    }
+    &__data{
+      padding-bottom: 20px;
     }
   }
 

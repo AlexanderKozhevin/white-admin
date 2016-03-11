@@ -47,4 +47,15 @@
 
   component-worker-field{width: 100%;}
 
+  md-select{
+    max-width: 90%;
+    overflow: hidden;
+    white-space:nowrap!important;
+    text-overflow: ellipsis!important;
+    display: block;
+    .md-select-value *:first-child{
+      width: calc(100% - 24px);
+    }
+  }
+
 }

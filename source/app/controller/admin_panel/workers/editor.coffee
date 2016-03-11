@@ -51,7 +51,6 @@ angular.module("app").controller "WorkersEditorCtrl",  ($scope, Restangular, $st
           when 'multiple select' then i.value = {selected: data.values[i.id], list: i.values}
           when 'gallery' then i.value = _.map(data.values[i.id], (obj) -> return {url: obj})
       $scope.loading = false
-      console.log $scope.worker.parameters
 
 
 
@@ -94,9 +93,10 @@ angular.module("app").controller "WorkersEditorCtrl",  ($scope, Restangular, $st
 
       # Prepare values
       for i in $scope.worker.parameters
-        json.values[i.id] = i.value.value
-        if i.type == 'gallery'
-          json.values[i.id] = _.map(i.value.value, (obj) -> return obj.url)
+        if i.value
+          json.values[i.id] = i.value.value
+          if i.type == 'gallery'
+            json.values[i.id] = _.map(i.value.value, (obj) -> return obj.url)
 
       # Sending saving request to server
       if $scope.method == 'new'
@@ -124,7 +124,6 @@ angular.module("app").controller "WorkersEditorCtrl",  ($scope, Restangular, $st
             method: 'POST'
           })
           appload.then (resp) ->
-            console.log resp
             $scope.worker.avatar.loading = false
             $scope.worker.avatar.url = 'http://s3.amazonaws.com/polymath-storage/' + resp.data.files[0].fd
           ,(resp) ->
