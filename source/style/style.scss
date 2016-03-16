@@ -42,8 +42,3 @@ body{
   background-color: $grey-background;
   min-height: calc(100vh - #{$toolbar-height});
 }
-
-
-md-sidenav, md-backdrop {
-  position: fixed !important;
-}

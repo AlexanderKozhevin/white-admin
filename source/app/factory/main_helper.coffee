@@ -27,7 +27,7 @@ angular.module('app').factory 'MainHelper',  ($window) ->
 
           i.index = 0
           if !i.value
-            item.value = []
+            i.value = []
 
           i.current = i.value[i.index]
           i.max = i.value.length
@@ -35,6 +35,7 @@ angular.module('app').factory 'MainHelper',  ($window) ->
           i.next =  (item) ->
             item.index++
             item.current = item.value[item.index]
+
           i.prev = (item) ->
             item.index--
             item.current = item.value[item.index]

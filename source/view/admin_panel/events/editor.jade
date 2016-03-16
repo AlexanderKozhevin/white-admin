@@ -15,7 +15,7 @@ div.editor
       input(ng-model="event.city" aria-label="number param" type="text" placeholder="{{'simple.city' | translate}}") 
     md-input-container.element-container--simplified.data__string(flex md-no-float)
       input(ng-model="event.time" aria-label="number param" type="text" placeholder="{{'simple.timing' | translate}}") 
-    md-input-container.md-block.md-block.element-container--simplified.data__text(flex md-no-float)
+    md-input-container.md-block.md-block.element-container--simplified.data__text.md-no-autogrow(flex md-no-float)
       textarea(ng-model="event.about" columns="45" rows="5" aria-label="text type" placeholder="{{'simple.about' | translate}}")
       
     md-content.md-padding.autocomplete.data__chips(layout="column")

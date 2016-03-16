@@ -1,3 +1,14 @@
 *:focus {
     outline: none;
 }
+
+
+
+// SHAME!!!
+md-sidenav, md-backdrop {
+  position: fixed !important;
+}
+.md-no-autogrow textarea.md-input {
+    height: inherit;
+    overflow-y: auto;
+}
